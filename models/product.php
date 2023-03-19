@@ -34,7 +34,7 @@ class Product{
     }
     public function getProducts($inpVal){
         require("connexion.php");
-        $sql = "SELECT * FROM product WHERE name LIKE '%:inpVal%' OR tags LIKE '%:inpVal%' OR sizes_available LIKE '%:inpVal%' OR description LIKE '%:inpVal%' OR categorie_name LIKE '%:inpVal%'";
+        $sql = "SELECT * FROM product WHERE name LIKE '%$inpVal%' OR tags LIKE '%$inpVal%' OR sizes_available LIKE '%$inpVal%' OR description LIKE '%$inpVal%' OR categorie_name LIKE '%$inpVal%'";
         $stm = $connexion->prepare($sql);
         $stm->bindParam(":inpVal",$inpVal);
         $stm->execute();

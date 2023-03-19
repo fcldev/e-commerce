@@ -26,40 +26,10 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product_zoom_gallery">
                        <div class="zoom_gallery_inner d-flex">
-                           <div class="zoom_tab_img">
-                                <a class="zoom_tabimg_list" href="javascript:void(0)"><img src="../assets/img/product/small-product/product1.png" alt="tab-thumb"></a>
-                                <a class="zoom_tabimg_list" href="javascript:void(0)"><img src="../assets/img/product/small-product/product2.png" alt="tab-thumb"></a>
-                                <a class="zoom_tabimg_list" href="javascript:void(0)"><img src="../assets/img/product/small-product/product3.png" alt="tab-thumb"></a>
-                                <a class="zoom_tabimg_list" href="javascript:void(0)"><img src="../assets/img/product/small-product/product4.png" alt="tab-thumb"></a>
-                                <a class="zoom_tabimg_list" href="javascript:void(0)"><img src="../assets/img/product/small-product/product1.png" alt="tab-thumb"></a>
-                                <a class="zoom_tabimg_list" href="javascript:void(0)"><img src="../assets/img/product/small-product/product2.png" alt="tab-thumb"></a>
-                                <a class="zoom_tabimg_list" href="javascript:void(0)"><img src="../assets/img/product/small-product/product3.png" alt="tab-thumb"></a>
-                                <a class="zoom_tabimg_list" href="javascript:void(0)"><img src="../assets/img/product/small-product/product4.png" alt="tab-thumb"></a>
-                           </div>
+                           
                            <div class="product_zoom_main_img">
                                 <div class="product_zoom_thumb">
-                                    <img data-image="../assets/img/product/big-product/product1.png" src="../assets/img/product/big-product/product1.png" alt="">
-                                </div>
-                                <div class="product_zoom_thumb">
-                                    <img data-image="../assets/img/product/big-product/product1.png" src="../assets/img/product/big-product/product1.png" alt="">
-                                </div>
-                                <div class="product_zoom_thumb">
-                                    <img data-image="../assets/img/product/big-product/product1.png" src="../assets/img/product/big-product/product1.png" alt="">
-                                </div>
-                                <div class="product_zoom_thumb">
-                                    <img data-image="../assets/img/product/big-product/product1.png" src="../assets/img/product/big-product/product1.png" alt="">
-                                </div>
-                                <div class="product_zoom_thumb">
-                                    <img data-image="../assets/img/product/big-product/product1.png" src="../assets/img/product/big-product/product1.png" alt="">
-                                </div>
-                                <div class="product_zoom_thumb">
-                                    <img data-image="../assets/img/product/big-product/product1.png" src="../assets/img/product/big-product/product1.png" alt="">
-                                </div>
-                                <div class="product_zoom_thumb">
-                                    <img data-image="../assets/img/product/big-product/product1.png" src="../assets/img/product/big-product/product1.png" alt="">
-                                </div>
-                                <div class="product_zoom_thumb">
-                                    <img data-image="../assets/img/product/big-product/product1.png" src="../assets/img/product/big-product/product1.png" alt="">
+                                    <img data-image="../assets/img/product/big-product/product1.png" src="../assets/img/product/<?php echo $product['general_image'] ;?>" alt="">
                                 </div>
                             </div>
                         </div>
@@ -87,33 +57,23 @@
                                 </div>
                             </div>
                             <div class="price_box">
-                                <span class="current_price">$39.00</span>
+                                <span class="current_price"><?php echo $product['price'] ;?> MAD</span>
                             </div>
                             <div class="product_availalbe">
                                 <ul class="d-flex">
-                                    <li><i class="icon-layers icons"></i> Only <span>15</span> left </li>
+                                    <li><i class="icon-layers icons"></i> Only <span><?php echo $product['quantity'] ;?></span> left </li>
                                     <li>Availalbe: <span class="stock">In Stock</span></li>
                                 </ul>
                             </div>
                             
                                 <div class="filter__list widget_size d-flex align-items-center">
-                                    <h3>select size</h3>
+                                    <h3>sizes available</h3>
                                     <ul>
+                                    <?php foreach(explode(',',$product['sizes_available']) as $tag){ ?>
                                         <li>
-                                            <a href="javascript:void(0)">S</a>
+                                            <a href="javascript:void(0)"><?php echo $tag; ?></a>
                                         </li>
-                                        <li>
-                                            <a href="javascript:void(0)">M</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">L</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">XL</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">XLL</a>
-                                        </li>
+                                    <?php } ?>
                                     </ul>
                                 </div>
 
@@ -158,7 +118,7 @@
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="info" role="tabpanel" >
                                 <div class="product_info_content">
-                                    <p>Coupling a blended linen construction with tailored style, the River Island HR Jasper Blazer will imprint a touch of dapper charm into your after-dark wardrobe. <br> Our model wearing a size medium blazer, and usually takes a size medium/38L shirt. <br> He is 6’2 1/2” (189cm) tall with a 38” (96 cm) chest and a 31” (78 cm) waist.</p>
+                                    <p><?php echo $product['description'] ;?></p>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="reviews" role="tabpanel" >
@@ -224,18 +184,15 @@
                             <div class="tab-pane fade" id="tags" role="tabpanel" >
                                 <div class="product_info_content">
                                     <ul>
-                                        <li>Length: 74cm</li>
-                                        <li>Regular fit</li>
-                                        <li>Notched lapels</li>
-                                        <li>Twin button front fastening</li>
-                                        <li>Front patch pockets; chest pocket</li>
-                                        <li> Internal pockets</li>
+                                        <?php foreach(explode(',',$product['tags']) as $tag){ ?>
+                                                <li><?php echo $tag; ?></li>
+                                        <?php } ?>
                                     </ul>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="video" role="tabpanel" >
                                 <div class="product_tab_vidio text-center">
-                                    <iframe width="729" height="410" src="https://www.youtube.com/embed/BUWzX78Ye_8"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <iframe width="729" height="410" src="<?php echo $product['video'] ?>"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </div>
                             </div>
 

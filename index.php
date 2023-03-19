@@ -9,7 +9,7 @@ if($url == "/Ecommerce/index.php/"){
     accuelle();
 }elseif($url == "/Ecommerce/index.php/cart"){
     cart();
-}elseif($url == "/Ecommerce/index.php/searsh#"){
+}elseif($url == "/Ecommerce/index.php/searsh"){
     searshBar();
 }elseif($url == "/Ecommerce/index.php/productDetails"){
     productDetails();

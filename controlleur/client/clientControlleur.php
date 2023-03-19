@@ -31,12 +31,9 @@ function searshBar(){
 function productDetails(){
     require('./models/product.php');
     $idProduct = $_GET['idProduct'];
-    $product = (new Product)->getProductById($idProduct);
+    $product = (new Product)->getProductById($idProduct)[0];
     require('./views/clientPages/productDetails.php');
 }
-
-
-
 function loginRegister(){
     require("./views/clientPages/loginRegister.php");
 }

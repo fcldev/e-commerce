@@ -101,11 +101,11 @@
                                     <ul class="d-flex">
                                         <li><a class="active" href="/Ecommerce/index.php/">Home</a> </li>
                                         <li><a href="#">about us</a></li>
-                                        <li><a href="#all">product</a></li>
+                                        <li><a href="/Ecommerce/index.php/#all">product</a></li>
                                         <!-- <li><a href="#">sale</a></li> -->
                                         <li><a href="#">pages</a>
                                             <ul class="sub_menu">
-                                                <li><a href="cart.html">Cart Pages</a></li>
+                                                <li><a href="/Ecommerce/index.php/cart">Cart Pages</a></li>
                                                 <li><a href="checkout.html">Checkout Pages</a></li>
                                             </ul>
                                         </li>
