@@ -100,16 +100,16 @@
                                     <h3>select size</h3>
                                     <ul>
                                         <li>
-                                            <a href="javascript:void(0)">S </a>
+                                            <a href="javascript:void(0)">S</a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)"> M</a>
+                                            <a href="javascript:void(0)">M</a>
                                         </li>
                                         <li>
                                             <a href="javascript:void(0)">L</a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)"> XL</a>
+                                            <a href="javascript:void(0)">XL</a>
                                         </li>
                                         <li>
                                             <a href="javascript:void(0)">XLL</a>

@@ -99,23 +99,23 @@
                             <div class="main_menu d-none d-lg-block">
                                 <nav>
                                     <ul class="d-flex">
-                                        <li><a class="active" href="index.html">demo</a> </li>
-                                        <li><a href="shop.html">shop</a></li>
-                                        <li><a href="/Ecommerce/index.php/productDetails">product</a></li>
-                                        <li><a href="#">sale</a></li>
+                                        <li><a class="active" href="/Ecommerce/index.php/">Home</a> </li>
+                                        <li><a href="#">about us</a></li>
+                                        <li><a href="#all">product</a></li>
+                                        <!-- <li><a href="#">sale</a></li> -->
                                         <li><a href="#">pages</a>
                                             <ul class="sub_menu">
                                                 <li><a href="cart.html">Cart Pages</a></li>
                                                 <li><a href="checkout.html">Checkout Pages</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="blog.html">blog</a>
+                                        <!-- <li><a href="blog.html">blog</a>
                                             <ul class="sub_menu">
                                                 <li><a href="blog.html">Blog Pages</a></li>
                                                 <li><a href="blog-details.html">Blog Details</a></li>
                                             </ul>
-                                        </li>
-                                        <li><a href="#">buy</a></li>
+                                        </li> -->
+                                        <!-- <li><a href="#">buy</a></li> -->
                                     </ul>
                                 </nav>
                             </div>
@@ -126,8 +126,18 @@
                                     </li>
                                     <li class="account_link"><a href="#"><i class="icon-user icons"></i></a>
                                         <ul class="dropdown_account_link">
-                                            <li><a href="/Ecommerce/index.php/login">Login</a></li>
-                                            <li><a href="#">Contact</a></li>
+                                            <?php if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] === 'customer'){ ?>
+                                                <li><a href="/Ecommerce/index.php/"><?php echo $_SESSION['userInfo']['full_name']; ?></a></li>
+                                                <li><a href="/Ecommerce/index.php/logout">logout</a></li>
+                                                <li><a href="#">Contact</a></li>
+                                            <?php }elseif(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] === 'admin'){ ?>
+                                                <li><a href="/Ecommerce/index.php/"><?php echo $_SESSION['userInfo']['full_name']; ?></a></li>
+                                                <li><a href="/Ecommerce/index.php/logout">logout</a></li>
+                                                <li><a href="/Ecommerce/index.php/dashboard">dashboard</a></li>
+                                            <?php }else{ ?>
+                                                <li><a href="/Ecommerce/index.php/loginRegister">Login</a></li>
+                                                <li><a href="#">Contact</a></li>
+                                            <?php } ?>    
                                         </ul>
                                     </li>
                                     <li class="shopping_cart"><a href="/Ecommerce/index.php/cart">
