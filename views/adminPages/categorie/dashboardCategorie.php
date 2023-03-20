@@ -93,7 +93,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/Ecommerce/index.php/dashboardUser" class="nav-link active">
+                <a href="/Ecommerce/index.php/dashboardUser" class="nav-link ">
                   <p>Users</p>
                 </a>
               </li>
@@ -103,7 +103,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/Ecommerce/index.php/dashboardCategorie" class="nav-link">
+                <a href="/Ecommerce/index.php/dashboardCategorie" class="nav-link active">
                   <p>Categories</p>
                 </a>
               </li>

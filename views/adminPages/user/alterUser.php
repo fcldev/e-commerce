@@ -15,6 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="slide navbar style.css">
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <style>
 	body{
 	margin: 0;
@@ -35,14 +36,6 @@
 	border-radius: 10px;
 	box-shadow: 5px 20px 50px #000;
 }
-#chk{
-	display: none;
-}
-.login{
-	position: relative;
-	width:100%;
-	height: 100%;
-}
 label{
 	color: #fff;
 	font-size: 2.3em;
@@ -56,6 +49,18 @@ label{
 input{
 	width: 60%;
 	height: 20px;
+	background: #e0dede;
+	justify-content: center;
+	display: flex;
+	margin: 20px auto;
+	padding: 10px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+}
+select{
+	width: 65%;
+	height: 40px;
 	background: #e0dede;
 	justify-content: center;
 	display: flex;
@@ -86,28 +91,15 @@ button:hover{
 	background: #6d44b8;
 }
 .signup{
-	height: 650px;
+	height: 100%;
 	background: #eee;
-	/* border-radius: 60% / 10%; */
-	transform: translateY(-180px);
-	transition: .8s ease-in-out;
 }
 .signup label{
 	color: #573b8a;
-	transform: scale(.6);
 }
 
-#chk:checked ~ .signup{
-	transform: translateY(-700px);
-}
-#chk:checked ~ .signup label{
-	transform: scale(1);	
-}
-#chk:checked ~ .login label{
-	transform: scale(.6);
-}
 .file{
-	width:65%;
+	width:70%;
 	display:flex;
 	flex-wrap:wrap;
 	margin: 20px auto;
@@ -148,38 +140,42 @@ $_SESSION['loginErr'] = '0';
 </head>
 <body>
 	<div class="main">  	
-			<input type="checkbox" id="chk" aria-hidden="true">
-			<div class="login">
-				<form method="post" action="/Ecommerce/index.php/confirmLogin">
-					<label for="chk" aria-hidden="true">Login</label>
-					<input type="text" name="username" placeholder="Email" required="">
-					<input type="password" name="password" placeholder="Password" required="">
-					<button type="submit">Login</button>
-				</form>
-			</div>
-
 			<div class="signup">
-				<form method="post" action="/Ecommerce/index.php/confirmCreateAcount" enctype="multipart/form-data">
-					<label for="chk" aria-hidden="true">Sign up</label>
-					<input type="text" name="full_name" placeholder="Full name" required="">
-					<input type="date" name="birth_day" placeholder="Full name" required="">
-					<input type="email" name="email" placeholder="Email" required="">
+				<form method="post" action="/Ecommerce/index.php/confirmAlterUser?id_user=<?php echo $user1['id_user']; ?>" enctype="multipart/form-data">
+					<label for="chk" aria-hidden="true">alter user info</label>
+					<input type="text" name="full_name" value="<?php echo $user1['full_name']; ?>" placeholder="Full name" required="">
+					<input type="date" name="birth_day" value="<?php echo $user1['birth_day']; ?>" placeholder="Full name" required="">
+					<input type="email" name="email" value="<?php echo $user1['email']; ?>" placeholder="Email" required="">
+					<select name="role" id="">
+						<?php if($user1['role'] == 'admin'){ ?>
+							<option value="admin">admin</option>
+							<option value="customer">customer</option>
+						<?php }else{ ?>
+							<option value="customer">customer</option>
+							<option value="admin">admin</option>
+						<?php } ?>
+					</select>
 					<div class="file">
 						<div><i class="fa-solid fa-image"></i></div>
-						<input type="file" name="profile_image" placeholder="profile picture" required="">
+						<input type="file" name="profile_image" placeholder="profile picture" >
 					</div>
-					<input type="text" name="username" placeholder="username" required="">
-					<input type="password" name="password" placeholder="Password" required="">
-					<input type="password" name="password2" placeholder="Password" required="">
-					<button type="submit">Sign up</button>
+					<input type="text" name="username" value="<?php echo $user1['username']; ?>" placeholder="username" required="">
+					<input type="password" name="password" value="<?php echo $user1['password']; ?>" placeholder="Password" required="">
+					<input type="password" name="password2" value="<?php echo $user1['password']; ?>" placeholder="Password" required="">
+					<button type="submit">alter informations</button>
 				</form>
 			</div>
-
-			
 	</div>
+	
 </body>
+<script>
+	<?php if($_GET['err'] == '2'){ ?>
+		alert('password you entered id not similar')
+	<?php } ?>
+</script>
 </html>
 <!-- partial -->
   
 </body>
 </html>
+

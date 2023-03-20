@@ -52,6 +52,12 @@
           </form>
         </div>
       </li>
+      <!-- add product button -->
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="/Ecommerce/index.php/addProduct" role="button">
+          <i class="fa-solid fa-plus"></i>
+        </a>
+      </li>
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -69,10 +75,14 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <?php if($_SESSION['userInfo']['profile_image'] != ''){ ?>
+              <img src="../assets/usersProfileImage/<?php echo $_SESSION['userInfo']['profile_image'] ?>" class="img-circle elevation-2" alt="User Image">
+          <?php }else{ ?>
+              <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <?php } ?>
         </div>
         <div class="info">
-          <a href="#" class="d-block"><?php echo $_SESSION['userInfo'][1]; ?></a>
+          <a href="#" class="d-block"><?php echo $_SESSION['userInfo']['full_name']; ?></a>
         </div>
       </div>
 
@@ -93,12 +103,12 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/Ecommerce/index.php/dashboardUser" class="nav-link active">
+                <a href="/Ecommerce/index.php/dashboardUser" class="nav-link">
                   <p>Users</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/Ecommerce/index.php/dashboardProduct" class="nav-link">
+                <a href="/Ecommerce/index.php/dashboardProduct" class="nav-link active">
                   <p>Products</p>
                 </a>
               </li>
@@ -124,31 +134,50 @@
                 <tr>
                     <th>id</th>
                     <th>name</th>
-                    <th>email</th>
-                    <th>username</th>
-                    <th>paddword</th>
-                    <th></th>
+                    <th>description</th>
+                    <th>tags</th>
+                    <th>price</th>
+                    <th>video</th>
+                    <th>quantity</th>
+                    <th>visibility</th>
+                    <th>date arrivale</th>
+                    <th>sizes available</th>
+                    <th>discount</th>
+                    <th>categorie</th>
+                    <th>general image</th>
+                    <th>actions</th>
                 </tr>
             </thead>
             <tbody>
+              <?php foreach($products as $p){ ?>
                 <tr>
-                    <td class="tflex"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="tflex"><?php echo $p['id_product']; ?></td>
+                    <td><?php echo $p['name']; ?></td>
+                    <td><?php echo $p['description']; ?></td>
+                    <td><?php echo $p['tags']; ?></td>
+                    <td><?php echo $p['price']; ?></td>
+                    <td><?php echo $p['video']; ?></td>
+                    <td><?php echo $p['quantity']; ?></td>
+                    <td><?php echo $p['visibility']; ?></td>
+                    <td><?php echo $p['date_arrivale']; ?></td>
+                    <td><?php echo $p['sizes_available']; ?></td>
+                    <td><?php echo $p['discount']; ?></td>
+                    <td><?php echo $p['categorie_name']; ?></td>
+                    <td><img src="../assets/productsImages/<?php echo $p['general_image']; ?>" width="50px" height="50px" alt="img"></td>
                     <td align="center">
                         <div class="dropdown">
                             <a class="btn btn-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa-sharp fa-solid fa-gear"></i>
                             </a>    
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">delete</a>
-                                <a class="dropdown-item" href="#">alter</a>
+                                <a class="dropdown-item" href="#<?php echo $p['id_product']; ?>">Add more images</a>
+                                <a class="dropdown-item" href="#<?php echo $p['id_product']; ?>">delete</a>
+                                <a class="dropdown-item" href="#<?php echo $p['id_product']; ?>">alter</a>
                             </div>
                         </div>
                     </td>
                 </tr>
+              <?php } ?>
             </tbody>
         </table>
                 <!-- content here--------------------------------------------------------------------------------------------  -->

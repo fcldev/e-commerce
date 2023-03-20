@@ -64,7 +64,10 @@ function confirmCreateAcount(){
     require_once("./models/user.php");
     if($_POST['password'] == $_POST['password2']){
         $user = new User($_POST['username'],$_POST['password']);
-        $user->setUserInfo($_POST['full_name'],$_POST['email'],$_POST['username'],$_POST['password']);
+        $file = $_FILES['profile_image']['name'];
+        $image = uniqid().$file;
+        move_uploaded_file($_FILES['profile_image']['tmp_name'],'./assets/usersProfileImage/'.$image);
+        $user->setUserInfo($_POST['full_name'],$_POST['birth_day'],$_POST['email'],$_POST['role'],$image,$_POST['username'],$_POST['password']);
         $user->createAccount();
         confirmLogin();
     }else{

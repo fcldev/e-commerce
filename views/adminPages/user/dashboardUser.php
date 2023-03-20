@@ -52,6 +52,12 @@
           </form>
         </div>
       </li>
+      <!-- add user Dropdown Menu -->
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="/Ecommerce/index.php/addAdmin" role="button">
+          <i class="fa-solid fa-plus"></i>
+        </a>
+      </li>
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -69,7 +75,11 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <?php if($_SESSION['userInfo']['profile_image'] != ''){ ?>
+              <img src="../assets/usersProfileImage/<?php echo $_SESSION['userInfo']['profile_image'] ?>" class="img-circle elevation-2" alt="User Image">
+          <?php }else{ ?>
+              <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <?php } ?>
         </div>
         <div class="info">
           <a href="#" class="d-block"><?php echo $_SESSION['userInfo'][1]; ?></a>
@@ -122,33 +132,41 @@
     <table class="table table-hover table-sm">
             <thead>
                 <tr>
-                    <th>id</th>
-                    <th>name</th>
-                    <th>email</th>
-                    <th>username</th>
-                    <th>paddword</th>
-                    <th></th>
+                    <th>Id</th>
+                    <th>Full name</th>
+                    <th>Birth day</th>
+                    <th>Email</th>
+                    <th>Profile picture</th>
+                    <th>Role</th>
+                    <th>Username</th>
+                    <th>Paddword</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
+              <?php foreach($users as $u){ ?>
                 <tr>
-                    <td class="tflex"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="tflex"><?php echo $u['id_user'] ; ?></td>
+                    <td><?php echo $u['full_name'] ; ?></td>
+                    <td><?php echo $u['birth_day'] ; ?></td>
+                    <td><?php echo $u['email'] ; ?></td>
+                    <td><img src="../assets/usersProfileImage/<?php echo $u['profile_image'] ; ?>" width="50px" height="50px" /></td>
+                    <td><?php echo $u['role'] ; ?></td>
+                    <td><?php echo $u['username'] ; ?></td>
+                    <td><?php echo $u['password'] ; ?></td>
                     <td align="center">
                         <div class="dropdown">
                             <a class="btn btn-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa-sharp fa-solid fa-gear"></i>
                             </a>    
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">delete</a>
-                                <a class="dropdown-item" href="#">alter</a>
+                                <a class="dropdown-item" href="/Ecommerce/index.php/deleteUser?id_user=<?php  echo $u['id_user']; ?>">delete</a>
+                                <a class="dropdown-item" href="/Ecommerce/index.php/alterUser?id_user=<?php  echo $u['id_user']; ?>">alter</a>
                             </div>
                         </div>
                     </td>
                 </tr>
+              <?php } ?>
             </tbody>
         </table>
                 <!-- content here--------------------------------------------------------------------------------------------  -->

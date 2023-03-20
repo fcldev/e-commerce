@@ -35,14 +35,6 @@
 	border-radius: 10px;
 	box-shadow: 5px 20px 50px #000;
 }
-#chk{
-	display: none;
-}
-.login{
-	position: relative;
-	width:100%;
-	height: 100%;
-}
 label{
 	color: #fff;
 	font-size: 2.3em;
@@ -86,26 +78,13 @@ button:hover{
 	background: #6d44b8;
 }
 .signup{
-	height: 650px;
+	height: 100%;
 	background: #eee;
-	/* border-radius: 60% / 10%; */
-	transform: translateY(-180px);
-	transition: .8s ease-in-out;
 }
 .signup label{
 	color: #573b8a;
-	transform: scale(.6);
 }
 
-#chk:checked ~ .signup{
-	transform: translateY(-700px);
-}
-#chk:checked ~ .signup label{
-	transform: scale(1);	
-}
-#chk:checked ~ .login label{
-	transform: scale(.6);
-}
 .file{
 	width:65%;
 	display:flex;
@@ -148,19 +127,9 @@ $_SESSION['loginErr'] = '0';
 </head>
 <body>
 	<div class="main">  	
-			<input type="checkbox" id="chk" aria-hidden="true">
-			<div class="login">
-				<form method="post" action="/Ecommerce/index.php/confirmLogin">
-					<label for="chk" aria-hidden="true">Login</label>
-					<input type="text" name="username" placeholder="Email" required="">
-					<input type="password" name="password" placeholder="Password" required="">
-					<button type="submit">Login</button>
-				</form>
-			</div>
-
 			<div class="signup">
-				<form method="post" action="/Ecommerce/index.php/confirmCreateAcount" enctype="multipart/form-data">
-					<label for="chk" aria-hidden="true">Sign up</label>
+				<form method="post" action="/Ecommerce/index.php/confirmAddAdmin" enctype="multipart/form-data">
+					<label for="chk" aria-hidden="true">Add an admin</label>
 					<input type="text" name="full_name" placeholder="Full name" required="">
 					<input type="date" name="birth_day" placeholder="Full name" required="">
 					<input type="email" name="email" placeholder="Email" required="">
@@ -174,8 +143,6 @@ $_SESSION['loginErr'] = '0';
 					<button type="submit">Sign up</button>
 				</form>
 			</div>
-
-			
 	</div>
 </body>
 </html>

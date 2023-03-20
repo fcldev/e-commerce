@@ -189,7 +189,7 @@
                                     <figure>
                                         <div class="product_thumb">
                                             <a href="/Ecommerce/index.php/productDetails?idProduct=<?php echo $product['id_product'] ;?>">
-                                                <img class="primary_img" src="../assets/img/product/<?php echo $product['general_image'] ;?>"
+                                                <img class="primary_img" src="../assets/productsimages/<?php echo $product['general_image'] ;?>"
                                                     alt="consectetur">
                                             </a>
                                             <div class="product_label">
