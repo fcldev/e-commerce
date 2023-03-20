@@ -22,7 +22,16 @@ if($url == "/Ecommerce/index.php/"){
 }elseif($url == "/Ecommerce/index.php/confirmCreateAcount"){
     confirmCreateAcount();
 }
+// client part end
 
-
+// admin part start
+require("./controlleur/admin/adminControlleur.php");
+if($url == "/Ecommerce/index.php/dashboardUser"){
+    dashboardUser();
+}elseif($url == "/Ecommerce/index.php/dashboardProduct"){
+    dashboardProduct();
+}elseif($url == "/Ecommerce/index.php/dashboardCategorie"){
+    dashboardCategorie();
+}
 
 ?>

@@ -133,7 +133,7 @@
                                             <?php }elseif(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] === 'admin'){ ?>
                                                 <li><a href="/Ecommerce/index.php/"><?php echo $_SESSION['userInfo']['full_name']; ?></a></li>
                                                 <li><a href="/Ecommerce/index.php/logout">logout</a></li>
-                                                <li><a href="/Ecommerce/index.php/dashboard">dashboard</a></li>
+                                                <li><a href="/Ecommerce/index.php/dashboardUser">dashboard</a></li>
                                             <?php }else{ ?>
                                                 <li><a href="/Ecommerce/index.php/loginRegister">Login</a></li>
                                                 <li><a href="#">Contact</a></li>

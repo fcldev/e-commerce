@@ -48,7 +48,7 @@ function confirmLogin(){
         header("Location: /Ecommerce/index.php/?categorie=all");
     }elseif(isset($userInfo) && $userInfo[0]['role'] == 'admin'){
         $_SESSION['userInfo'] = $userInfo[0];
-        header("Location: /Ecommerce/index.php/dashboard");
+        header("Location: /Ecommerce/index.php/dashboardUser");
     }else{
         $_SESSION['loginErr'] = '1';
         header("Location: /Ecommerce/index.php/loginRegister");
