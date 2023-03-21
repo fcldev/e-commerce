@@ -160,8 +160,57 @@ function dashboardCategorie(){
     if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
         require("./models/categorie.php");
         $categorie = new Categorie;
-        $categories = $product->getAllCategoris();
+        $categories = $categorie->getAllCategories();
         require('./views/adminPages/categorie/dashboardCategorie.php');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function addCategorie(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
+        require('./views/adminPages/categorie/addCategorie.php');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function confirmAddCategorie(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
+        require("./models/categorie.php");
+        $categorie = new Categorie;
+        $categorie->setCategorieInfo($_POST['categorie_name']);
+        $categorie->addCategorie();
+        header('Location: /Ecommerce/index.php/dashboardCategorie');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function deletCategorie(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
+        require("./models/categorie.php");
+        $categorie = new Categorie;
+        $categorie->deleteCategorie($_GET['categorie_name']);
+        header('Location: /Ecommerce/index.php/dashboardCategorie');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function alterCategorie(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
+        require("./models/categorie.php");
+        $categorie = new Categorie;
+        $categorie1 = $categorie->getCategorie($_GET['categorie_name'])[0];
+        require('./views/adminPages/categorie/alterCategorie.php');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function confirmAlterCategorie(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin'){
+            require("./models/categorie.php");
+            $categorie = new Categorie;
+            $categorie->setCategorieInfo($_POST['categorie_name']);
+            $categorie->alterCategorieInfo($_GET['categorie_name']);
+            header('Location: /Ecommerce/index.php/dashboardCategorie');
     }else{
         header('Location: /Ecommerce/index.php/loginRegister');
     }

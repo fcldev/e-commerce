@@ -164,7 +164,7 @@
                     <td><?php echo $p['discount']; ?></td>
                     <td><?php echo $p['categorie_name']; ?></td>
                     <td><img src="../assets/productsImages/<?php echo $p['general_image']; ?>" width="50px" height="50px" alt="img"></td>
-                    <td align="center">
+                    <td>
                         <div class="dropdown">
                             <a class="btn btn-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa-sharp fa-solid fa-gear"></i>

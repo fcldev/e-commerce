@@ -154,7 +154,7 @@
                     <td><?php echo $u['role'] ; ?></td>
                     <td><?php echo $u['username'] ; ?></td>
                     <td><?php echo $u['password'] ; ?></td>
-                    <td align="center">
+                    <td>
                         <div class="dropdown">
                             <a class="btn btn-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa-sharp fa-solid fa-gear"></i>
