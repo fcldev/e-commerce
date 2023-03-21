@@ -146,9 +146,14 @@ function confirmAlterProduct(){
         header('Location: /Ecommerce/index.php/loginRegister');
     }
 }
-function addImagesToProduct(){
+function productCatalogue(){
     if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin'){
-        require('./views/adminPages/product/addImagesToProduct.php');
+        require("./models/product.php");
+        require("./models/image.php");
+        $image = new Image;
+        $listImages = $image->getImagesByProductId($_GET['id_product']);
+        var_dump($listImages);
+        require('./views/adminPages/product/productCatalogue.php');
     }else{
         header('Location: /Ecommerce/index.php/loginRegister');
     }

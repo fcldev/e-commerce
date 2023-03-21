@@ -55,8 +55,8 @@ elseif($url == "/Ecommerce/index.php/dashboardProduct"){
     alterProduct();
 }elseif($url == "/Ecommerce/index.php/confirmAlterProduct"){
     confirmAlterProduct();
-}elseif($url == "/Ecommerce/index.php/addImagesToProduct"){
-    addImagesToProduct();
+}elseif($url == "/Ecommerce/index.php/checkProductImages"){
+    productCatalogue();
 }
 
 // dashboard categorie part

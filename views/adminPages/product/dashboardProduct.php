@@ -31,27 +31,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
+
       <!-- add product button -->
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="/Ecommerce/index.php/addProduct" role="button">
@@ -129,57 +109,85 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <table class="table table-hover table-sm">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>name</th>
-                    <th>description</th>
-                    <th>tags</th>
-                    <th>price</th>
-                    <th>video</th>
-                    <th>quantity</th>
-                    <th>visibility</th>
-                    <th>date arrivale</th>
-                    <th>sizes available</th>
-                    <th>discount</th>
-                    <th>categorie</th>
-                    <th>general image</th>
-                    <th>actions</th>
-                </tr>
-            </thead>
-            <tbody>
-              <?php foreach($products as $p){ ?>
-                <tr>
-                    <td class="tflex"><?php echo $p['id_product']; ?></td>
-                    <td><?php echo $p['name']; ?></td>
-                    <td><?php echo $p['description']; ?></td>
-                    <td><?php echo $p['tags']; ?></td>
-                    <td><?php echo $p['price']; ?></td>
-                    <td><?php echo $p['video']; ?></td>
-                    <td><?php echo $p['quantity']; ?></td>
-                    <td><?php echo $p['visibility']; ?></td>
-                    <td><?php echo $p['date_arrivale']; ?></td>
-                    <td><?php echo $p['sizes_available']; ?></td>
-                    <td><?php echo $p['discount']; ?></td>
-                    <td><?php echo $p['categorie_name']; ?></td>
-                    <td><img src="../assets/productsImages/<?php echo $p['general_image']; ?>" width="50px" height="50px" alt="img"></td>
-                    <td>
-                        <div class="dropdown">
-                            <a class="btn btn-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa-sharp fa-solid fa-gear"></i>
-                            </a>    
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="/Ecommerce/index.php/addImagesToProduct?id_product=<?php echo $p['id_product']; ?>">Add more images</a>
-                                <a class="dropdown-item" href="/Ecommerce/index.php/deleteProduct?id_product=<?php echo $p['id_product']; ?>">delete</a>
-                                <a class="dropdown-item" href="/Ecommerce/index.php/alterProduct?id_product=<?php echo $p['id_product']; ?>">alter</a>
+        <div class="d-flex">
+          <h1 class="mx-auto">Product management</h1>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Products</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0" style="height: 800px;">
+                <table class="table table-head-fixed text-nowrap">
+                      <thead>
+                            <tr>
+                                <th>actions</th>
+                                <th>id</th>
+                                <th>name</th>
+                                <th>description</th>
+                                <th>tags</th>
+                                <th>price</th>
+                                <th>video</th>
+                                <th>quantity</th>
+                                <th>visibility</th>
+                                <th>date arrivale</th>
+                                <th>sizes available</th>
+                                <th>discount</th>
+                                <th>categorie</th>
+                            </tr>
+                      </thead>
+                  <tbody>
+                   <?php foreach($products as $p){ ?>
+                    <tr>
+                        <td>
+                            <div class="dropdown">
+                                <a class="btn btn-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa-sharp fa-solid fa-gear"></i>
+                                </a>    
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="/Ecommerce/index.php/checkProductImages?id_product=<?php echo $p['id_product']; ?>">Check product pictures</a>
+                                    <a class="dropdown-item" href="/Ecommerce/index.php/deleteProduct?id_product=<?php echo $p['id_product']; ?>">delete</a>
+                                    <a class="dropdown-item" href="/Ecommerce/index.php/alterProduct?id_product=<?php echo $p['id_product']; ?>">alter</a>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-              <?php } ?>
-            </tbody>
-        </table>
+                        </td>
+                        <td class="tflex"><?php echo $p['id_product']; ?></td>
+                        <td><?php echo $p['name']; ?></td>
+                        <td><?php echo $p['description']; ?></td>
+                        <td><?php echo $p['tags']; ?></td>
+                        <td><?php echo $p['price']; ?></td>
+                        <td><?php echo $p['video']; ?></td>
+                        <td><?php echo $p['quantity']; ?></td>
+                        <td><?php echo $p['visibility']; ?></td>
+                        <td><?php echo $p['date_arrivale']; ?></td>
+                        <td><?php echo $p['sizes_available']; ?></td>
+                        <td><?php echo $p['discount']; ?></td>
+                        <td><?php echo $p['categorie_name']; ?></td> 
+                    </tr>
+                  <?php } ?>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+        <!-- /.row -->
                 <!-- content here--------------------------------------------------------------------------------------------  -->
   </div>
   <!-- /.content-wrapper -->

@@ -31,27 +31,6 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
       <!-- add user Dropdown Menu -->
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="/Ecommerce/index.php/addAdmin" role="button">
@@ -129,46 +108,77 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <table class="table table-hover table-sm">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Full name</th>
-                    <th>Birth day</th>
-                    <th>Email</th>
-                    <th>Profile picture</th>
-                    <th>Role</th>
-                    <th>Username</th>
-                    <th>Paddword</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-              <?php foreach($users as $u){ ?>
-                <tr>
-                    <td class="tflex"><?php echo $u['id_user'] ; ?></td>
-                    <td><?php echo $u['full_name'] ; ?></td>
-                    <td><?php echo $u['birth_day'] ; ?></td>
-                    <td><?php echo $u['email'] ; ?></td>
-                    <td><img src="../assets/usersProfileImage/<?php echo $u['profile_image'] ; ?>" width="50px" height="50px" /></td>
-                    <td><?php echo $u['role'] ; ?></td>
-                    <td><?php echo $u['username'] ; ?></td>
-                    <td><?php echo $u['password'] ; ?></td>
-                    <td>
-                        <div class="dropdown">
-                            <a class="btn btn-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa-sharp fa-solid fa-gear"></i>
-                            </a>    
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="/Ecommerce/index.php/deleteUser?id_user=<?php  echo $u['id_user']; ?>">delete</a>
-                                <a class="dropdown-item" href="/Ecommerce/index.php/alterUser?id_user=<?php  echo $u['id_user']; ?>">alter</a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-              <?php } ?>
-            </tbody>
-        </table>
+    
+        <div class="d-flex">
+          <h1 class="mx-auto">Users management</h1>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Users</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0" style="height: 800px;">
+                <table class="table table-head-fixed text-nowrap">
+                  <thead>
+                    <tr>
+                        <th>Actions</th>
+                        <th>Id</th>
+                        <th>Full name</th>
+                        <th>Birth day</th>
+                        <th>Email</th>
+                        <th>Profile picture</th>
+                        <th>Role</th>
+                        <th>Username</th>
+                        <th>Paddword</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <?php foreach($users as $u){ ?>
+                        <tr>
+                            <td>
+                                <div class="dropdown">
+                                    <a class="btn btn-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa-sharp fa-solid fa-gear"></i>
+                                    </a>    
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="/Ecommerce/index.php/deleteUser?id_user=<?php  echo $u['id_user']; ?>">delete</a>
+                                        <a class="dropdown-item" href="/Ecommerce/index.php/alterUser?id_user=<?php  echo $u['id_user']; ?>">alter</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="tflex"><?php echo $u['id_user'] ; ?></td>
+                            <td><?php echo $u['full_name'] ; ?></td>
+                            <td><?php echo $u['birth_day'] ; ?></td>
+                            <td><?php echo $u['email'] ; ?></td>
+                            <td><img src="../assets/usersProfileImage/<?php echo $u['profile_image'] ; ?>" width="50px" height="50px" /></td>
+                            <td><?php echo $u['role'] ; ?></td>
+                            <td><?php echo $u['username'] ; ?></td>
+                            <td><?php echo $u['password'] ; ?></td>
+                        </tr>
+                      <?php } ?>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+        <!-- /.row -->
                 <!-- content here--------------------------------------------------------------------------------------------  -->
   </div>
   <!-- /.content-wrapper -->

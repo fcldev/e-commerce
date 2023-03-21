@@ -31,27 +31,6 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
       <!-- add product button -->
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="/Ecommerce/index.php/addCategorie" role="button">
@@ -108,12 +87,12 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/Ecommerce/index.php/dashboardProduct" class="nav-link active">
+                <a href="/Ecommerce/index.php/dashboardProduct" class="nav-link ">
                   <p>Products</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/Ecommerce/index.php/dashboardCategorie" class="nav-link">
+                <a href="/Ecommerce/index.php/dashboardCategorie" class="nav-link active">
                   <p>Categories</p>
                 </a>
               </li>
@@ -129,17 +108,40 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <table class="table table-hover table-sm">
-            <thead>
+        <div class="d-flex">
+          <h1 class="mx-auto">Categorie management</h1>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Categorie</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0" style="height: 800px;">
+                <table class="table table-head-fixed text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>action</th>
+                      <th>Categorie name</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <?php foreach($categories as $c){ ?>
                 <tr>
-                    <th>Categorie name</th>
-                    <th>actions</th>
-                </tr>
-            </thead>
-            <tbody>
-              <?php foreach($categories as $c){ ?>
-                <tr>
-                    <td><?php echo $c['categorie_name']; ?></td>
                     <td>
                         <div class="dropdown">
                             <a class="btn btn-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -151,10 +153,18 @@
                             </div>
                         </div>
                     </td>
+                    <td><?php echo $c['categorie_name']; ?></td>
                 </tr>
               <?php } ?>
-            </tbody>
-        </table>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+        <!-- /.row -->
                 <!-- content here--------------------------------------------------------------------------------------------  -->
   </div>
   <!-- /.content-wrapper -->
