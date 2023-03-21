@@ -21,7 +21,15 @@ class Categorie{
         $listCategories = $stm->fetchAll();
         return $listCategories;
     }
-
+    public function searshForCategories($input_val){
+        require("connexion.php");
+        $sql = "SELECT * FROM categorie WHERE categorie_name LIKE '%$input_val%'";
+        $stm = $connexion->prepare($sql);
+        $stm->bindParam(":input_val",$input_val);
+        $stm->execute();
+        $listCategories = $stm->fetchAll();
+        return $listCategories;
+    }
     public function deleteCategorie($categorieName){
         require("connexion.php");
         $sql = "DELETE FROM `categorie` WHERE categorie_name = :categorieName";

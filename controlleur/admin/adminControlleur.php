@@ -11,6 +11,16 @@ function dashboardUser(){
     }
     
 }
+function dashboardSearshUser(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
+        require("./models/user.php");
+        $user = new User($_SESSION['userInfo']['username'],$_SESSION['userInfo']['password']);
+        $users = $user->searshForUsers($_POST['input_val']);
+        require('./views/adminPages/user/dashboarduser.php');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
 function addAdmin(){
     if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
         require('./views/adminPages/user/addAdmin.php');
@@ -83,6 +93,16 @@ function dashboardProduct(){
         require("./models/product.php");
         $product = new Product;
         $products = $product->getAllProducts();
+        require('./views/adminPages/product/dashboardProduct.php');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function dashboardSearshProduct(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
+        require("./models/product.php");
+        $product = new Product;
+        $products = $product->searshForProducts($_POST['input_val']);
         require('./views/adminPages/product/dashboardProduct.php');
     }else{
         header('Location: /Ecommerce/index.php/loginRegister');
@@ -166,6 +186,16 @@ function dashboardCategorie(){
         require("./models/categorie.php");
         $categorie = new Categorie;
         $categories = $categorie->getAllCategories();
+        require('./views/adminPages/categorie/dashboardCategorie.php');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function dashboardSearshCategorie(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
+        require("./models/categorie.php");
+        $categorie = new Categorie;
+        $categories = $categorie->searshForCategories($_POST['input_val']);
         require('./views/adminPages/categorie/dashboardCategorie.php');
     }else{
         header('Location: /Ecommerce/index.php/loginRegister');

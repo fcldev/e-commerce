@@ -59,6 +59,15 @@ class User{
         $listUsers = $stm->fetchAll();
         return $listUsers;
     }
+    public function searshForUsers($input_val){
+        require("connexion.php");
+        $sql = "SELECT * FROM user WHERE id_user LIKE '%$input_val%' OR full_name LIKE '%$input_val%' OR email LIKE '%$input_val%' OR role LIKE '%$input_val%'";
+        $stm = $connexion->prepare($sql);
+        $stm->bindParam(":input_val",$input_val);
+        $stm->execute();
+        $listProducts = $stm->fetchAll();
+        return $listProducts;
+    }
     public function getUsersImage($idUser){
         require("connexion.php");
         $sql = "SELECT generale_image FROM user WHERE id_user = :idUser";

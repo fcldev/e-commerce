@@ -34,7 +34,6 @@ function productDetails(){
 function loginRegister(){
     require("./views/clientPages/loginRegister.php");
 }
-
 function confirmLogin(){
     require_once("./models/user.php");
     $user = new User($_POST['username'],$_POST['password']);
@@ -51,12 +50,10 @@ function confirmLogin(){
         header("Location: /Ecommerce/index.php/loginRegister");
     }
 }
-
 function logout(){
     session_destroy();
     header("Location: /Ecommerce/index.php/?categorie=all");
 }
-
 function confirmCreateAcount(){
     require_once("./models/user.php");
     if($_POST['password'] == $_POST['password2']){

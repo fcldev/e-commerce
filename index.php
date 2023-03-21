@@ -31,6 +31,8 @@ require("./controlleur/admin/adminControlleur.php");
 // dashboard user part
 if($url == "/Ecommerce/index.php/dashboardUser"){
     dashboardUser();
+}elseif($url == "/Ecommerce/index.php/dashboardSearshUser"){
+    dashboardSearshUser();
 }elseif($url == "/Ecommerce/index.php/addAdmin"){
     addAdmin();
 }elseif($url == "/Ecommerce/index.php/confirmAddAdmin"){
@@ -45,6 +47,8 @@ if($url == "/Ecommerce/index.php/dashboardUser"){
 //dashboard product part
 elseif($url == "/Ecommerce/index.php/dashboardProduct"){
     dashboardProduct();
+}elseif($url == "/Ecommerce/index.php/dashboardSearshProduct"){
+    dashboardSearshProduct();
 }elseif($url == "/Ecommerce/index.php/addProduct"){
     addProduct();
 }elseif($url == "/Ecommerce/index.php/confirmAddProduct"){
@@ -62,6 +66,8 @@ elseif($url == "/Ecommerce/index.php/dashboardProduct"){
 // dashboard categorie part
 elseif($url == "/Ecommerce/index.php/dashboardCategorie"){
     dashboardCategorie();
+}elseif($url == "/Ecommerce/index.php/dashboardSearshCategorie"){
+    dashboardSearshCategorie();
 }elseif($url == "/Ecommerce/index.php/addCategorie"){
     addCategorie();
 }elseif($url == "/Ecommerce/index.php/confirmAddCategorie"){

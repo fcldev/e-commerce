@@ -61,6 +61,15 @@ class Product{
         $listProducts = $stm->fetchAll();
         return $listProducts;
     }
+    public function searshForProducts($input_val){
+        require("connexion.php");
+        $sql = "SELECT * FROM product WHERE id_product LIKE '%$input_val%' OR name LIKE '%$input_val%'";
+        $stm = $connexion->prepare($sql);
+        $stm->bindParam(":input_val",$input_val);
+        $stm->execute();
+        $listProducts = $stm->fetchAll();
+        return $listProducts;
+    }
     
     public function deleteProduct($idProduct){
         require("connexion.php");

@@ -119,15 +119,15 @@
                 <h3 class="card-title">Products</h3>
 
                 <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                  <form method="post" action="/Ecommerce/index.php/dashboardSearshProduct" class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="input_val" class="form-control float-right" placeholder="Search by id">
 
                     <div class="input-group-append">
                       <button type="submit" class="btn btn-default">
                         <i class="fas fa-search"></i>
                       </button>
                     </div>
-                  </div>
+                  </form>
                 </div>
               </div>
               <!-- /.card-header -->
