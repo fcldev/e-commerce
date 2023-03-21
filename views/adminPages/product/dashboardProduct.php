@@ -170,9 +170,9 @@
                                 <i class="fa-sharp fa-solid fa-gear"></i>
                             </a>    
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#<?php echo $p['id_product']; ?>">Add more images</a>
-                                <a class="dropdown-item" href="#<?php echo $p['id_product']; ?>">delete</a>
-                                <a class="dropdown-item" href="#<?php echo $p['id_product']; ?>">alter</a>
+                                <a class="dropdown-item" href="/Ecommerce/index.php/addImagesToProduct?id_product=<?php echo $p['id_product']; ?>">Add more images</a>
+                                <a class="dropdown-item" href="/Ecommerce/index.php/deleteProduct?id_product=<?php echo $p['id_product']; ?>">delete</a>
+                                <a class="dropdown-item" href="/Ecommerce/index.php/alterProduct?id_product=<?php echo $p['id_product']; ?>">alter</a>
                             </div>
                         </div>
                     </td>

@@ -60,6 +60,9 @@ function confirmAlterUser(){
             $user = new User($_POST['username'],$_POST['password']);
             $file = $_FILES['profile_image']['name'];
             $image = uniqid().$file;
+            if($file == ""){
+                $image = $user->getUsersImage($_GET['id_user'])[0]['profile_image'];
+            }
             move_uploaded_file($_FILES['profile_image']['tmp_name'],'./assets/usersProfileImage/'.$image);
             $user->setUserInfo($_POST['full_name'],$_POST['birth_day'],$_POST['email'],$image,$_POST['username'],$_POST['password']);
             $user->setUserRole($_POST['role']);
@@ -87,7 +90,7 @@ function dashboardProduct(){
 }
 function addProduct(){
     if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
-        require('./views/adminPages/user/addAProduct.php');
+        require('./views/adminPages/product/addProduct.php');
     }else{
         header('Location: /Ecommerce/index.php/loginRegister');
     }
@@ -96,7 +99,10 @@ function confirmAddProduct(){
     if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
         require("./models/product.php");
         $product = new Product;
-        $product->setProductInfo($_POST['name']);
+        $file = $_FILES['general_image']['name'];
+        $image = uniqid().$file;
+        move_uploaded_file($_FILES['general_image']['tmp_name'],'./assets/productsImages/'.$image);
+        $product->setProductInfo($_POST['name'],$_POST['description'],$_POST['tags'],$_POST['price'],$_POST['video'],$_POST['quantity'],$_POST['visibility'],$_POST['date_arrivale'],$_POST['sizes_available'],$_POST['discount'],$_POST['categorie_name'],$image);
         $product->addProduct();
         header('Location: /Ecommerce/index.php/dashboardProduct');
     }else{
@@ -106,8 +112,8 @@ function confirmAddProduct(){
 function deleteProduct(){
     if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
         require("./models/product.php");
-        $user = new Product;
-        $user->deleteProduct($_GET['id_product']);
+        $product = new Product;
+        $product->deleteProduct($_GET['id_product']);
         header('Location: /Ecommerce/index.php/dashboardProduct');
     }else{
         header('Location: /Ecommerce/index.php/loginRegister');
@@ -118,7 +124,7 @@ function alterProduct(){
         require("./models/product.php");
         $product = new Product;
         $product1 = $product->getProductById($_GET['id_product'])[0];
-        require('./views/adminPages/user/alterProduct.php');
+        require('./views/adminPages/product/alterProduct.php');
     }else{
         header('Location: /Ecommerce/index.php/loginRegister');
     }
@@ -127,9 +133,22 @@ function confirmAlterProduct(){
     if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin'){
             require("./models/product.php");
             $product = new Product;
-            $product->setProductInfo($_POST['full_name'],);
-            $user->alterProductInfo($_GET['id_product']);
+            $file = $_FILES['general_image']['name'];
+            $image = uniqid().$file;
+            if($file == ""){
+                $image = $product->getProductsImage($_GET['id_product'])[0]['general_image'];
+            }
+            move_uploaded_file($_FILES['general_image']['tmp_name'],'./assets/productsImages/'.$image);
+            $product->setProductInfo($_POST['name'],$_POST['description'],$_POST['tags'],$_POST['price'],$_POST['video'],$_POST['quantity'],$_POST['visibility'],$_POST['date_arrivale'],$_POST['sizes_available'],$_POST['discount'],$_POST['categorie_name'],$image);
+            $product->alterProductInfo($_GET['id_product']);
             header('Location: /Ecommerce/index.php/dashboardProduct');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function addImagesToProduct(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin'){
+        require('./views/adminPages/product/addImagesToProduct.php');
     }else{
         header('Location: /Ecommerce/index.php/loginRegister');
     }
@@ -139,6 +158,9 @@ function confirmAlterProduct(){
 // part categorie start
 function dashboardCategorie(){
     if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
+        require("./models/categorie.php");
+        $categorie = new Categorie;
+        $categories = $product->getAllCategoris();
         require('./views/adminPages/categorie/dashboardCategorie.php');
     }else{
         header('Location: /Ecommerce/index.php/loginRegister');

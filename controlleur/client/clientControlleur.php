@@ -7,15 +7,12 @@ function accuelle(){
     if(!isset($_GET['categorie']) || $_GET['categorie'] == 'all'){
         $products = (new Product)->getAllProducts();
         require('./views/clientPages/index.php');
-        var_dump($products);
     }else{
         $products = (new Product)->getProductsByCategorie($_GET['categorie']);
         require('./views/clientPages/index.php');
-        var_dump($products);
 
     }
 }
-
 function cart(){
     require('./views/clientPages/cart.php');
 }
@@ -74,7 +71,6 @@ function confirmCreateAcount(){
         $_SESSION['loginErr'] = '2';
         header("Location: /Ecommerce/index.php/loginRegister");
     }
-
 }
 
 

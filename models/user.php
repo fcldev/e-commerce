@@ -59,6 +59,15 @@ class User{
         $listUsers = $stm->fetchAll();
         return $listUsers;
     }
+    public function getUsersImage($idUser){
+        require("connexion.php");
+        $sql = "SELECT generale_image FROM user WHERE id_user = :idUser";
+        $stm = $connexion->prepare($sql);
+        $stm->bindParam(':idUser',$idUser);
+        $stm->execute();
+        $listUsers = $stm->fetchAll();
+        return $listUsers;
+    }
 
     public function getUserById($idUser){
         require("connexion.php");

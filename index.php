@@ -50,11 +50,13 @@ elseif($url == "/Ecommerce/index.php/dashboardProduct"){
 }elseif($url == "/Ecommerce/index.php/confirmAddProduct"){
     confirmAddProduct();
 }elseif($url == "/Ecommerce/index.php/deleteProduct"){
-    deletProduct();
+    deleteProduct();
 }elseif($url == "/Ecommerce/index.php/alterProduct"){
     alterProduct();
 }elseif($url == "/Ecommerce/index.php/confirmAlterProduct"){
     confirmAlterProduct();
+}elseif($url == "/Ecommerce/index.php/addImagesToProduct"){
+    addImagesToProduct();
 }
 
 // dashboard categorie part
