@@ -18,14 +18,14 @@ class Image{
 
     public function deleteImage($idImage){
         require("connexion.php");
-        $sql = "DELETE FROM image WHERE id_product = :id_image";
+        $sql = "DELETE FROM image WHERE id_image = :id_image";
         $stm = $connexion->prepare($sql);
         $stm->bindParam(":id_image",$idImage);
         $stm->execute();
     }
     function addImage($idProduct,$imageUrl){
         require("connexion.php");
-        $sql = "INSERT INTO `product`(`id_image`, `id_product`, `image_url`) VALUES (default,:id_product,:image_url)";
+        $sql = "INSERT INTO `image`(`id_image`, `id_product`, `image_url`) VALUES (default,:id_product,:image_url)";
         $stm = $connexion->prepare($sql);
         $stm->bindParam(":id_product",$idProduct);
         $stm->bindParam(":image_url",$imageUrl);

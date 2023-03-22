@@ -65,6 +65,8 @@ elseif($url == "/Ecommerce/index.php/dashboardProduct"){
     deleteImage();
 }elseif($url == "/Ecommerce/index.php/addMoreImages"){
     addImages();
+}elseif($url == "/Ecommerce/index.php/confirmAddImages"){
+    confirmAddImages();
 }
 
 // dashboard categorie part

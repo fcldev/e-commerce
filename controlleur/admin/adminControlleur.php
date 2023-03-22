@@ -182,7 +182,7 @@ function deleteImage(){
         require("./models/image.php");
         $image = new Image;
         $listImages = $image->deleteImage($_GET['id_image']);
-        header('Location: /Ecommerce/index.php/checkProductImages?id_product='.$_GET['id_image']);
+        header('Location: /Ecommerce/index.php/checkProductImages?id_product='.$_GET['id_product']);
     }else{
         header('Location: /Ecommerce/index.php/loginRegister');
     }
@@ -190,6 +190,19 @@ function deleteImage(){
 function addImages(){
     if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin'){
         require('./views/adminPages/product/addMoreImages.php');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function confirmAddImages(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin'){
+        require("./models/image.php");
+        $image = new Image;
+        $file = $_FILES['product_image']['name'];
+        $imageUrl = uniqid().$file;
+        move_uploaded_file($_FILES['product_image']['tmp_name'],'./assets/productsImages/'.$imageUrl);
+        $image->addImage($_GET['id_product'],$imageUrl);
+        header('Location: /Ecommerce/index.php/checkProductImages?id_product='.$_GET['id_product']);
     }else{
         header('Location: /Ecommerce/index.php/loginRegister');
     }

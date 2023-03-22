@@ -34,13 +34,13 @@
 
       <!-- add product button -->
       <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="/Ecommerce/index.php/addProduct" role="button">
+        <a class="nav-link" data-widget="fullscreen" title="Add product" href="/Ecommerce/index.php/addProduct" role="button">
           <i class="fa-solid fa-plus"></i>
         </a>
       </li>
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+        <a class="nav-link" title="full screan" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
@@ -84,16 +84,19 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/Ecommerce/index.php/dashboardUser" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
                   <p>Users</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/Ecommerce/index.php/dashboardProduct" class="nav-link active">
-                  <p>Products</p>
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Products</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/Ecommerce/index.php/dashboardCategorie" class="nav-link">
+                <a href="/Ecommerce/index.php/dashboardCategorie" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
                   <p>Categories</p>
                 </a>
               </li>
@@ -155,7 +158,7 @@
                     <tr>
                         <td>
                             <div class="dropdown">
-                                <a class="btn btn-secondary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="text-primary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa-sharp fa-solid fa-gear"></i>
                                 </a>    
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
