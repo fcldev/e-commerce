@@ -172,12 +172,29 @@ function productCatalogue(){
         require("./models/image.php");
         $image = new Image;
         $listImages = $image->getImagesByProductId($_GET['id_product']);
-        var_dump($listImages);
         require('./views/adminPages/product/productCatalogue.php');
     }else{
         header('Location: /Ecommerce/index.php/loginRegister');
     }
 }
+function deleteImage(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin'){
+        require("./models/image.php");
+        $image = new Image;
+        $listImages = $image->deleteImage($_GET['id_image']);
+        header('Location: /Ecommerce/index.php/checkProductImages?id_product='.$_GET['id_image']);
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function addImages(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin'){
+        require('./views/adminPages/product/addMoreImages.php');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+
 // part product end
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------
 // part categorie start

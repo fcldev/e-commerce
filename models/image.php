@@ -16,7 +16,7 @@ class Image{
         return $listImages;
     }
 
-    public function deleteImge($idImage){
+    public function deleteImage($idImage){
         require("connexion.php");
         $sql = "DELETE FROM image WHERE id_product = :id_image";
         $stm = $connexion->prepare($sql);
