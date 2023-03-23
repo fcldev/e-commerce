@@ -23,12 +23,13 @@ class Image{
         $stm->bindParam(":id_image",$idImage);
         $stm->execute();
     }
-    function addImage($idProduct,$imageUrl){
+    function addImage($idProduct,$imageUrl,$index){
         require("connexion.php");
-        $sql = "INSERT INTO `image`(`id_image`, `id_product`, `image_url`) VALUES (default,:id_product,:image_url)";
+        $sql = "INSERT INTO `image`(`id_image`, `id_product`, `image_url`,`index`) VALUES (default,:id_product,:image_url,:index)";
         $stm = $connexion->prepare($sql);
         $stm->bindParam(":id_product",$idProduct);
         $stm->bindParam(":image_url",$imageUrl);
+        $stm->bindParam(":index",$index);
         $stm->execute();
     }
 

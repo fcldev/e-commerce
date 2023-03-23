@@ -189,7 +189,7 @@
                                 <figure>
                                     <div class="product_thumb">
                                         <a href="/Ecommerce/index.php/productDetails?idProduct=<?php echo $p['id_product'] ;?>">
-                                            <img class="primary_img" src="../assets/productsImages/<?php echo $p['general_image'] ; ?>"
+                                            <img class="primary_img" src="../assets/productsImages/<?php echo $p['image_url'] ; ?>"
                                                 alt="consectetur">
                                         </a>
                                         <?php if($p['discount'] != "0"){ ?>
@@ -253,7 +253,7 @@
                                 <figure>
                                     <div class="product_thumb">
                                         <a href="/Ecommerce/index.php/productDetails?idProduct=<?php echo $p['id_product'] ;?>">
-                                            <img class="primary_img" src="../assets/productsImages/<?php echo $p['general_image'] ; ?>"
+                                            <img class="primary_img" src="../assets/productsImages/<?php echo $p['image_url'] ; ?>"
                                                 alt="consectetur">
                                         </a>
                                         <?php if($p['discount'] != "0"){ ?>
@@ -391,7 +391,7 @@
                                 <figure>
                                     <div class="product_thumb">
                                         <a href="/Ecommerce/index.php/productDetails?idProduct=<?php echo $p['id_product'] ;?>">
-                                            <img class="primary_img" src="../assets/productsImages/<?php echo $p['general_image'] ; ?>"
+                                            <img class="primary_img" src="../assets/productsImages/<?php echo $p['image_url'] ; ?>"
                                                 alt="consectetur">
                                         </a>
                                         <?php if($p['discount'] != "0"){ ?>
@@ -456,7 +456,7 @@
                                 <figure>
                                     <div class="product_thumb">
                                         <a href="/Ecommerce/index.php/productDetails?idProduct=<?php echo $p['id_product'] ;?>">
-                                            <img class="primary_img" src="../assets/productsImages/<?php echo $p['general_image'] ; ?>"
+                                            <img class="primary_img" src="../assets/productsImages/<?php echo $p['image_url'] ; ?>"
                                                 alt="consectetur">
                                         </a>
                                         <?php if($p['discount'] != "0"){ ?>

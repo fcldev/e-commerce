@@ -162,9 +162,9 @@
                                     <i class="fa-sharp fa-solid fa-gear"></i>
                                 </a>    
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="/Ecommerce/index.php/checkProductImages?id_product=<?php echo $p['id_product']; ?>">Check product pictures</a>
-                                    <a class="dropdown-item" href="/Ecommerce/index.php/deleteProduct?id_product=<?php echo $p['id_product']; ?>">delete</a>
-                                    <a class="dropdown-item" href="/Ecommerce/index.php/alterProduct?id_product=<?php echo $p['id_product']; ?>">alter</a>
+                                    <a class="dropdown-item" href="/Ecommerce/index.php/checkProductImages?id_product=<?php echo $p[0]; ?>">Check product pictures</a>
+                                    <a class="dropdown-item" href="/Ecommerce/index.php/deleteProduct?id_product=<?php echo $p[0]; ?>">delete</a>
+                                    <a class="dropdown-item" href="/Ecommerce/index.php/alterProduct?id_product=<?php echo $p[0]; ?>">alter</a>
                                 </div>
                             </div>
                         </td>

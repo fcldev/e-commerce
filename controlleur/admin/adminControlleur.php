@@ -93,6 +93,7 @@ function dashboardProduct(){
         require("./models/product.php");
         $product = new Product;
         $products = $product->getAllProducts();
+        // var_dump($products);
         require('./views/adminPages/product/dashboardProduct.php');
     }else{
         header('Location: /Ecommerce/index.php/loginRegister');
@@ -119,10 +120,7 @@ function confirmAddProduct(){
     if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
         require("./models/product.php");
         $product = new Product;
-        $file = $_FILES['general_image']['name'];
-        $image = uniqid().$file;
-        move_uploaded_file($_FILES['general_image']['tmp_name'],'./assets/productsImages/'.$image);
-        $product->setProductInfo($_POST['name'],$_POST['description'],$_POST['tags'],$_POST['price'],$_POST['video'],$_POST['quantity'],$_POST['visibility'],$_POST['date_arrivale'],$_POST['sizes_available'],$_POST['discount'],$_POST['categorie_name'],$image);
+        $product->setProductInfo($_POST['name'],$_POST['description'],$_POST['tags'],$_POST['price'],$_POST['video'],$_POST['quantity'],$_POST['visibility'],$_POST['date_arrivale'],$_POST['sizes_available'],$_POST['discount'],$_POST['categorie_name']);
         $product->addProduct();
         header('Location: /Ecommerce/index.php/dashboardProduct');
     }else{
@@ -151,20 +149,11 @@ function alterProduct(){
 }
 function confirmAlterProduct(){
     if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin'){
-            require("./models/product.php");
-            $product = new Product;
-            $file = $_FILES['general_image']['name'];
-            $image = uniqid().$file;
-            if($file == ""){
-                $image = $product->getProductsImage($_GET['id_product'])[0]['general_image'];
-                $product->setProductInfo($_POST['name'],$_POST['description'],$_POST['tags'],$_POST['price'],$_POST['video'],$_POST['quantity'],$_POST['visibility'],$_POST['date_arrivale'],$_POST['sizes_available'],$_POST['discount'],$_POST['categorie_name'],$image);
-                $product->alterProductInfo($_GET['id_product']);
-            }else{
-                move_uploaded_file($_FILES['general_image']['tmp_name'],'./assets/productsImages/'.$image);
-                $product->setProductInfo($_POST['name'],$_POST['description'],$_POST['tags'],$_POST['price'],$_POST['video'],$_POST['quantity'],$_POST['visibility'],$_POST['date_arrivale'],$_POST['sizes_available'],$_POST['discount'],$_POST['categorie_name'],$image);
-                $product->alterProductInfo($_GET['id_product']);
-                header('Location: /Ecommerce/index.php/dashboardProduct');
-            }
+        require("./models/product.php");
+        $product = new Product;
+        $product->setProductInfo($_POST['name'],$_POST['description'],$_POST['tags'],$_POST['price'],$_POST['video'],$_POST['quantity'],$_POST['visibility'],$_POST['date_arrivale'],$_POST['sizes_available'],$_POST['discount'],$_POST['categorie_name']);
+        $product->alterProductInfo($_GET['id_product']);
+        header('Location: /Ecommerce/index.php/dashboardProduct');
     }else{
         header('Location: /Ecommerce/index.php/loginRegister');
     }
@@ -204,7 +193,7 @@ function confirmAddImages(){
         $file = $_FILES['product_image']['name'];
         $imageUrl = uniqid().$file;
         move_uploaded_file($_FILES['product_image']['tmp_name'],'./assets/productsImages/'.$imageUrl);
-        $image->addImage($_GET['id_product'],$imageUrl);
+        $image->addImage($_GET['id_product'],$imageUrl,$_POST['index']);
         header('Location: /Ecommerce/index.php/checkProductImages?id_product='.$_GET['id_product']);
     }else{
         header('Location: /Ecommerce/index.php/loginRegister');

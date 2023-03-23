@@ -18,7 +18,7 @@ class Product{
 
     public function getAllProducts(){
         require("connexion.php");
-        $sql = "SELECT * FROM product";
+        $sql = "SELECT DISTINCT p.*, m.id_image,m.image_url,m.index FROM product p LEFT JOIN image m ON p.id_product = m.id_product AND m.index = 1";
         $stm = $connexion->prepare($sql);
         $stm->execute();
         $listProducts = $stm->fetchAll();
@@ -26,7 +26,7 @@ class Product{
     }
     public function getProductsOrderedByDiscount(){
         require("connexion.php");
-        $sql = "SELECT * FROM `categorie` c INNER JOIN product p ON c.categorie_name = p.categorie_name ORDER BY p.discount DESC LIMIT 20";
+        $sql = "SELECT DISTINCT * FROM `categorie` c INNER JOIN product p ON c.categorie_name = p.categorie_name LEFT JOIN image m on p.id_product = m.id_product  AND m.index = 1 ORDER BY `p`.`discount`  DESC";
         $stm = $connexion->prepare($sql);
         $stm->execute();
         $listProducts = $stm->fetchAll();
@@ -34,7 +34,7 @@ class Product{
     }
     public function getProductsOrderedByDate(){
         require("connexion.php");
-        $sql = "SELECT * FROM `categorie` c INNER JOIN product p ON c.categorie_name = p.categorie_name ORDER BY p.date_arrivale ASC";
+        $sql = "SELECT DISTINCT * FROM `categorie` c INNER JOIN product p ON c.categorie_name = p.categorie_name LEFT JOIN image m on p.id_product = m.id_product  AND m.index = 1 ORDER BY p.date_arrivale ASC";
         $stm = $connexion->prepare($sql);
         $stm->execute();
         $listProducts = $stm->fetchAll();
@@ -49,15 +49,7 @@ class Product{
         $listProducts = $stm->fetchAll();
         return $listProducts;
     }
-    public function getProductsImage($idProduct){
-        require("connexion.php");
-        $sql = "SELECT general_image FROM product WHERE id_product = :idProduct";
-        $stm = $connexion->prepare($sql);
-        $stm->bindParam(":idProduct",$idProduct);
-        $stm->execute();
-        $listProducts = $stm->fetchAll();
-        return $listProducts;
-    }
+    
     public function getProducts($inpVal){
         require("connexion.php");
         $sql = "SELECT * FROM product WHERE name LIKE '%$inpVal%' OR tags LIKE '%$inpVal%' OR sizes_available LIKE '%$inpVal%' OR description LIKE '%$inpVal%' OR categorie_name LIKE '%$inpVal%'";
@@ -102,7 +94,7 @@ class Product{
         $stm->execute();
     }
 
-    function setProductInfo($name,$description,$tags,$price,$video,$quantity,$visibility,$date_arrivale,$sizes_available,$discount,$categorie_name,$general_image){
+    function setProductInfo($name,$description,$tags,$price,$video,$quantity,$visibility,$date_arrivale,$sizes_available,$discount,$categorie_name){
         $this->name = $name;
         $this->description = $description;
         $this->tags = $tags;
@@ -114,12 +106,11 @@ class Product{
         $this->sizes_available = $sizes_available;
         $this->discount = $discount;
         $this->categorie_name = $categorie_name;
-        $this->general_image = $general_image;
     }
 
     function addProduct(){
         require("connexion.php");
-        $sql = "INSERT INTO `product`(`id_product`, `name`, `description`, `tags`, `price`, `video`, `quantity`, `visibility`, `date_arrivale`, `sizes_available`, `discount`, `categorie_name`, `general_image`) VALUES (default,:name,:description,:tags,:price,:video,:quantity,:visibility,:date_arrivale,:sizes_available,:discount,:categorie_name,:general_image)";
+        $sql = "INSERT INTO `product`(`id_product`, `name`, `description`, `tags`, `price`, `video`, `quantity`, `visibility`, `date_arrivale`, `sizes_available`, `discount`, `categorie_name`) VALUES (default,:name,:description,:tags,:price,:video,:quantity,:visibility,:date_arrivale,:sizes_available,:discount,:categorie_name)";
         $stm = $connexion->prepare($sql);
         $stm->bindParam(":name",$this->name);
         $stm->bindParam(":description",$this->description);
@@ -132,13 +123,12 @@ class Product{
         $stm->bindParam(":sizes_available",$this->sizes_available);
         $stm->bindParam(":discount",$this->discount);
         $stm->bindParam(":categorie_name",$this->categorie_name);
-        $stm->bindParam(":general_image",$this->general_image);
         $stm->execute();
     }
 
     function alterProductInfo($id_product){
         require("connexion.php");
-        $sql = "UPDATE `product` SET `name`=:name,`description`=:description,`tags`=:tags,`price`=:price,`video`=:video,`quantity`=:quantity,`visibility`=:visibility,`date_arrivale`=:date_arrivale,`sizes_available`=:sizes_available,`discount`=:discount,`categorie_name`=:categorie_name,`general_image`=:general_image WHERE id_product = :id_product";
+        $sql = "UPDATE `product` SET `name`=:name,`description`=:description,`tags`=:tags,`price`=:price,`video`=:video,`quantity`=:quantity,`visibility`=:visibility,`date_arrivale`=:date_arrivale,`sizes_available`=:sizes_available,`discount`=:discount,`categorie_name`=:categorie_name WHERE id_product = :id_product";
         $stm = $connexion->prepare($sql);
         $stm->bindParam(":id_product",$id_product);
         $stm->bindParam(":name",$this->name);
@@ -152,7 +142,6 @@ class Product{
         $stm->bindParam(":sizes_available",$this->sizes_available);
         $stm->bindParam(":discount",$this->discount);
         $stm->bindParam(":categorie_name",$this->categorie_name);
-        $stm->bindParam(":general_image",$this->general_image);    
         $stm->execute();
     }
 

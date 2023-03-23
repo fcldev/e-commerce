@@ -83,7 +83,7 @@
                             <div class="single_product">
                                 <div class="product_thumb">
                                     <a href="product-details.html" >
-                                        <img class="primary_img" src="../assets/productsImages/<?php echo $p['general_image'] ; ?>" alt="consectetur">
+                                        <img class="primary_img" src="../assets/productsImages/<?php echo $p['image_url'] ; ?>" alt="consectetur">
                                     </a>
                                 <?php if($p['discount'] != "0"){ ?>
                                     <div class="product_label">

@@ -135,6 +135,13 @@
                       </div>
                     </div>
                   </div>
+                  <div class="form-group">
+                      <label for="index">Image index</label>
+                      <select name="index" id="index" class="form-control">
+                        <option value="1">General picture</option>
+                        <option value="0">Picture secondair</option>
+                      </select>
+                  </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">

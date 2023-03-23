@@ -174,17 +174,7 @@
             <div class="form-group">
                 <label for="CategorieName">Categorie Name</label>
                 <input type="text" class="form-control" name="categorie_name" id="CategorieName" placeholder="Categorie Name">
-            </div>
-            <div class="form-group">
-                <label for="productImage">Product Iiage</label>
-            <div class="input-group">
-                <div class="custom-file">
-                <input type="file" class="custom-file-input" name="general_image" id="productImage">
-                <label class="custom-file-label" for="exampleInputFile">Choose a picture</label>
-                </div>
-            </div>
-            </div>
-            
+            </div>            
         </div>
         
         <!-- /.card-body -->
