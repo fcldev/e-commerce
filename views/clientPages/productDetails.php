@@ -38,7 +38,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product_d_right">
                        <form action="#">
-                            <h1>Edwin T-Shirt Logo Script Print in Navy</h1>
+                            <h1><?php echo $product['name'] ;?></h1>
                             <div class="product_ratting_review d-flex align-items-center">
                                 <div class=" product_ratting">
                                     <ul class="d-flex">
@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                             <div class="price_box">
-                                <span class="current_price"><?php echo $product['price'] ;?> MAD</span>
+                                <span class="current_price"><?php echo number_format($product['price'])-number_format($product['price'])*number_format($product['discount'])/100 ; ?> MAD</span>
                             </div>
                             <div class="product_availalbe">
                                 <ul class="d-flex">

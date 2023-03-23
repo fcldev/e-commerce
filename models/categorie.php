@@ -57,8 +57,6 @@ class Categorie{
         $stm->bindParam(":id",$categorieName);
         $stm->bindParam(":categorieName",$this->categorie_name);
         $stm->execute();
-    }
-
-
+    } 
 }
 ?>

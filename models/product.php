@@ -24,6 +24,22 @@ class Product{
         $listProducts = $stm->fetchAll();
         return $listProducts;
     }
+    public function getProductsOrderedByDiscount(){
+        require("connexion.php");
+        $sql = "SELECT * FROM `categorie` c INNER JOIN product p ON c.categorie_name = p.categorie_name ORDER BY p.discount DESC LIMIT 20";
+        $stm = $connexion->prepare($sql);
+        $stm->execute();
+        $listProducts = $stm->fetchAll();
+        return $listProducts;
+    }
+    public function getProductsOrderedByDate(){
+        require("connexion.php");
+        $sql = "SELECT * FROM `categorie` c INNER JOIN product p ON c.categorie_name = p.categorie_name ORDER BY p.date_arrivale ASC";
+        $stm = $connexion->prepare($sql);
+        $stm->execute();
+        $listProducts = $stm->fetchAll();
+        return $listProducts;
+    }
     public function getProductById($idProduct){
         require("connexion.php");
         $sql = "SELECT * FROM product WHERE id_product = :idProduct";

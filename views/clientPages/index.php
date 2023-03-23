@@ -57,6 +57,7 @@
         </div>
     </section>
     <!--slider area end-->
+    
 
     <!--shipping section start-->
     <section class="shipping_section mb-102">
@@ -134,40 +135,38 @@
     </section>
     <!-- banner section end -->
 
-    <!-- product section start -->
-    <section class="product_section mb-96" id='productsList'>
+    <!-- product section best items start -->
+    <section class="product_section mb-96">
         <div class="container">
             <div class="product_header d-flex justify-content-between  mb-50">
                 <div class="section_title">
                     <h2>best selling items</h2>
                 </div>
                 <div class="product_tab_btn d-flex">
-                    <ul class="nav" id='' role="tablist">
+                    <ul class="nav" role="tablist">
                         <li>
-                            <a href="/Ecommerce/index.php/?categorie=all#productsList">
-                                All
+                            <a class="active" data-toggle="tab" href="#best" role="tab" aria-controls="all"
+                                aria-selected="true">
+                                Best
                             </a>
                         </li>
-
-                <?php
-                    foreach($listCategories as $categorie){
-                ?>
+                    <?php foreach($listCategories as $c){ ?>
                         <li>
-                            <a href="/Ecommerce/index.php/?categorie=<?php echo $categorie['categorie_name'] ;?>#productsList">
-                                <?php echo $categorie['categorie_name'] ; ?>
+                            <a data-toggle="tab" href="#<?php echo $c['categorie_name'] ; ?>" role="tab" aria-controls="clothings"
+                                aria-selected="false">
+                                <?php echo $c['categorie_name'] ; ?>
                             </a>
                         </li>
-                <?php
-                    }
-                ?>
-                       
+                    <?php } ?>
                     </ul>
+                    <div class="all_product">
+                        <a href="/Ecommerce/index.php/allProducts">All Product</a>
+                    </div>
                 </div>
             </div>
             <div class="product_container row">
-
                 <div class="tab-content">
-                    <div class="tab-pane fade show active" id="all" role="tabpanel">
+                    <div class="tab-pane fade show active" id="best" role="tabpanel">
                         <div class="product_slick slick_slider_activation" data-slick='{
                             "slidesToShow": 4,
                             "slidesToScroll": 1,
@@ -177,58 +176,130 @@
                             "speed": 300,
                             "infinite": true,
                             "responsive":[
-                              {"breakpoint":992, "settings": { "slidesToShow": 3 } },
-                              {"breakpoint":768, "settings": { "slidesToShow": 2 } },
-                              {"breakpoint":300, "settings": { "slidesToShow": 1 } }
-                             ]
+                            {"breakpoint":992, "settings": { "slidesToShow": 3 } },
+                            {"breakpoint":768, "settings": { "slidesToShow": 2 } },
+                            {"breakpoint":300, "settings": { "slidesToShow": 1 } }
+                            ]
                         }'>
-                            <?php
-                                foreach($products as $product){
-                            ?>
-                                <article class="col single_product">
-                                    <figure>
-                                        <div class="product_thumb">
-                                            <a href="/Ecommerce/index.php/productDetails?idProduct=<?php echo $product['id_product'] ;?>">
-                                                <img class="primary_img" src="../assets/productsimages/<?php echo $product['general_image'] ;?>"
-                                                    alt="consectetur">
-                                            </a>
-                                            <div class="product_label">
-                                                <span>-18%</span>
-                                            </div>
+                        <?php   $count = 0;
+                                foreach($bestItems as $p){ 
+                                    if($count != 8){
+                                ?>
+                            <article class="col single_product">
+                                <figure>
+                                    <div class="product_thumb">
+                                        <a href="/Ecommerce/index.php/productDetails?idProduct=<?php echo $p['id_product'] ;?>">
+                                            <img class="primary_img" src="../assets/productsImages/<?php echo $p['general_image'] ; ?>"
+                                                alt="consectetur">
+                                        </a>
+                                        <?php if($p['discount'] != "0"){ ?>
+                                        <div class="product_label">
+                                            <span>-<?php echo $p['discount'] ; ?>%</span>
                                         </div>
-                                        <figcaption class="product_content text-center">
-                                            <div class="product_ratting">
-                                                <ul class="d-flex justify-content-center">
-                                                    <li><a href="#"><i class="ion-android-star"></i></a></li>
-                                                    <li><a href="#"><i class="ion-android-star"></i></a></li>
-                                                    <li><a href="#"><i class="ion-android-star"></i></a></li>
-                                                    <li><a href="#"><i class="ion-android-star"></i></a></li>
-                                                    <li><a href="#"><i class="ion-android-star"></i></a></li>
-                                                    <li><span>(4)</span></li>
-                                                </ul>
-                                            </div>
-                                            <h4 class="product_name"><a href="/Ecommerce/index.php/productDetails"><?php echo $product['name'] ;?></a>
-                                            </h4>
-                                            <div class="price_box">
-                                                <span class="current_price"><?php echo $product['price'] ;?>MAD</span>
-                                                <span class="old_price">62.00</span>
-                                            </div>
-                                            <div class="add_to_cart">
-                                                <a class="btn btn-primary" href="#" >Add To Cart</a>
-                                            </div>
-                                        </figcaption>
-                                    </figure>
-                                </article>
-                            <?php
-                                }
-                            ?>            
+                                        <?php } ?>
+                                    </div>
+                                    <figcaption class="product_content text-center">
+                                        <div class="product_ratting">
+                                            <ul class="d-flex justify-content-center">
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><span>(4)</span></li>
+                                            </ul>
+                                        </div>
+                                        <h4 class="product_name"><a href="product-details.html"><?php echo $p['name'] ; ?></a>
+                                        </h4>
+                                        <div class="price_box">
+                                            <span class="current_price"><?php echo ($p['price']+0)-($p['price']+0)*($p['discount']+0)/100 ; ?> MAD</span>
+                                            <span class="old_price"><?php echo $p['price'] ; ?> MAD</span>
+                                        </div>
+                                        <div class="add_to_cart">
+                                            <a class="btn btn-primary" href="/Ecommerce/index.php/addToCart?id_product=<?php echo $p['id_product'] ; ?>" data-tippy="Add To Cart"
+                                                data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true"
+                                                data-tippy-placement="top">Add To Cart</a>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </article>
+                        <?php 
+                            $count += 1;
+                            }}
+                         ?>
                         </div>
                     </div>
+                <?php foreach($listCategories as $c){ ?>
+                    <div class="tab-pane fade" id="<?php echo $c['categorie_name']; ?>" role="tabpanel">
+                        <div class="product_slick slick_slider_activation" data-slick='{
+                            "slidesToShow": 4,
+                            "slidesToScroll": 1,
+                            "arrows": true,
+                            "dots": false,
+                            "autoplay": false,
+                            "speed": 300,
+                            "infinite": true,
+                            "responsive":[
+                            {"breakpoint":992, "settings": { "slidesToShow": 3 } },
+                            {"breakpoint":768, "settings": { "slidesToShow": 2 } },
+                            {"breakpoint":300, "settings": { "slidesToShow": 1 } }
+                            ]
+                        }'>
+                        <?php
+                            $count = 0;
+                            foreach($bestItems as $p){ 
+                                if($p['categorie_name'] == $c['categorie_name'] && $count != 8){ ?>
+                            <article class="col single_product">
+                                <figure>
+                                    <div class="product_thumb">
+                                        <a href="/Ecommerce/index.php/productDetails?idProduct=<?php echo $p['id_product'] ;?>">
+                                            <img class="primary_img" src="../assets/productsImages/<?php echo $p['general_image'] ; ?>"
+                                                alt="consectetur">
+                                        </a>
+                                        <?php if($p['discount'] != "0"){ ?>
+                                        <div class="product_label">
+                                            <span>-<?php echo $p['discount'] ; ?>%</span>
+                                        </div>
+                                        <?php } ?>
+                                    </div>
+                                    <figcaption class="product_content text-center">
+                                        <div class="product_ratting">
+                                            <ul class="d-flex justify-content-center">
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><span>(4)</span></li>
+                                            </ul>
+                                        </div>
+                                        <h4 class="product_name"><a href="product-details.html"><?php echo $p['name'] ; ?></a>
+                                        </h4>
+                                        <div class="price_box">
+                                            <span class="current_price"><?php echo ($p['price']+0)-($p['price']+0)*($p['discount']+0)/100 ; ?> MAD</span>
+                                            <span class="old_price"><?php echo $p['price'] ; ?> MAD</span>
+                                        </div>
+                                        <div class="add_to_cart">
+                                            <a class="btn btn-primary" href="/Ecommerce/index.php/addToCart?id_product=<?php echo $p['id_product'] ; ?>" data-tippy="Add To Cart"
+                                                data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true"
+                                                data-tippy-placement="top">Add To Cart</a>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </article>
+                        <?php
+                            $count += 1;
+                            }}
+                        ?>
+                            
+                        </div>
+                    </div>
+                <?php } ?>   
                 </div>
             </div>
         </div>
     </section>
-    <!-- product section end -->
+    <!-- product  section best items  end -->
 
     <!-- banner section start -->
     <section class="banner_section banner_style2 mb-109">
@@ -264,6 +335,175 @@
         </div>
     </section>
     <!-- banner section end -->
+
+    <!-- product  section new arrivals  start -->
+   
+    <section class="product_section mb-96">
+        <div class="container">
+            <div class="product_header d-flex justify-content-between  mb-50">
+                <div class="section_title">
+                    <h2>best selling items</h2>
+                </div>
+                <div class="product_tab_btn d-flex">
+                    <ul class="nav" role="tablist">
+                        <li>
+                            <a class="active" data-toggle="tab" href="#best1" role="tab" aria-controls="all"
+                                aria-selected="true">
+                                Best
+                            </a>
+                        </li>
+                    <?php foreach($listCategories as $c){ ?>
+                        <li>
+                            <a data-toggle="tab" href="#<?php echo $c['categorie_name'] ; ?>1" role="tab" aria-controls="clothings"
+                                aria-selected="false">
+                                <?php echo $c['categorie_name'] ; ?>
+                            </a>
+                        </li>
+                    <?php } ?>
+                    </ul>
+                    <div class="all_product">
+                        <a href="/Ecommerce/index.php/allProducts">All Product</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product_container row">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="best1" role="tabpanel">
+                        <div class="product_slick slick_slider_activation" data-slick='{
+                            "slidesToShow": 4,
+                            "slidesToScroll": 1,
+                            "arrows": true,
+                            "dots": false,
+                            "autoplay": false,
+                            "speed": 300,
+                            "infinite": true,
+                            "responsive":[
+                            {"breakpoint":992, "settings": { "slidesToShow": 3 } },
+                            {"breakpoint":768, "settings": { "slidesToShow": 2 } },
+                            {"breakpoint":300, "settings": { "slidesToShow": 1 } }
+                            ]
+                        }'>
+                        <?php
+                            $count = 0;
+                            foreach($newArrivals as $p){
+                                if($count != 8){ ?>
+                            <article class="col single_product">
+                                <figure>
+                                    <div class="product_thumb">
+                                        <a href="/Ecommerce/index.php/productDetails?idProduct=<?php echo $p['id_product'] ;?>">
+                                            <img class="primary_img" src="../assets/productsImages/<?php echo $p['general_image'] ; ?>"
+                                                alt="consectetur">
+                                        </a>
+                                        <?php if($p['discount'] != "0"){ ?>
+                                        <div class="product_label">
+                                            <span>-<?php echo $p['discount'] ; ?>%</span>
+                                        </div>
+                                        <?php } ?>
+                                    </div>
+                                    <figcaption class="product_content text-center">
+                                        <div class="product_ratting">
+                                            <ul class="d-flex justify-content-center">
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><span>(4)</span></li>
+                                            </ul>
+                                        </div>
+                                        <h4 class="product_name"><a href="product-details.html"><?php echo $p['name'] ; ?></a>
+                                        </h4>
+                                        <div class="price_box">
+                                            <span class="current_price"><?php echo ($p['price']+0)-($p['price']+0)*($p['discount']+0)/100 ; ?> MAD</span>
+                                            <span class="old_price"><?php echo $p['price'] ; ?> MAD</span>
+                                        </div>
+                                        <div class="add_to_cart">
+                                            <a class="btn btn-primary" href="/Ecommerce/index.php/addToCart?id_product=<?php echo $p['id_product'] ; ?>" data-tippy="Add To Cart"
+                                                data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true"
+                                                data-tippy-placement="top">Add To Cart</a>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </article>
+                        <?php
+                            $count += 1;
+                            }}
+                        ?>
+                        </div>
+                    </div>
+                <?php 
+                    foreach($listCategories as $c){
+                        $count = 0;
+                ?>
+                    <div class="tab-pane fade" id="<?php echo $c['categorie_name']; ?>1" role="tabpanel">
+                        <div class="product_slick slick_slider_activation" data-slick='{
+                            "slidesToShow": 4,
+                            "slidesToScroll": 1,
+                            "arrows": true,
+                            "dots": false,
+                            "autoplay": false,
+                            "speed": 300,
+                            "infinite": true,
+                            "responsive":[
+                            {"breakpoint":992, "settings": { "slidesToShow": 3 } },
+                            {"breakpoint":768, "settings": { "slidesToShow": 2 } },
+                            {"breakpoint":300, "settings": { "slidesToShow": 1 } }
+                            ]
+                        }'>
+                        <?php foreach($bestItems as $p){ 
+                                if($p['categorie_name'] == $c['categorie_name'] && $count != 8){ ?>
+                            <article class="col single_product">
+                                <figure>
+                                    <div class="product_thumb">
+                                        <a href="/Ecommerce/index.php/productDetails?idProduct=<?php echo $p['id_product'] ;?>">
+                                            <img class="primary_img" src="../assets/productsImages/<?php echo $p['general_image'] ; ?>"
+                                                alt="consectetur">
+                                        </a>
+                                        <?php if($p['discount'] != "0"){ ?>
+                                        <div class="product_label">
+                                            <span>-<?php echo $p['discount'] ; ?>%</span>
+                                        </div>
+                                        <?php } ?>
+                                    </div>
+                                    <figcaption class="product_content text-center">
+                                        <div class="product_ratting">
+                                            <ul class="d-flex justify-content-center">
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><span>(4)</span></li>
+                                            </ul>
+                                        </div>
+                                        <h4 class="product_name"><a href="product-details.html"><?php echo $p['name'] ; ?></a>
+                                        </h4>
+                                        <div class="price_box">
+                                            <span class="current_price"><?php echo ($p['price']+0)-($p['price']+0)*($p['discount']+0)/100 ; ?> MAD</span>
+                                            <span class="old_price"><?php echo $p['price'] ; ?> MAD</span>
+                                        </div>
+                                        <div class="add_to_cart">
+                                            <a class="btn btn-primary" href="/Ecommerce/index.php/addToCart?id_product=<?php echo $p['id_product'] ; ?>" data-tippy="Add To Cart"
+                                                data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true"
+                                                data-tippy-placement="top">Add To Cart</a>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </article>
+                        <?php
+                            $count += 1; 
+                            }}
+                        ?>
+                            
+                        </div>
+                    </div>
+                <?php } ?>   
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- product  section new arrivals  start -->
 
     <?php 
         $content = ob_get_clean();

@@ -157,11 +157,14 @@ function confirmAlterProduct(){
             $image = uniqid().$file;
             if($file == ""){
                 $image = $product->getProductsImage($_GET['id_product'])[0]['general_image'];
+                $product->setProductInfo($_POST['name'],$_POST['description'],$_POST['tags'],$_POST['price'],$_POST['video'],$_POST['quantity'],$_POST['visibility'],$_POST['date_arrivale'],$_POST['sizes_available'],$_POST['discount'],$_POST['categorie_name'],$image);
+                $product->alterProductInfo($_GET['id_product']);
+            }else{
+                move_uploaded_file($_FILES['general_image']['tmp_name'],'./assets/productsImages/'.$image);
+                $product->setProductInfo($_POST['name'],$_POST['description'],$_POST['tags'],$_POST['price'],$_POST['video'],$_POST['quantity'],$_POST['visibility'],$_POST['date_arrivale'],$_POST['sizes_available'],$_POST['discount'],$_POST['categorie_name'],$image);
+                $product->alterProductInfo($_GET['id_product']);
+                header('Location: /Ecommerce/index.php/dashboardProduct');
             }
-            move_uploaded_file($_FILES['general_image']['tmp_name'],'./assets/productsImages/'.$image);
-            $product->setProductInfo($_POST['name'],$_POST['description'],$_POST['tags'],$_POST['price'],$_POST['video'],$_POST['quantity'],$_POST['visibility'],$_POST['date_arrivale'],$_POST['sizes_available'],$_POST['discount'],$_POST['categorie_name'],$image);
-            $product->alterProductInfo($_GET['id_product']);
-            header('Location: /Ecommerce/index.php/dashboardProduct');
     }else{
         header('Location: /Ecommerce/index.php/loginRegister');
     }

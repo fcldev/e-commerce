@@ -6,9 +6,17 @@ $url = $_SERVER['PHP_SELF'];
 // client part start
 require("./controlleur/client/clientControlleur.php");
 if($url == "/Ecommerce/index.php/"){
-    accuelle();
+    home();
+}elseif($url == "/Ecommerce/index.php/shop"){
+    shop();
+}elseif($url == "/Ecommerce/index.php/shopFiltered"){
+    shopFiltered();
 }elseif($url == "/Ecommerce/index.php/cart"){
     cart();
+}elseif($url == "/Ecommerce/index.php/aboutUs"){
+    aboutUs();
+}elseif($url == "/Ecommerce/index.php/addToCart"){
+    addToCart();
 }elseif($url == "/Ecommerce/index.php/searsh"){
     searshBar();
 }elseif($url == "/Ecommerce/index.php/productDetails"){

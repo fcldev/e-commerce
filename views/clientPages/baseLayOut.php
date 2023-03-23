@@ -100,8 +100,8 @@
                                 <nav>
                                     <ul class="d-flex">
                                         <li><a class="active" href="/Ecommerce/index.php/">Home</a> </li>
-                                        <li><a href="#">about us</a></li>
-                                        <li><a href="/Ecommerce/index.php/#all">product</a></li>
+                                        <li><a href="/Ecommerce/index.php/aboutUs">about us</a></li>
+                                        <li><a href="/Ecommerce/index.php/shop">shop</a></li>
                                         <!-- <li><a href="#">sale</a></li> -->
                                         <li><a href="#">pages</a>
                                             <ul class="sub_menu">
@@ -195,22 +195,7 @@
                         </ul>
                     </div>
                     <div class="language_currency">
-                        <ul class="d-flex">
-                            <li class="language"><a href="#"> Eng <i class="icon-right ion-ios-arrow-down"></i></a>
-                                <ul class="dropdown_language">
-                                    <li><a href="#">French</a></li>
-                                    <li><a href="#">Spanish</a></li>
-                                    <li><a href="#">Russian</a></li>
-                                </ul>
-                            </li>
-                            <li class="currency"><a href="#"> USd <i class="icon-right ion-ios-arrow-down"></i></a>
-                                <ul class="dropdown_currency">
-                                    <li><a href="#">€ Euro</a></li>
-                                    <li><a href="#">£ Pound Sterling</a></li>
-                                    <li><a href="#">$ US Dollar</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        
                     </div>
                     <div id="menu" class="text-left ">
                         <ul class="offcanvas_main_menu">
@@ -218,12 +203,11 @@
                                 <a href="#">Home</a>
                             </li>
                             <li class="menu-item-has-children">
-                                <a href="shop.html">Shop</a>
+                                <a href="shop.html">About us</a>
                             </li>
                             <li class="menu-item-has-children">
-                                <a href="product-details.html"> Product Details</a>
+                                <a href="shop.html">Shop</a>
                             </li>
-                            <li><a href="#">sale</a></li>
                             <li class="menu-item-has-children">
                                 <a href="#">pages </a>
                                 <ul class="sub-menu">
@@ -231,15 +215,6 @@
                                     <li><a href="checkout.html">Checkout</a></li>
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">blog</a>
-                                <ul class="sub-menu">
-                                    <li><a href="blog.html">blog</a></li>
-                                    <li><a href="blog-details.html">blog details</a></li>
-                                </ul>
-
-                            </li>
-                            <li><a href="#">buy</a></li>
                         </ul>
                     </div>
                 </div>
@@ -324,9 +299,8 @@
                             <ul class="d-flex justify-content-end">
                                 <li><a href="index.html">home</a></li>
                                 <li><a href="shop.html">Shop</a></li>
-                                <li><a href="/Ecommerce/index.php/productDetails">Product</a></li>
+                                <li><a href="/Ecommerce/index.php/productDetails">About us</a></li>
                                 <li><a href="#">pages</a></li>
-                                <li><a href="blog.html">Blog</a></li>
                             </ul>
                         </div>
                         <div class="footer_social">

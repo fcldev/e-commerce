@@ -1,9 +1,12 @@
 <?php
 
-function accuelle(){
+function home(){
     require('./models/product.php');
     require('./models/categorie.php');
     $listCategories = (new Categorie)->getAllCategories();
+    $bestItems = (new Product)->getProductsOrderedByDiscount();
+    // var_dump($bestItems);
+    $newArrivals = (new Product)->getProductsOrderedByDate();
     if(!isset($_GET['categorie']) || $_GET['categorie'] == 'all'){
         $products = (new Product)->getAllProducts();
         require('./views/clientPages/index.php');
@@ -12,6 +15,23 @@ function accuelle(){
         require('./views/clientPages/index.php');
 
     }
+}
+function shop(){
+    require('./models/product.php');
+    require('./models/categorie.php');
+    $listCategories = (new Categorie)->getAllCategories();
+    $listProducts = (new Product)->getAllProducts();
+    require('./views/clientPages/shop.php');
+}
+function shopFiltered(){
+    require('./models/product.php');
+    require('./models/categorie.php');
+    $listCategories = (new Categorie)->getAllCategories();
+    $listProducts = (new Product)->getProductsByCategorie($_GET['categorie']);
+    require('./views/clientPages/shop.php');
+}
+function aboutUs(){
+    require('./views/clientPages/aboutUs.php');
 }
 function cart(){
     require('./views/clientPages/cart.php');
@@ -23,7 +43,7 @@ function searshBar(){
 
     $inpVal = $_POST['searshBar'];
     $products = (new Product)->getProducts($inpVal);
-    require('./views/clientPages/index.php');
+    // require('./views/clientPages/index.php');
 }
 function productDetails(){
     require('./models/product.php');
