@@ -13,13 +13,13 @@
                    <!--sidebar widget start-->
                     <aside class="sidebar_widget">
                         <div class="widget_inner">
-                            
+                                <div class="widget_list widget_categories">
+                                    <a href="/Ecommerce/index.php/shop"><h2>All categories</h2></a>
+                                </div>    
                             <?php foreach($listCategories as $c){ ?>
-                                
-                                    <div class="widget_list widget_categories">
-                                        <a href="/Ecommerce/index.php/shopFiltered?categorie=<?php echo $c['categorie_name']; ?>"><h2><?php echo $c['categorie_name']; ?></h2></a>
-                                    </div>
-                                
+                                <div class="widget_list widget_categories">
+                                    <a href="/Ecommerce/index.php/shopFiltered?categorie=<?php echo $c['categorie_name']; ?>"><h2><?php echo $c['categorie_name']; ?></h2></a>
+                                </div>
                             <?php } ?>
                             
                         </div>
@@ -108,7 +108,7 @@
                                         <span class="old_price"><?php echo $p['price'] ; ?> MAD</span>
                                     </div>
                                     <div class="add_to_cart">
-                                        <a class="btn btn-primary" href="/Ecommerce/index.php/addToCart?id_product=<?php echo $p['id_product'] ; ?>" data-tippy="Add To Cart"  data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">Add To Cart</a>
+                                        <a class="btn btn-primary" onclick="addToCart('<?php echo $p['id_product'] ?>')" data-tippy="Add To Cart"  data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">Add To Cart</a>
                                     </div>
                                 </div>
                                 <div class="product_list_content">
@@ -122,7 +122,7 @@
                                         <p><?php echo $p['description'] ; ?></p>
                                     </div>
                                     <div class="add_to_cart">
-                                        <a class="btn btn-primary" href="/Ecommerce/index.php/addToCart?id_product=<?php echo $p['id_product'] ; ?>" data-tippy="Add To Cart"  data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">Add To Cart</a>
+                                        <button class="btn btn-primary" onclick="addToCart('<?php echo $p['id_product'] ?>')" data-tippy="Add To Cart"  data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">Add To Cart</button>
 
                                     </div>
                                 </div>
@@ -137,7 +137,18 @@
         </div>
     </div>
     <!--shop  area end-->
-
+    <script>
+        function addToCart(id){
+            $.ajax({
+                url: "./controlleur/client/clientControlleur.php",
+                data: {id_product:id,function_name:"addToCart"},
+                type:"POST",
+                success:function(data, status){
+                    alert(status);
+                }
+            });
+        }
+    </script>
 <?php 
     $content = ob_get_clean();
     require('./views/clientPages/baseLayOut.php');

@@ -11,12 +11,10 @@ if($url == "/Ecommerce/index.php/"){
     shop();
 }elseif($url == "/Ecommerce/index.php/shopFiltered"){
     shopFiltered();
-}elseif($url == "/Ecommerce/index.php/cart"){
-    cart();
 }elseif($url == "/Ecommerce/index.php/aboutUs"){
     aboutUs();
-}elseif($url == "/Ecommerce/index.php/addToCart"){
-    addToCart();
+}elseif($url == "/Ecommerce/index.php/cart"){
+    cart();
 }elseif($url == "/Ecommerce/index.php/searsh"){
     searshBar();
 }elseif($url == "/Ecommerce/index.php/productDetails"){
@@ -25,10 +23,10 @@ if($url == "/Ecommerce/index.php/"){
     loginRegister();
 }elseif($url == "/Ecommerce/index.php/confirmLogin"){
     confirmLogin();
-}elseif($url == "/Ecommerce/index.php/logout"){
-    logout();
 }elseif($url == "/Ecommerce/index.php/confirmCreateAcount"){
     confirmCreateAcount();
+}elseif($url == "/Ecommerce/index.php/logout"){
+    logout();
 }
 // client part end
 

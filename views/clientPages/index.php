@@ -216,9 +216,9 @@
                                             <span class="old_price"><?php echo $p['price'] ; ?> MAD</span>
                                         </div>
                                         <div class="add_to_cart">
-                                            <a class="btn btn-primary" href="/Ecommerce/index.php/addToCart?id_product=<?php echo $p['id_product'] ; ?>" data-tippy="Add To Cart"
+                                            <button onclick="addToCart('<?php echo $p['id_product'] ?>')" class="btn btn-primary" data-tippy="Add To Cart"
                                                 data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true"
-                                                data-tippy-placement="top">Add To Cart</a>
+                                                data-tippy-placement="top">Add To Cart</button>
                                         </div>
                                     </figcaption>
                                 </figure>
@@ -280,9 +280,9 @@
                                             <span class="old_price"><?php echo $p['price'] ; ?> MAD</span>
                                         </div>
                                         <div class="add_to_cart">
-                                            <a class="btn btn-primary" href="/Ecommerce/index.php/addToCart?id_product=<?php echo $p['id_product'] ; ?>" data-tippy="Add To Cart"
+                                            <button onclick="addToCart('<?php echo $p['id_product'] ?>')" class="btn btn-primary" data-tippy="Add To Cart"
                                                 data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true"
-                                                data-tippy-placement="top">Add To Cart</a>
+                                                data-tippy-placement="top">Add To Cart</button>
                                         </div>
                                     </figcaption>
                                 </figure>
@@ -418,9 +418,9 @@
                                             <span class="old_price"><?php echo $p['price'] ; ?> MAD</span>
                                         </div>
                                         <div class="add_to_cart">
-                                            <a class="btn btn-primary" href="/Ecommerce/index.php/addToCart?id_product=<?php echo $p['id_product'] ; ?>" data-tippy="Add To Cart"
+                                            <button onclick="addToCart('<?php echo $p['id_product'] ?>')" class="btn btn-primary" data-tippy="Add To Cart"
                                                 data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true"
-                                                data-tippy-placement="top">Add To Cart</a>
+                                                data-tippy-placement="top">Add To Cart</button>
                                         </div>
                                     </figcaption>
                                 </figure>
@@ -483,9 +483,9 @@
                                             <span class="old_price"><?php echo $p['price'] ; ?> MAD</span>
                                         </div>
                                         <div class="add_to_cart">
-                                            <a class="btn btn-primary" href="/Ecommerce/index.php/addToCart?id_product=<?php echo $p['id_product'] ; ?>" data-tippy="Add To Cart"
+                                            <button onclick="addToCart('<?php echo $p['id_product'] ?>')" class="btn btn-primary" data-tippy="Add To Cart"
                                                 data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true"
-                                                data-tippy-placement="top">Add To Cart</a>
+                                                data-tippy-placement="top">Add To Cart</button>
                                         </div>
                                     </figcaption>
                                 </figure>
@@ -502,7 +502,18 @@
             </div>
         </div>
     </section>
-    
+    <script>
+        function addToCart(id){
+            $.ajax({
+                url: "./controlleur/client/clientControlleur.php",
+                data: {id_product:id,function_name:"addToCart"},
+                type:"POST",
+                success:function(data, status){
+                    alert(status);
+                }
+            });
+        }
+    </script>
     <!-- product  section new arrivals  start -->
 
     <?php 
