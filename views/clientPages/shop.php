@@ -78,7 +78,9 @@
                     </div>
                      <!--shop toolbar end-->
                      <div class="row shop_wrapper">
-                    <?php foreach($listProducts as $p){ ?>
+                    <?php foreach($listProducts as $p){ 
+                                if($p['visibility'] != '0'){
+                        ?>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-6 ">
                             <div class="single_product">
                                 <div class="product_thumb">
@@ -128,7 +130,7 @@
                                 </div>
                             </div>
                         </div>
-                    <?php } ?>
+                    <?php } }?>
                     </div>
                     <!--shop toolbar end-->
                     <!--shop wrapper end-->

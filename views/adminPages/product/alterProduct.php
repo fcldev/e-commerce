@@ -162,6 +162,10 @@
         </div>
         <div class="card-body col-lg-6 col-sm-12">
             <div class="form-group">
+                <label for="colors">Colors</label>
+                <input type="text" class="form-control" name="colors" id="colors" placeholder="Colors" value="<?php echo $product1['colors']; ?>">
+            </div>
+            <div class="form-group">
                 <label for="price">Price</label>
                 <input type="number" class="form-control" name="price" id="price" placeholder="Price" value="<?php echo $product1['price']; ?>">
             </div>

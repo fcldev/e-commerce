@@ -12,6 +12,7 @@ class Product{
     public $visibility;
     public $date_arrivale;
     public $sizes_Available;
+    public $colors;
     public $discount;
     public $categorie_name;
     public $general_image;
@@ -94,7 +95,7 @@ class Product{
         $stm->execute();
     }
 
-    function setProductInfo($name,$description,$tags,$price,$video,$quantity,$visibility,$date_arrivale,$sizes_available,$discount,$categorie_name){
+    function setProductInfo($name,$description,$tags,$price,$video,$quantity,$visibility,$date_arrivale,$sizes_available,$colors,$discount,$categorie_name){
         $this->name = $name;
         $this->description = $description;
         $this->tags = $tags;
@@ -104,13 +105,14 @@ class Product{
         $this->visibility = $visibility;
         $this->date_arrivale = $date_arrivale;
         $this->sizes_available = $sizes_available;
+        $this->colors = $colors;
         $this->discount = $discount;
         $this->categorie_name = $categorie_name;
     }
 
     function addProduct(){
         require("connexion.php");
-        $sql = "INSERT INTO `product`(`id_product`, `name`, `description`, `tags`, `price`, `video`, `quantity`, `visibility`, `date_arrivale`, `sizes_available`, `discount`, `categorie_name`) VALUES (default,:name,:description,:tags,:price,:video,:quantity,:visibility,:date_arrivale,:sizes_available,:discount,:categorie_name)";
+        $sql = "INSERT INTO `product`(`id_product`, `name`, `description`, `tags`, `price`, `video`, `quantity`, `visibility`, `date_arrivale`, `sizes_available`, `colors`, `discount`, `categorie_name`) VALUES (default,:name,:description,:tags,:price,:video,:quantity,:visibility,:date_arrivale,:sizes_available,:colors,:discount,:categorie_name)";
         $stm = $connexion->prepare($sql);
         $stm->bindParam(":name",$this->name);
         $stm->bindParam(":description",$this->description);
@@ -121,6 +123,7 @@ class Product{
         $stm->bindParam(":visibility",$this->visibility);
         $stm->bindParam(":date_arrivale",$this->date_arrivale);
         $stm->bindParam(":sizes_available",$this->sizes_available);
+        $stm->bindParam(":colors",$this->colors);
         $stm->bindParam(":discount",$this->discount);
         $stm->bindParam(":categorie_name",$this->categorie_name);
         $stm->execute();
@@ -128,7 +131,7 @@ class Product{
 
     function alterProductInfo($id_product){
         require("connexion.php");
-        $sql = "UPDATE `product` SET `name`=:name,`description`=:description,`tags`=:tags,`price`=:price,`video`=:video,`quantity`=:quantity,`visibility`=:visibility,`date_arrivale`=:date_arrivale,`sizes_available`=:sizes_available,`discount`=:discount,`categorie_name`=:categorie_name WHERE id_product = :id_product";
+        $sql = "UPDATE `product` SET `name`=:name,`description`=:description,`tags`=:tags,`price`=:price,`video`=:video,`quantity`=:quantity,`visibility`=:visibility,`date_arrivale`=:date_arrivale,`sizes_available`=:sizes_available,`colors`=:colors,`discount`=:discount,`categorie_name`=:categorie_name WHERE id_product = :id_product";
         $stm = $connexion->prepare($sql);
         $stm->bindParam(":id_product",$id_product);
         $stm->bindParam(":name",$this->name);
@@ -140,6 +143,7 @@ class Product{
         $stm->bindParam(":visibility",$this->visibility);
         $stm->bindParam(":date_arrivale",$this->date_arrivale);
         $stm->bindParam(":sizes_available",$this->sizes_available);
+        $stm->bindParam(":colors",$this->colors);
         $stm->bindParam(":discount",$this->discount);
         $stm->bindParam(":categorie_name",$this->categorie_name);
         $stm->execute();

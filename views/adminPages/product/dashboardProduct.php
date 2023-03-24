@@ -149,6 +149,7 @@
                                 <th>visibility</th>
                                 <th>date arrivale</th>
                                 <th>sizes available</th>
+                                <th>colors</th>
                                 <th>discount</th>
                                 <th>categorie</th>
                             </tr>
@@ -178,6 +179,7 @@
                         <td><?php echo $p['visibility']; ?></td>
                         <td><?php echo $p['date_arrivale']; ?></td>
                         <td><?php echo $p['sizes_available']; ?></td>
+                        <td><?php echo $p['colors']; ?></td>
                         <td><?php echo $p['discount']; ?></td>
                         <td><?php echo $p['categorie_name']; ?></td> 
                     </tr>

@@ -183,7 +183,7 @@
                         }'>
                         <?php   $count = 0;
                                 foreach($bestItems as $p){ 
-                                    if($count != 8){
+                                    if($count != 8 && $p['visibility'] != '0'){
                                 ?>
                             <article class="col single_product">
                                 <figure>
@@ -248,7 +248,7 @@
                         <?php
                             $count = 0;
                             foreach($bestItems as $p){ 
-                                if($p['categorie_name'] == $c['categorie_name'] && $count != 8){ ?>
+                                if($p['categorie_name'] == $c['categorie_name'] && $count != 8 && $p['visibility'] != '0'){ ?>
                             <article class="col single_product">
                                 <figure>
                                     <div class="product_thumb">
@@ -386,7 +386,7 @@
                         <?php
                             $count = 0;
                             foreach($newArrivals as $p){
-                                if($count != 8){ ?>
+                                if($count != 8 && $p['visibility'] != '0'){ ?>
                             <article class="col single_product">
                                 <figure>
                                     <div class="product_thumb">
@@ -451,7 +451,7 @@
                             ]
                         }'>
                         <?php foreach($bestItems as $p){ 
-                                if($p['categorie_name'] == $c['categorie_name'] && $count != 8){ ?>
+                                if($p['categorie_name'] == $c['categorie_name'] && $count != 8 && $p['visibility'] != '0'){ ?>
                             <article class="col single_product">
                                 <figure>
                                     <div class="product_thumb">

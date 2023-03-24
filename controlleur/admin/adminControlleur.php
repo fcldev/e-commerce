@@ -120,7 +120,7 @@ function confirmAddProduct(){
     if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
         require("./models/product.php");
         $product = new Product;
-        $product->setProductInfo($_POST['name'],$_POST['description'],$_POST['tags'],$_POST['price'],$_POST['video'],$_POST['quantity'],$_POST['visibility'],$_POST['date_arrivale'],$_POST['sizes_available'],$_POST['discount'],$_POST['categorie_name']);
+        $product->setProductInfo($_POST['name'],$_POST['description'],$_POST['tags'],$_POST['price'],$_POST['video'],$_POST['quantity'],$_POST['visibility'],$_POST['date_arrivale'],$_POST['sizes_available'],$_POST['colors'],$_POST['discount'],$_POST['categorie_name']);
         $product->addProduct();
         header('Location: /Ecommerce/index.php/dashboardProduct');
     }else{
@@ -151,7 +151,7 @@ function confirmAlterProduct(){
     if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin'){
         require("./models/product.php");
         $product = new Product;
-        $product->setProductInfo($_POST['name'],$_POST['description'],$_POST['tags'],$_POST['price'],$_POST['video'],$_POST['quantity'],$_POST['visibility'],$_POST['date_arrivale'],$_POST['sizes_available'],$_POST['discount'],$_POST['categorie_name']);
+        $product->setProductInfo($_POST['name'],$_POST['description'],$_POST['tags'],$_POST['price'],$_POST['video'],$_POST['quantity'],$_POST['visibility'],$_POST['date_arrivale'],$_POST['sizes_available'],$_POST['colors'],$_POST['discount'],$_POST['categorie_name']);
         $product->alterProductInfo($_GET['id_product']);
         header('Location: /Ecommerce/index.php/dashboardProduct');
     }else{
