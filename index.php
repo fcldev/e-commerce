@@ -15,6 +15,10 @@ if($url == "/Ecommerce/index.php/"){
     aboutUs();
 }elseif($url == "/Ecommerce/index.php/cart"){
     cart();
+}elseif($url == "/Ecommerce/index.php/deleteFromCart"){
+    deleteFromCart();
+}elseif($url == "/Ecommerce/index.php/clearCart"){
+    clearCart();
 }elseif($url == "/Ecommerce/index.php/searsh"){
     searshBar();
 }elseif($url == "/Ecommerce/index.php/productDetails"){
@@ -91,5 +95,5 @@ elseif($url == "/Ecommerce/index.php/dashboardCategorie"){
 }elseif($url == "/Ecommerce/index.php/confirmAlterCategorie"){
     confirmAlterCategorie();
 }
-
+// session_destroy();
 ?>

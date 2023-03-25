@@ -39,55 +39,74 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                        <?php
+                                $total = 0;
+                                foreach($listProducts as $p){ 
+                                        $total += ($p['quantity'] + 0)*($p['product']['price'] + 0);
+                        ?>
                                         <tr class="border-top">
                                             <td>
                                                 <div class="cart_product_thumb">
-                                                    <img src="../assets/img/product/product4.jpg" alt="">
+                                                    <img src="../assets/productsImages/<?php echo $p['product']['image_url'] ?>" alt="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="cart_product_text">
-                                                    <h4>Example With Title Product</h4>
+                                                    <h4><?php echo $p['product']['name'] ?></h4>
                                                     <ul>
-                                                        <li><i class="ion-ios-arrow-right"></i> Color : <span>White</span></li>
-                                                        <li><i class="ion-ios-arrow-right"></i> Size : <span>XL</span></li>
+                                                        <li>
+                                                            <select class="select_option border">
+                                                                <option value="1">color</option>
+                                                            <?php foreach(explode(',',$p['product']['colors']) as $color){ ?>
+                                                                <option value="<?php echo $color; ?>"><?php echo $color; ?></option>
+                                                            <?php } ?>
+                                                            </select>                                                      
+                                                        </li>  
+                                                        <li>
+                                                            <select class="select_option border" style="width:100px">
+                                                                <option value="1">size</option>
+                                                            <?php foreach(explode(',',$p['product']['sizes_available']) as $size){ ?>
+                                                                <option value="<?php echo $size; ?>"><?php echo $size; ?></option>
+                                                            <?php } ?>
+                                                            </select>   
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="cart_product_price">
-                                                    <span>$45.05</span>
+                                                    <span><?php echo $p['product']['price'] ?> MAD</span>
                                                 </div>
                                             </td>
                                             <td class="product_quantity">
                                                 <div class="cart_product_quantity">
-                                                    <input min="1" max="100" value="1" type="number">
+                                                    <input min="1" max="100" value="<?php echo $p['quantity'] ?>" type="number">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="cart_product_price">
-                                                    <span>$45.05</span>
+                                                    <span><?php echo ($p['quantity'] + 0)*($p['product']['price'] + 0) ?></span>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="cart_product_remove text-right">
-                                                    <a href="#"><i class="ion-android-close"></i></a>
+                                                    <a href="/Ecommerce/index.php/deleteFromCart?id_product=<?php echo $p['product']['id_product']; ?>"><i class="ion-android-close"></i></a>
                                                 </div>
                                             </td>
 
                                         </tr>
-                                        
+                                    <?php } ?>   
                                     </tbody>
                                 </table>
                             </div>
                             <div class="cart_page_button border-top d-flex justify-content-between">
                                 <div class="shopping_cart_btn">
-                                    <a href="#" class="btn btn-primary border">CLEAR SHOPPING CART</a>
-                                    <button class="btn btn-primary border" type="submit">UPDATE YOUR CART</button>
+                                    <a href="/Ecommerce/index.php/clearCart" style="z-index: 8 !important; " class="btn btn-primary border">CLEAR SHOPPING CART</a>
                                 </div>
-                                <div class="shopping_continue_btn">
-                                    <button class="btn btn-primary" type="submit">CONTINUE SHOPPING</button>
+                                <div class="shopping_cart_btn">
+                                    <a href="/Ecommerce/index.php/shop" class="btn btn-primary border">CONTINUE SHOPPING</a>
                                 </div>
+                                
                             </div>
                          </div>
                      </div>

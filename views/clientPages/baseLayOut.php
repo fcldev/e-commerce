@@ -58,14 +58,13 @@
                             <div class="header_contact_info">
                                 <ul class="d-flex">
                                     <li class="text-white"> <i class="icons icon-phone"></i> <a
-                                            href="tel:+05483716566">+054 8371 65 66</a></li>
+                                            href="tel:+05483716566">+05 ** ** ** **</a></li>
                                     <li class="text-white"> <i class="icon-envelope-letter icons"></i> <a
-                                            href="#">uthrstore@domain.com</a></li>
+                                            href="#">*********@*****.com</a></li>
                                 </ul>
                             </div>
                             <div class="free_shipping_text">
-                                <p class="text-white">Free shipping worldwide for orders over $99 <a href="#">Learn
-                                        More</a></p>
+                                <p class="text-white">Free shipping worldwide for orders over $99</p>
                             </div>
                             <div class="header_top_sidebar d-flex align-items-center">
                                 <div class="header_social d-flex">

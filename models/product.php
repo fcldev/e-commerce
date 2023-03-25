@@ -43,7 +43,8 @@ class Product{
     }
     public function getProductById($idProduct){
         require("connexion.php");
-        $sql = "SELECT * FROM product WHERE id_product = :idProduct";
+        $sql = "SELECT DISTINCT p.*, m.id_image,m.image_url,m.index FROM product p LEFT JOIN image m ON p.id_product = m.id_product AND m.index = 1 AND  p.id_product = :idProduct";
+        // $sql = "SELECT * FROM product WHERE id_product = :idProduct";
         $stm = $connexion->prepare($sql);
         $stm->bindParam(":idProduct",$idProduct);
         $stm->execute();

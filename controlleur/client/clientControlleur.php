@@ -47,7 +47,34 @@ function aboutUs(){
 }
 // cart page
 function cart(){
+    if(isset($_SESSION['userInfo'])){
+        require('./models/cart.php');
+        require('./models/product.php');
+        $cart = new Cart;
+        $product = new Product;
+        $listProductsId = $cart->getCartProducts($_SESSION['userInfo']['id_user']);
+        if(!empty($listProductsId)){
+            foreach($listProductsId as $c){
+                $listProducts[] = array("product"=>$product->getProductById($c['id_product'])[0],"quantity"=>$c['quantity']);
+            }
+        }else{
+            $listProducts = array();
+        }
+    }elseif(!isset($_SESSION['listCart'])){
+        $_SESSION['listCart'] = array();
+    }else{
+        require('./models/product.php');
+        $product = new Product;
+        if(!empty($_SESSION['listCart'])){
+            foreach($_SESSION['listCart'] as $c){
+                $listProducts[] = array("product"=>$product->getProductById($c['id_product'])[0],"quantity"=>$c['quantity']);
+            }
+        }else{
+            $listProducts = array();
+        }
+    }
     require('./views/clientPages/cart.php');
+    var_dump($_SESSION['listCart']);
 }
 // ad to cart part
 if(isset($_POST['function_name']) && $_POST['function_name'] === "addToCart"){
@@ -59,33 +86,63 @@ function addToCart($id){
     if(isset($_SESSION['userInfo'])){
         require('./models/cart.php');
         $cart = new Cart;
-        $productsCount = $cart->checkProduct($_SESSION['userInfo']['id_user'],$id,1,0);
-        var_dump($productsCount);
+        $productsCount = $cart->checkProduct($_SESSION['userInfo']['id_user'],$id,0);
         if(count($productsCount) >= 1 ){
             $cart->insceaseQuantity($_SESSION['userInfo']['id_user'],$id);
         }else{
             $cart->addToCart($_SESSION['userInfo']['id_user'],$id,1,0);
             if(isset($_SESSION['listCart'])){
                 if(!in_array($id,$_SESSION['listCart'])){
-                    $_SESSION['listCart'][]=array('id'=>$id,'quantity'=>1);
+                    $_SESSION['listCart'][]=array('id_product'=>$id,'quantity'=>1);
                 }else{
-                    $_SESSION['listCart'][]=array('id'=>$id,'quantity'=>1);
+                    // $_SESSION['listCart'][]=array('id_product'=>$id,'quantity'=>1);
                 }
             }else{
-                $_SESSION['listCart'][]=array('id'=>$id,'quantity'=>1);
+                $_SESSION['listCart'][]=array('id_product'=>$id,'quantity'=>1);
             }
         }
     }else{
         if(isset($_SESSION['listCart'])){
-            if(!in_array($id,$_SESSION['listCart'])){
-                $_SESSION['listCart'][]=array('id'=>$id,'quantity'=>1);
+            if(!in_array(array('id_product'=>$id,'quantity'=>1),$_SESSION['listCart'])){
+                $_SESSION['listCart'][]=array('id_product'=>$id,'quantity'=>1);
             }else{
-                $_SESSION['listCart'][]=array('id'=>$id,'quantity'=>1);
+                
             }
         }else{
-            $_SESSION['listCart'][]=array('id'=>$id,'quantity'=>1);
+            $_SESSION['listCart'][]=array('id_product'=>$id,'quantity'=>1);
         }
     }
+}
+// delete from cart part
+function deleteFromCart(){
+    if(isset($_SESSION['userInfo'])){
+        require('./models/cart.php');
+        $cart = new Cart;
+        $cart->deleteFromCart($_GET['id_product'],$_SESSION['userInfo']['id_user']);
+    }else{
+        $newList = array();
+        foreach($_SESSION['listCart'] as $p){
+            if($p['id_product'] != $_GET['id_product']){
+                $newList [] = $p;
+            }
+        }
+        $_SESSION['listCart'] = $newList;
+    }
+    header("Location: /Ecommerce/index.php/cart");
+}
+// delete all products in cart
+function clearCart(){
+    if(isset($_SESSION['userInfo'])){
+        require('./models/cart.php');
+        $cart = new Cart;
+        $cart->clearCart($_SESSION['userInfo']['id_user']);
+    }else{
+        if(isset($_SESSION['listCart']) &&  !empty($_SESSION['listCart'])){
+            unset($_SESSION['listCart']);
+            $_SESSION['listCart'] = array();
+        }
+    }
+    header("Location: /Ecommerce/index.php/cart");
 }
 // product details page
 function productDetails(){
@@ -102,12 +159,35 @@ function confirmLogin(){
     require_once("./models/user.php");
     $user = new User($_POST['username'],$_POST['password']);
     $userInfo = $user->login();
-
     if(isset($userInfo) && $userInfo[0]['role'] == 'customer'){
         $_SESSION['userInfo'] = $userInfo[0];
+        // add products in session cart to account cart
+        if(isset($_SESSION['listCart']) && !empty($_SESSION['listCart'])){
+            require('./models/cart.php');
+            $cart = new Cart;
+            foreach($_SESSION['listCart'] as $c){
+                $productsCount = $cart->checkProduct($_SESSION['userInfo']['id_user'],$c['id_product'],0);
+                if(count($productsCount) >= 1 ){
+                    $cart->insceaseQuantity($_SESSION['userInfo']['id_user'],$c['id_product']);
+                }
+            }
+        }
         header("Location: /Ecommerce/index.php/?categorie=all");
     }elseif(isset($userInfo) && $userInfo[0]['role'] == 'admin'){
         $_SESSION['userInfo'] = $userInfo[0];
+        // add products in session cart to account cart
+        if(isset($_SESSION['listCart']) && !empty($_SESSION['listCart'])){
+            require('./models/cart.php');
+            $cart = new Cart;
+            foreach($_SESSION['listCart'] as $c){
+                $productsCount = $cart->checkProduct($_SESSION['userInfo']['id_user'],$c['id_product'],0);
+                if(count($productsCount) >= 1 ){
+                    $cart->insceaseQuantity($_SESSION['userInfo']['id_user'],$c['id_product']);
+                }else{
+                    $cart->addToCart($_SESSION['userInfo']['id_user'],$c['id_product'],1,0);
+                }
+            }
+        }
         header("Location: /Ecommerce/index.php/dashboardUser");
     }else{
         $_SESSION['loginErr'] = '1';
