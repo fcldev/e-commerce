@@ -107,7 +107,7 @@
                                         <li><a href="#">pages</a>
                                             <ul class="sub_menu">
                                                 <li><a href="/Ecommerce/index.php/cart">Cart Pages</a></li>
-                                                <li><a href="checkout.html">Checkout Pages</a></li>
+                                                <li><a href="/Ecommerce/index.php/checkout">Checkout Pages</a></li>
                                             </ul>
                                         </li>
                                         <!-- <li><a href="blog.html">blog</a>

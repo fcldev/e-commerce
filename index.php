@@ -19,6 +19,8 @@ if($url == "/Ecommerce/index.php/"){
     deleteFromCart();
 }elseif($url == "/Ecommerce/index.php/clearCart"){
     clearCart();
+}elseif($url == "/Ecommerce/index.php/checkout"){
+    checkout();
 }elseif($url == "/Ecommerce/index.php/searsh"){
     searshBar();
 }elseif($url == "/Ecommerce/index.php/productDetails"){

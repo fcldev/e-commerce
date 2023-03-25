@@ -37,6 +37,33 @@ class Cart{
         $stm->bindParam(':id_product',$id_product);
         $stm->execute();
     }
+    public function changeCartQuantity($id_user,$id,$quantity){
+        require("connexion.php");
+        $sql = "UPDATE `cart` SET quantity = :quantity WHERE id_user = :id_user AND id_product = :id_product AND state = 0";
+        $stm = $connexion->prepare($sql);
+        $stm->bindParam(':id_user',$id_user); 
+        $stm->bindParam(':id_product',$id);
+        $stm->bindParam(':quantity',$quantity); 
+        $stm->execute();
+    }
+    public function changeCartColor($id_user,$id,$color){
+        require("connexion.php");
+        $sql = "UPDATE `cart` SET color = :color WHERE id_user = :id_user AND id_product = :id_product AND state = 0";
+        $stm = $connexion->prepare($sql);
+        $stm->bindParam(':id_user',$id_user); 
+        $stm->bindParam(':id_product',$id);
+        $stm->bindParam(':color',$color); 
+        $stm->execute();
+    }
+    public function changeCartSize($id_user,$id,$size){
+        require("connexion.php");
+        $sql = "UPDATE `cart` SET size = :size WHERE id_user = :id_user AND id_product = :id_product AND state = 0";
+        $stm = $connexion->prepare($sql);
+        $stm->bindParam(':id_user',$id_user); 
+        $stm->bindParam(':id_product',$id);
+        $stm->bindParam(':size',$size); 
+        $stm->execute();
+    }
     public function setState($state,$id_cart){
         require("connexion.php");
         $sql = "UPDATE `cart` SET state = :state WHERE id_cart = :id_cart";

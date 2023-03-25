@@ -55,16 +55,16 @@
                                                     <h4><?php echo $p['product']['name'] ?></h4>
                                                     <ul>
                                                         <li>
-                                                            <select class="select_option border">
-                                                                <option value="1">color</option>
+                                                            <select onchange="changeCartColor(this,'<?php echo $p['product']['id_product']; ?>')" class="select_option border">
+                                                                <option value="">color</option>
                                                             <?php foreach(explode(',',$p['product']['colors']) as $color){ ?>
                                                                 <option value="<?php echo $color; ?>"><?php echo $color; ?></option>
                                                             <?php } ?>
                                                             </select>                                                      
                                                         </li>  
                                                         <li>
-                                                            <select class="select_option border" style="width:100px">
-                                                                <option value="1">size</option>
+                                                            <select onchange="changeCartSize(this,'<?php echo $p['product']['id_product']; ?>')" class="select_option border" style="width:100px">
+                                                                <option value="">size</option>
                                                             <?php foreach(explode(',',$p['product']['sizes_available']) as $size){ ?>
                                                                 <option value="<?php echo $size; ?>"><?php echo $size; ?></option>
                                                             <?php } ?>
@@ -80,12 +80,12 @@
                                             </td>
                                             <td class="product_quantity">
                                                 <div class="cart_product_quantity">
-                                                    <input min="1" max="100" value="<?php echo $p['quantity'] ?>" type="number">
+                                                    <input min="1" oninput="changeCartQuantity(this,'<?php echo $p['product']['id_product'] ?>')" max="100" value="<?php echo $p['quantity'] ?>" type="number">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="cart_product_price">
-                                                    <span><?php echo ($p['quantity'] + 0)*($p['product']['price'] + 0) ?></span>
+                                                    <span><?php echo ($p['quantity'] + 0)*($p['product']['price'] + 0) ?> MAD</span>
                                                 </div>
                                             </td>
                                             <td>
@@ -162,7 +162,41 @@
         </div>
     </div>
      <!--shopping cart area end -->
-
+     <script>
+        function changeCartQuantity(e,id){
+            // alert(e.value)
+            $.ajax({
+                url: "./controlleur/client/clientControlleur.php",
+                data: {id_product:id,quantity:e.value,function_name:"changeCartQuantity"},
+                type:"POST",
+                success:function(data, status){
+                    
+                }
+            });
+        }
+        function changeCartColor(e,id){
+            // alert(e.value)
+            $.ajax({
+                url: "./controlleur/client/clientControlleur.php",
+                data: {id_product:id,color:e.value,function_name:"changeCartColor"},
+                type:"POST",
+                success:function(data, status){
+                    
+                }
+            });
+        }
+        function changeCartSize(e,id){
+            // alert(e.value)
+            $.ajax({
+                url: "./controlleur/client/clientControlleur.php",
+                data: {id_product:id,size:e.value,function_name:"changeCartSize"},
+                type:"POST",
+                success:function(data, status){
+                    
+                }
+            });
+        }
+    </script>                                                            
 
     
     

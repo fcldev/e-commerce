@@ -113,6 +113,50 @@ function addToCart($id){
         }
     }
 }
+// change cart quantity part
+if(isset($_POST['function_name']) && isset($_SESSION['userInfo']) && $_POST['function_name'] === "changeCartQuantity"){
+    $id = $_POST['id_product'];
+    $quantity = $_POST['quantity'];
+    changeCartQuantity($_SESSION['userInfo']['id_user'],$id,$quantity);
+    exit(0);
+}
+function changeCartQuantity($idUser,$idProduct,$quantity){
+    require('./models/cart.php');
+    $cart = new Cart;
+    $cart->changeCartQuantity($idUser,$idProduct,$quantity);
+}
+// change cart color part
+if(isset($_POST['function_name']) && isset($_SESSION['userInfo']) && $_POST['function_name'] === "changeCartColor"){
+    $id = $_POST['id_product'];
+    $color = $_POST['color'];
+    changeCartColor($_SESSION['userInfo']['id_user'],$id,$color);
+    exit(0);
+}
+function changeCartColor($idUser,$idProduct,$color){
+    require('./models/cart.php');
+    $cart = new Cart;
+    $cart->changeCartColor($idUser,$idProduct,$color);
+}
+// change cart size part
+if(isset($_POST['function_name']) && isset($_SESSION['userInfo']) && $_POST['function_name'] === "changeCartSize"){
+    $id = $_POST['id_product'];
+    $size = $_POST['size'];
+    changeCartSize($_SESSION['userInfo']['id_user'],$id,$size);
+    exit(0);
+}
+function changeCartSize($idUser,$idProduct,$size){
+    require('./models/cart.php');
+    $cart = new Cart;
+    $cart->changeCartSize($idUser,$idProduct,$size);
+}
+// checkout page
+function checkout(){
+    if(isset($_SESSION['userInfo'])){
+        require("./views/clientPages/checkout.php");
+    }else{
+        require("./views/clientPages/loginRegister.php");
+    }
+}
 // delete from cart part
 function deleteFromCart(){
     if(isset($_SESSION['userInfo'])){
