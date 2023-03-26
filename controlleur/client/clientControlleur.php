@@ -38,7 +38,7 @@ function searshBar(){
     require('./models/categorie.php');
     $listCategories = (new Categorie)->getAllCategories();
     $inpVal = $_POST['searshBar'];
-    $products = (new Product)->getProducts($inpVal);
+    $listProducts = (new Product)->getProducts($inpVal);
     require('./views/clientPages/shop.php');
 }
 // about company page

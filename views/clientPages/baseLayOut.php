@@ -201,19 +201,19 @@
                     <div id="menu" class="text-left ">
                         <ul class="offcanvas_main_menu">
                             <li class="menu-item-has-children active">
-                                <a href="#">Home</a>
+                                <a href="/Ecommerce/index.php/">Home</a>
                             </li>
                             <li class="menu-item-has-children">
-                                <a href="shop.html">About us</a>
+                                <a href="/Ecommerce/index.php/aboutUs">About us</a>
                             </li>
                             <li class="menu-item-has-children">
-                                <a href="shop.html">Shop</a>
+                                <a href="/Ecommerce/index.php/shop">Shop</a>
                             </li>
                             <li class="menu-item-has-children">
                                 <a href="#">pages </a>
                                 <ul class="sub-menu">
-                                    <li><a href="cart.html">cart</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
+                                    <li><a href="/Ecommerce/index.php/cart">cart</a></li>
+                                    <li><a href="/Ecommerce/index.php/aboutUs">Checkout</a></li>
                                 </ul>
                             </li>
                         </ul>

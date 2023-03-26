@@ -47,22 +47,9 @@
                     <!--shop toolbar start-->
                     <div class="shop_toolbar_wrapper d-flex justify-content-between align-items-center">
                         <div class="page_amount">
-                            <p><span>1.260</span> Products Found</p>
+                            <p><span><?php echo count($listProducts); ?></span> Products Found</p>
                         </div>
-                        <div class=" sorting_by d-flex align-items-center">
-                            <span>SORT BY :</span>
-                            <form class="select_option" action="#">
-                                <select name="orderby" id="short">
-
-                                    <option selected value="1">NAME       3</option>
-                                    <option  value="2">NAME  4</option>
-                                    <option value="3">NAME  5</option>
-                                    <option value="4">NAME  6</option>
-                                    <option value="5">NAME  7</option>
-                                    <option value="6">NAME  8</option>
-                                </select>
-                            </form>
-                        </div>
+                        
                         <div class="toolbar_btn_wrapper d-flex align-items-center">
                             <div class="view_btn">
                                 <a class="view" href="#">VIEW</a>

@@ -19,7 +19,7 @@ class Product{
 
     public function getAllProducts(){
         require("connexion.php");
-        $sql = "SELECT DISTINCT p.*, m.id_image,m.image_url,m.index FROM product p LEFT JOIN image m ON p.id_product = m.id_product AND m.index = 1";
+        $sql = "SELECT DISTINCT p.*, m.id_image,m.image_url,m.index FROM product p LEFT JOIN image m ON p.id_product = m.id_product AND m.index = 1 WHERE p.visibility = 1";
         $stm = $connexion->prepare($sql);
         $stm->execute();
         $listProducts = $stm->fetchAll();
@@ -64,7 +64,7 @@ class Product{
 
     public function getProductsByCategorie($categorie){
         require("connexion.php");
-        $sql = "SELECT DISTINCT p.*, m.id_image,m.image_url,m.index FROM product p LEFT JOIN image m ON p.id_product = m.id_product AND m.index = 1 WHERE categorie_name = :categorie";
+        $sql = "SELECT DISTINCT p.*, m.id_image,m.image_url,m.index FROM product p LEFT JOIN image m ON p.id_product = m.id_product AND m.index = 1 WHERE p.visibility > 0 AND categorie_name = :categorie ";
         $stm = $connexion->prepare($sql);
         $stm->bindParam(":categorie",$categorie);
         $stm->execute();
