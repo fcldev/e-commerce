@@ -29,14 +29,16 @@ class Cart{
         return $listProducts;
     }
 
-    public function insceaseQuantity($id_user,$id_product){
+    public function increaseQuantity($id_user,$id_product,$quantity){
         require("connexion.php");
-        $sql = "UPDATE `cart` SET quantity = quantity + 1 WHERE id_user = :id_user AND id_product = :id_product AND state = 0";
+        $sql = "UPDATE `cart` SET quantity = quantity + :quantity WHERE id_user = :id_user AND id_product = :id_product AND state = 0";
         $stm = $connexion->prepare($sql);
         $stm->bindParam(':id_user',$id_user); 
         $stm->bindParam(':id_product',$id_product);
+        $stm->bindParam(':quantity',$quantity);
         $stm->execute();
     }
+
     public function changeCartQuantity($id_user,$id,$quantity){
         require("connexion.php");
         $sql = "UPDATE `cart` SET quantity = :quantity WHERE id_user = :id_user AND id_product = :id_product AND state = 0";

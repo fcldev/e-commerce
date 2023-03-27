@@ -74,7 +74,7 @@ function cart(){
         }
     }
     require('./views/clientPages/cart.php');
-    var_dump($_SESSION['listCart']);
+    // var_dump($_SESSION['listCart']);
 }
 // ad to cart part
 if(isset($_POST['function_name']) && $_POST['function_name'] === "addToCart"){
@@ -88,7 +88,7 @@ function addToCart($id){
         $cart = new Cart;
         $productsCount = $cart->checkProduct($_SESSION['userInfo']['id_user'],$id,0);
         if(count($productsCount) >= 1 ){
-            $cart->insceaseQuantity($_SESSION['userInfo']['id_user'],$id);
+            $cart->increaseQuantity($_SESSION['userInfo']['id_user'],$id,1);
         }else{
             $cart->addToCart($_SESSION['userInfo']['id_user'],$id,1,0);
             if(isset($_SESSION['listCart'])){
@@ -105,6 +105,44 @@ function addToCart($id){
         if(isset($_SESSION['listCart'])){
             if(!in_array(array('id_product'=>$id,'quantity'=>1),$_SESSION['listCart'])){
                 $_SESSION['listCart'][]=array('id_product'=>$id,'quantity'=>1);
+            }else{
+                
+            }
+        }else{
+            $_SESSION['listCart'][]=array('id_product'=>$id,'quantity'=>1);
+        }
+    }
+}
+// add to cart with quantity
+if(isset($_POST['function_name']) && $_POST['function_name'] === "addToCartWithQuantity"){
+    $id = $_POST['id_product'];
+    $quantity = $_POST['quantity'];
+    addToCart($id,$quantity);
+    exit(0);
+}
+function addToCartWithQuantity($id,$quantity){
+    if(isset($_SESSION['userInfo'])){
+        require('./models/cart.php');
+        $cart = new Cart;
+        $productsCount = $cart->checkProduct($_SESSION['userInfo']['id_user'],$id);
+        if(count($productsCount) >= 1 ){
+            $cart->increaseQuantity($_SESSION['userInfo']['id_user'],$id,$quantity);
+        }else{
+            $cart->addToCart($_SESSION['userInfo']['id_user'],$id,$quantity,0);
+            if(isset($_SESSION['listCart'])){
+                if(!in_array($id,$_SESSION['listCart'])){
+                    $_SESSION['listCart'][]=array('id_product'=>$id,'quantity'=>$quantity);
+                }else{
+                    // $_SESSION['listCart'][]=array('id_product'=>$id,'quantity'=>1);
+                }
+            }else{
+                $_SESSION['listCart'][]=array('id_product'=>$id,'quantity'=>1);
+            }
+        }
+    }else{
+        if(isset($_SESSION['listCart'])){
+            if(!in_array(array('id_product'=>$id,'quantity'=>1),$_SESSION['listCart'])){
+                $_SESSION['listCart'][]=array('id_product'=>$id,'quantity'=>$quantity);
             }else{
                 
             }
@@ -191,8 +229,10 @@ function clearCart(){
 // product details page
 function productDetails(){
     require('./models/product.php');
+    require('./models/image.php');
     $idProduct = $_GET['idProduct'];
     $product = (new Product)->getProductById($idProduct)[0];
+    $images = (new Image)->getImagesByProductId($idProduct);
     require('./views/clientPages/productDetails.php');
 }
 // Login Regidter Logout functions and pages
@@ -212,7 +252,7 @@ function confirmLogin(){
             foreach($_SESSION['listCart'] as $c){
                 $productsCount = $cart->checkProduct($_SESSION['userInfo']['id_user'],$c['id_product'],0);
                 if(count($productsCount) >= 1 ){
-                    $cart->insceaseQuantity($_SESSION['userInfo']['id_user'],$c['id_product']);
+                    $cart->increaseQuantity($_SESSION['userInfo']['id_user'],$c['id_product']);
                 }
             }
         }
@@ -226,7 +266,7 @@ function confirmLogin(){
             foreach($_SESSION['listCart'] as $c){
                 $productsCount = $cart->checkProduct($_SESSION['userInfo']['id_user'],$c['id_product'],0);
                 if(count($productsCount) >= 1 ){
-                    $cart->insceaseQuantity($_SESSION['userInfo']['id_user'],$c['id_product']);
+                    $cart->increaseQuantity($_SESSION['userInfo']['id_user'],$c['id_product'],1);
                 }else{
                     $cart->addToCart($_SESSION['userInfo']['id_user'],$c['id_product'],1,0);
                 }

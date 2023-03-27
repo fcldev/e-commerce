@@ -55,7 +55,7 @@
                                                     <h4><?php echo $p['product']['name'] ?></h4>
                                                     <ul>
                                                         <li>
-                                                            <select onchange="changeCartColor(this,'<?php echo $p['product']['id_product']; ?>')" class="select_option border">
+                                                            <select <?php if(!isset($_SESSION['userInfo'])){echo 'disabled';} ?> onchange="changeCartColor(this,'<?php echo $p['product']['id_product']; ?>')" class="select_option border">
                                                                 <option value="">color</option>
                                                             <?php foreach(explode(',',$p['product']['colors']) as $color){ ?>
                                                                 <option value="<?php echo $color; ?>"><?php echo $color; ?></option>
@@ -63,7 +63,7 @@
                                                             </select>                                                      
                                                         </li>  
                                                         <li>
-                                                            <select onchange="changeCartSize(this,'<?php echo $p['product']['id_product']; ?>')" class="select_option border" style="width:100px">
+                                                            <select <?php if(!isset($_SESSION['userInfo'])){echo 'disabled';} ?> onchange="changeCartSize(this,'<?php echo $p['product']['id_product']; ?>')" class="select_option border" style="width:100px">
                                                                 <option value="">size</option>
                                                             <?php foreach(explode(',',$p['product']['sizes_available']) as $size){ ?>
                                                                 <option value="<?php echo $size; ?>"><?php echo $size; ?></option>
@@ -80,7 +80,7 @@
                                             </td>
                                             <td class="product_quantity">
                                                 <div class="cart_product_quantity">
-                                                    <input min="1" oninput="changeCartQuantity(this,'<?php echo $p['product']['id_product'] ?>')" max="100" value="<?php echo $p['quantity'] ?>" type="number">
+                                                    <input min="1" oninput="changeCartQuantity(this,'<?php echo $p['product']['id_product'] ?>')" <?php if(!isset($_SESSION['userInfo'])){echo 'disabled';} ?> max="100" value="<?php echo $p['quantity'] ?>" type="number">
                                                 </div>
                                             </td>
                                             <td>
@@ -113,30 +113,8 @@
                  </div>
                  <!--coupon code area start-->
                 <div class="cart_page_bottom">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="shopping_coupon_calculate top">
-                                <h3 class="border-bottom">Calculate Shipping </h3>
-                                <select class="select_option border">
-                                    <option value="1">United Kingdom (UK)  </option>
-                                    <option value="2">Åland Islands  </option>
-                                    <option value="3">Afghanistan  </option>
-                                    <option value="4">Belgium </option>
-                                    <option value="5">Albania  </option>
-                                </select>
-                                <input class="border" placeholder="State / Country" type="text">
-                                <input class="border" placeholder="Postcode / Zip" type="text">
-                                <button class="btn btn-primary" type="submit">get a quote</button>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="shopping_coupon_calculate">
-                                <h3 class="border-bottom">Coupon Discount   </h3>
-                                <p>Enter your coupon code if you have one.</p>
-                                <input class="border" placeholder="Enter your code" type="text">
-                                <button class="btn btn-primary" type="submit">apply coupon</button>
-                            </div>
-                        </div>
+                <?php if(isset($_SESSION['userInfo'])){ ?>
+                    <div class="row d-flex justify-content-end">
                         <div class="col-lg-4 col-md-6 col-sm-8">
                             <div class="grand_totall_area">
                                <div class="grand_totall_inner border-bottom">
@@ -152,10 +130,22 @@
                                <div class="proceed_checkout_btn">
                                    <a class="btn btn-primary" href="#">Proceed to Checkout</a>
                                </div>
-                               <a href="#">Checkout with Mutilple Adresses</a>
                             </div>
                         </div>
                     </div>
+                <?php }else{ ?>
+                    <div class="row d-flex justify-content-end">
+                        <div class="col-lg-4 col-md-6 col-sm-8">
+                            <div class="grand_totall_area">
+                               
+                               <div class="proceed_checkout_btn">
+                                   <a class="btn btn-primary" href="/Ecommerce/index.php/loginRegister">login to validate the order</a>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <?php } ?>
                 </div>
                 <!--coupon code area end-->
             </form>

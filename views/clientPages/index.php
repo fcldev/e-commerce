@@ -120,7 +120,6 @@
                     <figcaption class="banner_text position-absolute">
                         <h3>Zara Pattern <br> backpacks</h3>
                         <p>Stretch, fresh-cool help you alway <br> comfortable</p>
-                        <a class="btn btn-primary" href="shop.html">Shop Now</a>
                     </figcaption>
                 </figure>
                 <figure class="single_banner position-relative">
@@ -311,7 +310,6 @@
                         <div class="banner_text position-absolute">
                             <h3>Minimalist <br> sneaker</h3>
                             <p>Stretch, fresh-cool help you alway <br> comfortable</p>
-                            <a class="btn btn-primary" href="shop.html">Shop Now</a>
                         </div>
                         <div class="banner_tag">
                             <span>new arrivals <br> women</span>
@@ -324,7 +322,6 @@
                         <div class="banner_text position-absolute text__style2">
                             <h3><span>50%</span> OFF <br> for Autumn</h3>
                             <p>Stretch, fresh-cool help you alway <br> comfortable</p>
-                            <a class="btn btn-primary" href="shop.html">Shop Now</a>
                         </div>
                         <div class="banner_tag">
                             <span>mega sale</span>

@@ -32,7 +32,7 @@
                     <!--breadcrumbs area start-->
                     <div class="breadcrumb_content">
                         <ul>
-                            <li><a href="index.html">home</a></li>
+                            <li><a href="/Ecommerce/index.php/">home</a></li>
                             <li>shop</li>
                         </ul>
                     </div>
@@ -71,7 +71,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-6 col-6 ">
                             <div class="single_product">
                                 <div class="product_thumb">
-                                    <a href="product-details.html" >
+                                    <a href="/Ecommerce/index.php/productDetails?idProduct=<?php echo $p['id_product'] ;?>" >
                                         <img class="primary_img" src="../assets/productsImages/<?php echo $p['image_url'] ; ?>" alt="consectetur">
                                     </a>
                                 <?php if($p['discount'] != "0"){ ?>

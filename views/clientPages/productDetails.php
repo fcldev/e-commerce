@@ -26,36 +26,26 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product_zoom_gallery">
                        <div class="zoom_gallery_inner d-flex">
-                           
-                           <div class="product_zoom_main_img">
+                            <div class="zoom_tab_img">
+                            <?php foreach($images as $image){ ?>    
+                                <a class="zoom_tabimg_list" href="javascript:void(0)"><img width="100px" height="100px" src="../assets/productsImages/<?php echo $image['image_url'] ; ?>" alt="tab-thumb"></a>
+                            <?php } ?>
+                            </div>
+                            <div class="product_zoom_main_img">
+                            <?php foreach($images as $image){ ?>  
                                 <div class="product_zoom_thumb">
-                                    <img data-image="../assets/img/product/big-product/product1.png" src="../assets/img/product/<?php echo $product['general_image'] ;?>" alt="">
+                                    <img data-image="assets/img/product/big-product/product1.png" width="300px" height="300px" src="../assets/productsImages/<?php echo $image['image_url'] ; ?>" alt="">
                                 </div>
+                            <?php } ?>    
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product_d_right">
-                       <form action="#">
+                       <form>
                             <h1><?php echo $product['name'] ;?></h1>
-                            <div class="product_ratting_review d-flex align-items-center">
-                                <div class=" product_ratting">
-                                    <ul class="d-flex">
-                                        <li><a href="#"><i class="ion-ios-star"></i></a></li>
-                                        <li><a href="#"><i class="ion-ios-star"></i></a></li>
-                                        <li><a href="#"><i class="ion-ios-star"></i></a></li>
-                                        <li><a href="#"><i class="ion-ios-star"></i></a></li>
-                                        <li><a href="#"><i class="ion-ios-star"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product_review">
-                                    <ul class="d-flex">
-                                        <li>4 reviews</li>
-                                        <li>Write your review</li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <hr>
                             <div class="price_box">
                                 <span class="current_price"><?php echo number_format($product['price'])-number_format($product['price'])*number_format($product['discount'])/100 ; ?> MAD</span>
                             </div>
@@ -79,9 +69,9 @@
 
                                 <div class="variant_quantity_btn d-flex">
                                     <div class="pro-qty border">
-                                        <input min="1" max="100" type="tex" value="1">
+                                        <input id="quantity" min="1" max="100" type="tex" value="1">
                                     </div>
-                                    <button class="button btn btn-primary" type="submit"><i class="ion-android-add"></i> Add To Cart</button>
+                                    <button class="button btn btn-primary" type="button" onclick="addToCart('<?php echo $product['id_product'] ;?>')" ><i class="ion-android-add"></i> Add To Cart</button>
                                 </div>
                             </div>
                             
@@ -104,9 +94,6 @@
                                 <li >
                                     <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Product Description</a>
                                 </li>
-                                <li>
-                                   <a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews          </a>
-                                </li>
                                  <li>
                                    <a data-toggle="tab" href="#tags" role="tab" aria-controls="tags" aria-selected="false">Tags </a>
                                 </li>
@@ -121,66 +108,7 @@
                                     <p><?php echo $product['description'] ;?></p>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="reviews" role="tabpanel" >
-                                <div class="reviews_wrapper">
-                                    <h2>1 review for Donec eu furniture</h2>
-                                    <div class="reviews_comment_box">
-                                        <div class="comment_thmb">
-                                            <img src="../assets/img/blog/comment2.jpg" alt="">
-                                        </div>
-                                        <div class="comment_text">
-                                            <div class="reviews_meta">
-                                                <div class="star_rating">
-                                                    <ul class="d-flex">
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                       <li><a href="#"><i class="icon-star"></i></a></li>
-                                                       <li><a href="#"><i class="icon-star"></i></a></li>
-                                                       <li><a href="#"><i class="icon-star"></i></a></li>
-                                                       <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                <p><strong>admin </strong>- September 12, 2018</p>
-                                                <span>roadthemes</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="comment_title">
-                                        <h2>Add a review </h2>
-                                        <p>Your email address will not be published.  Required fields are marked </p>
-                                    </div>
-                                    <div class="product_ratting mb-10">
-                                       <h3>Your rating</h3>
-                                        <ul class="d-flex">
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                               <li><a href="#"><i class="icon-star"></i></a></li>
-                                               <li><a href="#"><i class="icon-star"></i></a></li>
-                                               <li><a href="#"><i class="icon-star"></i></a></li>
-                                               <li><a href="#"><i class="icon-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="product_review_form">
-                                        <form action="#">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <label for="review_comment">Your review </label>
-                                                    <textarea name="comment" id="review_comment" ></textarea>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6">
-                                                    <label for="author">Name</label>
-                                                    <input id="author"  type="text">
-
-                                                </div>
-                                                <div class="col-lg-6 col-md-6">
-                                                    <label for="email">Email </label>
-                                                    <input id="email"  type="text">
-                                                </div>
-                                            </div>
-                                            <button type="submit">Submit</button>
-                                         </form>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             <div class="tab-pane fade" id="tags" role="tabpanel" >
                                 <div class="product_info_content">
                                     <ul>
@@ -203,6 +131,19 @@
         </div>
     </div>
     <!--product info end-->
+    <script>
+        function addToCart(id){
+            var quantity = document.getElementById('quantity').value;
+            $.ajax({
+                url: "./controlleur/client/clientControlleur.php",
+                data: {id_product:id,quantity:quantity,function_name:"addToCartWithQuantity"},
+                type:"POST",
+                success:function(data, status){
+                    alert(status);
+                }
+            });
+        }
+    </script>
     <?php
         $content = ob_get_clean();
         require('./views/clientPages/baseLayOut.php');
