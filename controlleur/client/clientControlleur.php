@@ -5,6 +5,12 @@ function home(){
     require('./models/categorie.php');
     $listCategories = (new Categorie)->getAllCategories();
     $bestItems = (new Product)->getProductsOrderedByDiscount();
+    if(isset($_SESSION['userInfo'])){
+        require('./models/cart.php');
+        $cartCount = (new Cart)->getCartCount($_SESSION['userInfo']['id_user']);
+    }else{
+        $cartCount = count($_SESSION['listCart']);
+    }
     // var_dump($bestItems);
     $newArrivals = (new Product)->getProductsOrderedByDate();
     if(!isset($_GET['categorie']) || $_GET['categorie'] == 'all'){
@@ -20,29 +26,37 @@ function home(){
 function shop(){
     require('./models/product.php');
     require('./models/categorie.php');
+    require('./models/cart.php');
     $listCategories = (new Categorie)->getAllCategories();
     $listProducts = (new Product)->getAllProducts();
+    $cartCount = (new Cart)->getCartCount($_SESSION['userInfo']['id_user']);
     require('./views/clientPages/shop.php');
 }
 // shop page filtered by categorie 
 function shopFiltered(){
     require('./models/product.php');
     require('./models/categorie.php');
+    require('./models/cart.php');
     $listCategories = (new Categorie)->getAllCategories();
     $listProducts = (new Product)->getProductsByCategorie($_GET['categorie']);
+    $cartCount = (new Cart)->getCartCount($_SESSION['userInfo']['id_user']);
     require('./views/clientPages/shop.php');
 }
 // searsh for products (navBar searsh form)
 function searshBar(){
     require("./models/product.php");
     require('./models/categorie.php');
+    require('./models/cart.php');
     $listCategories = (new Categorie)->getAllCategories();
     $inpVal = $_POST['searshBar'];
     $listProducts = (new Product)->getProducts($inpVal);
+    $cartCount = (new Cart)->getCartCount($_SESSION['userInfo']['id_user']);
     require('./views/clientPages/shop.php');
 }
 // about company page
 function aboutUs(){
+    require('./models/cart.php');
+    $cartCount = (new Cart)->getCartCount($_SESSION['userInfo']['id_user']);
     require('./views/clientPages/aboutUs.php');
 }
 // cart page
@@ -51,6 +65,7 @@ function cart(){
         require('./models/cart.php');
         require('./models/product.php');
         $cart = new Cart;
+        $cartCount = $cart->getCartCount($_SESSION['userInfo']['id_user']);
         $product = new Product;
         $listProductsId = $cart->getCartProducts($_SESSION['userInfo']['id_user']);
         if(!empty($listProductsId)){
@@ -62,8 +77,10 @@ function cart(){
         }
     }elseif(!isset($_SESSION['listCart'])){
         $_SESSION['listCart'] = array();
+        $cartCount = count($_SESSION['listCart']);
     }else{
         require('./models/product.php');
+        $cartCount = count($_SESSION['listCart']);
         $product = new Product;
         if(!empty($_SESSION['listCart'])){
             foreach($_SESSION['listCart'] as $c){
@@ -304,7 +321,7 @@ function logout(){
     unset($_SESSION['userInfo']);
     header("Location: /Ecommerce/index.php/?categorie=all");
 }
-
+// add a comment for product
 function addComment(){
     if(isset($_SESSION['userInfo'])){
         require('./models/comment.php');
@@ -316,6 +333,7 @@ function addComment(){
         require('./Ecommerce/index.php/confirmLogin');
     }
 }
+// delete your comment
 function deleteComment(){
     if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['id_user'] == $_GET['id_user'] ){
         require('./models/comment.php');
@@ -326,6 +344,7 @@ function deleteComment(){
         require('./Ecommerce/index.php/confirmLogin');
     }
 }
+// add a rating
 function addEvaluation(){
     if(isset($_SESSION['userInfo'])){
         require('./models/review.php');
@@ -344,6 +363,7 @@ function addEvaluation(){
         require('./Ecommerce/index.php/confirmLogin');
     }
 }
+// change rating
 function changeProductEvaluation($idProduct){
     require('./models/product.php');
     $p = new Product;

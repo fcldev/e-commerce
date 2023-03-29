@@ -28,6 +28,15 @@ class Cart{
         $listProducts = $stm->fetchAll();
         return $listProducts;
     }
+    public function getCartCount($id_user){
+        require("connexion.php");
+        $sql = "SELECT * FROM `cart` WHERE id_user = :id_user AND state = 0";
+        $stm = $connexion->prepare($sql);
+        $stm->bindParam(':id_user',$id_user);
+        $stm->execute();
+        $listProducts = $stm->fetchAll();
+        return count($listProducts);
+    }
 
     public function increaseQuantity($id_user,$id_product,$quantity){
         require("connexion.php");

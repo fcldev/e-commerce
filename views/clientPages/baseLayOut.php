@@ -103,20 +103,12 @@
                                         <li><a class="active" href="/Ecommerce/index.php/">Home</a> </li>
                                         <li><a href="/Ecommerce/index.php/aboutUs">about us</a></li>
                                         <li><a href="/Ecommerce/index.php/shop">shop</a></li>
-                                        <!-- <li><a href="#">sale</a></li> -->
                                         <li><a href="#">pages</a>
                                             <ul class="sub_menu">
                                                 <li><a href="/Ecommerce/index.php/cart">Cart Pages</a></li>
                                                 <li><a href="/Ecommerce/index.php/checkout">Checkout Pages</a></li>
                                             </ul>
                                         </li>
-                                        <!-- <li><a href="blog.html">blog</a>
-                                            <ul class="sub_menu">
-                                                <li><a href="blog.html">Blog Pages</a></li>
-                                                <li><a href="blog-details.html">Blog Details</a></li>
-                                            </ul>
-                                        </li> -->
-                                        <!-- <li><a href="#">buy</a></li> -->
                                     </ul>
                                 </nav>
                             </div>
@@ -143,8 +135,8 @@
                                     </li>
                                     <li class="shopping_cart"><a href="/Ecommerce/index.php/cart">
                                         <i class="icon-basket-loaded icons"></i></a>
-                                        <span class="item_count">2
-                                           
+                                        <span id="cart" class="item_count">
+                                            <?php echo $cartCount; ?>
                                         </span>
                                     </li>
                                 </ul>

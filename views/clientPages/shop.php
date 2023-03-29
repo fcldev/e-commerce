@@ -91,7 +91,9 @@
                                     <h4 class="product_name"><a href="product-details.html"><?php echo $p['name'] ; ?></a></h4>
                                     <div class="price_box">
                                         <span class="current_price"><?php echo ($p['price']+0)-($p['price']+0)*($p['discount']+0)/100 ; ?> MAD</span>
-                                        <span class="old_price"><?php echo $p['price'] ; ?> MAD</span>
+                                        <?php if($p['discount'] != '0'){ ?>
+                                              <span class="old_price"><?php echo $p['price'] ; ?> MAD</span>
+                                        <?php } ?>
                                     </div>
                                     <div class="add_to_cart">
                                         <a class="btn btn-primary" onclick="addToCart('<?php echo $p['id_product'] ?>')" data-tippy="Add To Cart"  data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top">Add To Cart</a>
@@ -102,7 +104,9 @@
                                     <p><a href="#"><?php echo $p['categorie_name'] ; ?></a></p>
                                     <div class="price_box">
                                         <span class="current_price"><?php echo ($p['price']+0)-($p['price']+0)*($p['discount']+0)/100 ; ?> MAD</span>
-                                        <span class="old_price"><?php echo $p['price'] ; ?> MAD</span>
+                                        <?php if($p['discount'] != '0'){ ?>
+                                              <span class="old_price"><?php echo $p['price'] ; ?> MAD</span>
+                                        <?php } ?>
                                     </div>
                                     <div class="product_desc">
                                         <p><?php echo $p['description'] ; ?></p>

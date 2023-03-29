@@ -113,7 +113,7 @@ class Product{
 
     function addProduct(){
         require("connexion.php");
-        $sql = "INSERT INTO `product`(`id_product`, `name`, `description`, `tags`, `price`, `video`, `quantity`, `visibility`, `date_arrivale`, `sizes_available`, `colors`, `discount`, `categorie_name`) VALUES (default,:name,:description,:tags,:price,:video,:quantity,:visibility,:date_arrivale,:sizes_available,:colors,:discount,:categorie_name)";
+        $sql = "INSERT INTO `product`(`id_product`, `name`, `description`, `tags`, `price`, `video`, `quantity`, `visibility`, `date_arrivale`, `sizes_available`, `colors`, `discount`, `categorie_name` , `evaluation`) VALUES (default,:name,:description,:tags,:price,:video,:quantity,:visibility,:date_arrivale,:sizes_available,:colors,:discount,:categorie_name,0)";
         $stm = $connexion->prepare($sql);
         $stm->bindParam(":name",$this->name);
         $stm->bindParam(":description",$this->description);
