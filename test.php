@@ -4,6 +4,5 @@ session_start();
 require("./controlleur/client/clientControlleur.php");
 
 // changeCartQuantity(15,9,3);
-addToCartWithQuantity(15,2);
 
 ?>

@@ -230,10 +230,17 @@ function clearCart(){
 function productDetails(){
     require('./models/product.php');
     require('./models/image.php');
+    require('./models/comment.php');
+    require('./models/review.php');
     $idProduct = $_GET['idProduct'];
+    $c = new Comment;
+    $r = new Review;
+    $listR = $r->getAllEvaluations($idProduct);
+    $comments = $c->getComments($idProduct);
     $product = (new Product)->getProductById($idProduct)[0];
     $images = (new Image)->getImagesByProductId($idProduct);
     require('./views/clientPages/productDetails.php');
+
 }
 // Login Regidter Logout functions and pages
 function loginRegister(){
@@ -298,5 +305,56 @@ function logout(){
     header("Location: /Ecommerce/index.php/?categorie=all");
 }
 
+function addComment(){
+    if(isset($_SESSION['userInfo'])){
+        require('./models/comment.php');
+        $date = date('Y-m-d');
+        $c = new Comment;
+        $c->addComment($_SESSION['userInfo']['id_user'],$_GET['id_product'],$date,$_POST['comment']);
+        header('Location: /Ecommerce/index.php/productDetails?idProduct='.$_GET['id_product']);
+    }else{
+        require('./Ecommerce/index.php/confirmLogin');
+    }
+}
+function deleteComment(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['id_user'] == $_GET['id_user'] ){
+        require('./models/comment.php');
+        $c = new Comment;
+        $c->deleteComment($_GET['id_comment']);
+        header('Location: /Ecommerce/index.php/productDetails?idProduct='.$_GET['id_product']);
+    }else{
+        require('./Ecommerce/index.php/confirmLogin');
+    }
+}
+function addEvaluation(){
+    if(isset($_SESSION['userInfo'])){
+        require('./models/review.php');
+        $r = new Review;
+        $listR = $r->checkEvaluation($_SESSION['userInfo']['id_user'],$_GET['id_product']);
+        if(count($listR) > 0){
+            $r->alterEvaluation($_SESSION['userInfo']['id_user'],$_GET['id_product'],$_GET['evaluation']);
+            changeProductEvaluation($_GET['id_product']);
+            header('Location: /Ecommerce/index.php/productDetails?idProduct='.$_GET['id_product']);
+        }else{
+            $r->addEvaluation($_SESSION['userInfo']['id_user'],$_GET['id_product'],$_GET['evaluation']);
+            changeProductEvaluation($_GET['id_product']);
+            header('Location: /Ecommerce/index.php/productDetails?idProduct='.$_GET['id_product']);
+        }
+    }else{
+        require('./Ecommerce/index.php/confirmLogin');
+    }
+}
+function changeProductEvaluation($idProduct){
+    require('./models/product.php');
+    $p = new Product;
+    $r = new Review;
+    $listEvaluations = $r->getAllEvaluations($idProduct);
+    $sum = 0;
+    foreach($listEvaluations as $e){
+        $sum += ($e['evaluation'] + 0);
+    }
+    $evaluation = $sum / count($listEvaluations);
+    $p->changeProductEvaluation($idProduct,$evaluation);
+}
 
 ?>

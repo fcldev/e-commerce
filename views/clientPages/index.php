@@ -20,7 +20,7 @@
                                 <span>Lookbook</span>
                                 <h1>fashion trend for autum girls with vibes</h1>
                                 <p>We love seeing how our Aslam wearers like <br> to wear their Norda</p>
-                                <a class="btn btn-primary" href="shop.html">Explore Now</a>
+                                <a class="btn btn-primary" href="/Ecommerce/index.php/shop">Explore Now</a>
                             </div>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                                 <span>Lookbook</span>
                                 <h1>fashion trend for autum girls with vibes</h1>
                                 <p>We love seeing how our Aslam wearers like <br> to wear their Norda</p>
-                                <a class="btn btn-primary" href="shop.html">Explore Now</a>
+                                <a class="btn btn-primary" href="/Ecommerce/index.php/shop">Explore Now</a>
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                                 <span>Lookbook</span>
                                 <h1>fashion trend for autum girls with vibes</h1>
                                 <p>We love seeing how our Aslam wearers like <br> to wear their Norda</p>
-                                <a class="btn btn-primary" href="shop.html">Explore Now</a>
+                                <a class="btn btn-primary" href="/Ecommerce/index.php/shop">Explore Now</a>
                             </div>
                         </div>
                     </div>
@@ -200,12 +200,9 @@
                                     <figcaption class="product_content text-center">
                                         <div class="product_ratting">
                                             <ul class="d-flex justify-content-center">
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><span>(4)</span></li>
+                                                <?php for($x=0; $x < $p['evaluation'];$x++){ ?>
+                                                    <li><a href="#"><i class="ion-ios-star"></i></a></li>
+                                                <?php } ?>
                                             </ul>
                                         </div>
                                         <h4 class="product_name"><a href="product-details.html"><?php echo $p['name'] ; ?></a>
@@ -264,12 +261,9 @@
                                     <figcaption class="product_content text-center">
                                         <div class="product_ratting">
                                             <ul class="d-flex justify-content-center">
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><span>(4)</span></li>
+                                                <?php for($x=0; $x < $p['evaluation'];$x++){ ?>
+                                                    <li><a href="#"><i class="ion-ios-star"></i></a></li>
+                                                <?php } ?>
                                             </ul>
                                         </div>
                                         <h4 class="product_name"><a href="product-details.html"><?php echo $p['name'] ; ?></a>
@@ -400,12 +394,9 @@
                                     <figcaption class="product_content text-center">
                                         <div class="product_ratting">
                                             <ul class="d-flex justify-content-center">
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><span>(4)</span></li>
+                                                <?php for($x=0; $x < $p['evaluation'];$x++){ ?>
+                                                    <li><a href="#"><i class="ion-ios-star"></i></a></li>
+                                                <?php } ?>
                                             </ul>
                                         </div>
                                         <h4 class="product_name"><a href="product-details.html"><?php echo $p['name'] ; ?></a>
@@ -465,12 +456,9 @@
                                     <figcaption class="product_content text-center">
                                         <div class="product_ratting">
                                             <ul class="d-flex justify-content-center">
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><span>(4)</span></li>
+                                                <?php for($x=0; $x < $p['evaluation'];$x++){ ?>
+                                                    <li><a href="#"><i class="ion-ios-star"></i></a></li>
+                                                <?php } ?>
                                             </ul>
                                         </div>
                                         <h4 class="product_name"><a href="product-details.html"><?php echo $p['name'] ; ?></a>

@@ -82,15 +82,12 @@
                                 </div>
                                 <div class="product_content grid_content text-center">
                                     <div class="product_ratting">
-                                        <ul class="d-flex justify-content-center">
-                                            <li><a href="#"><i class="ion-android-star"></i></a></li>
-                                            <li><a href="#"><i class="ion-android-star"></i></a></li>
-                                            <li><a href="#"><i class="ion-android-star"></i></a></li>
-                                            <li><a href="#"><i class="ion-android-star"></i></a></li>
-                                            <li><a href="#"><i class="ion-android-star"></i></a></li>
-                                            <li><span>(2)</span></li>
-                                        </ul>
-                                    </div>
+                                            <ul class="d-flex justify-content-center">
+                                                <?php for($x=0; $x < $p['evaluation'];$x++){ ?>
+                                                    <li><a href="#"><i class="ion-ios-star"></i></a></li>
+                                                <?php } ?>
+                                            </ul>
+                                        </div>
                                     <h4 class="product_name"><a href="product-details.html"><?php echo $p['name'] ; ?></a></h4>
                                     <div class="price_box">
                                         <span class="current_price"><?php echo ($p['price']+0)-($p['price']+0)*($p['discount']+0)/100 ; ?> MAD</span>

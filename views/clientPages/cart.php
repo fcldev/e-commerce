@@ -80,12 +80,12 @@
                                             </td>
                                             <td class="product_quantity">
                                                 <div class="cart_product_quantity">
-                                                    <input min="1" oninput="changeCartQuantity(this,'<?php echo $p['product']['id_product'] ?>')" <?php if(!isset($_SESSION['userInfo'])){echo 'disabled';} ?> max="100" value="<?php echo $p['quantity'] ?>" type="number">
+                                                    <input min="1" onblur="changeCartQuantity(this,'<?php echo $p['product']['id_product'] ?>')" <?php if(!isset($_SESSION['userInfo'])){echo 'disabled';} ?> max="100" value="<?php echo $p['quantity'] ?>" type="number">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="cart_product_price">
-                                                    <span><?php echo ($p['quantity'] + 0)*($p['product']['price'] + 0) ?> MAD</span>
+                                                    <span id="t<?php echo $p['product']['id_product'] ?>"><?php echo ($p['quantity'] + 0)*($p['product']['price'] + 0) ?> MAD</span>
                                                 </div>
                                             </td>
                                             <td>
@@ -93,7 +93,7 @@
                                                     <a href="/Ecommerce/index.php/deleteFromCart?id_product=<?php echo $p['product']['id_product']; ?>"><i class="ion-android-close"></i></a>
                                                 </div>
                                             </td>
-
+                                            
                                         </tr>
                                     <?php } ?>   
                                     </tbody>

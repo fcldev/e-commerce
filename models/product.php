@@ -149,6 +149,14 @@ class Product{
         $stm->bindParam(":categorie_name",$this->categorie_name);
         $stm->execute();
     }
+    function changeProductEvaluation($idProduct,$evaluation){
+        require("connexion.php");
+        $sql = "UPDATE `product` SET `evaluation`=:evaluation WHERE id_product = :id_product";
+        $stm = $connexion->prepare($sql);
+        $stm->bindParam(":evaluation",$evaluation);
+        $stm->bindParam(":id_product",$idProduct);
+        $stm->execute();
+    }
 
 }
 

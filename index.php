@@ -33,6 +33,12 @@ if($url == "/Ecommerce/index.php/"){
     confirmCreateAcount();
 }elseif($url == "/Ecommerce/index.php/logout"){
     logout();
+}elseif($url == "/Ecommerce/index.php/addComment"){
+    addComment();
+}elseif($url == "/Ecommerce/index.php/deleteComment"){
+    deleteComment();
+}elseif($url == "/Ecommerce/index.php/addEvaluation"){
+    deleteComment();
 }
 // client part end
 
@@ -80,7 +86,6 @@ elseif($url == "/Ecommerce/index.php/dashboardProduct"){
 }elseif($url == "/Ecommerce/index.php/confirmAddImages"){
     confirmAddImages();
 }
-
 // dashboard categorie part
 elseif($url == "/Ecommerce/index.php/dashboardCategorie"){
     dashboardCategorie();
