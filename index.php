@@ -39,8 +39,6 @@ if($url == "/Ecommerce/index.php/"){
     deleteComment();
 }elseif($url == "/Ecommerce/index.php/addEvaluation"){
     deleteComment();
-}else{
-    error404();
 }
 // client part end
 
@@ -98,11 +96,30 @@ elseif($url == "/Ecommerce/index.php/dashboardCategorie"){
 }elseif($url == "/Ecommerce/index.php/confirmAddCategorie"){
     confirmAddCategorie();
 }elseif($url == "/Ecommerce/index.php/deleteCategorie"){
-    deletCategorie();
+    deleteCategorie();
 }elseif($url == "/Ecommerce/index.php/alterCategorie"){
     alterCategorie();
 }elseif($url == "/Ecommerce/index.php/confirmAlterCategorie"){
     confirmAlterCategorie();
 }
-// session_destroy();
+// dashboard delivery part
+elseif($url == "/Ecommerce/index.php/dashboardSide"){
+    dashboardSide();
+}elseif($url == "/Ecommerce/index.php/dashboardSearshSide"){
+    dashboardSearshSide();
+}elseif($url == "/Ecommerce/index.php/addSide"){
+    addSide();
+}elseif($url == "/Ecommerce/index.php/confirmAddSide"){
+    confirmAddSide();
+}elseif($url == "/Ecommerce/index.php/deleteSide"){
+    deleteSide();
+}elseif($url == "/Ecommerce/index.php/alterSide"){
+    alterSide();
+}elseif($url == "/Ecommerce/index.php/confirmAlterSide"){
+    confirmAlterSide();
+}
+
+else{
+    err404();
+}
 ?>

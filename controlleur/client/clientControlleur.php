@@ -64,7 +64,10 @@ function cart(){
     if(isset($_SESSION['userInfo'])){
         require('./models/cart.php');
         require('./models/product.php');
+        require('./models/delivery.php');
         $cart = new Cart;
+        $dilevery = new Delivery;
+        $listSides = $dilevery->getAllSides();
         $cartCount = $cart->getCartCount($_SESSION['userInfo']['id_user']);
         $product = new Product;
         $listProductsId = $cart->getCartProducts($_SESSION['userInfo']['id_user']);
@@ -383,7 +386,7 @@ function changeProductEvaluation($idProduct){
     $evaluation = $sum / count($listEvaluations);
     $p->changeProductEvaluation($idProduct,$evaluation);
 }
-function error404(){
+function err404(){
     require('./views/clientPages/404.php');
 
 }

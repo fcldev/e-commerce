@@ -77,7 +77,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/Ecommerce/index.php/dashboardUser" class="nav-link active">
+                <a href="/Ecommerce/index.php/dashboardUser" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Users</p>
                 </a>
@@ -89,13 +89,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/Ecommerce/index.php/dashboardCategorie" class="nav-link ">
+                <a href="/Ecommerce/index.php/dashboardCategorie" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Categories</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/Ecommerce/index.php/dashboardSide" class="nav-link">
+                <a href="/Ecommerce/index.php/dashboardSide" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Delivery</p>
                 </a>
@@ -117,66 +117,36 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add User</h1>
+            <h1>Alter Side</h1>
           </div>
           
         </div>
       </div><!-- /.container-fluid -->
     </section>
-    <div class="card card-primary mx-5">
-        <div class="card-header">
-        <h3 class="card-title">Insert user informations</h3>
-        </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form class="" method="post" action="/Ecommerce/index.php/confirmAddAdmin" enctype="multipart/form-data">
-        
-			<div class="card-body">
-				<div class="form-group">
-					<label for="fullName">Full name</label>
-					<input type="text" class="form-control" name="full_name" id="fullName" placeholder="Full name">
-				</div>
-				<div class="form-group">
-					<label for="birthDay">Birth day</label>
-					<input type="date" class="form-control" name="birth_day" id="birthDay" placeholder="Birth day">
-				</div>
-				<div class="form-group">
-					<label for="email">Email</label>
-					<input type="email" class="form-control" name="email" id="email" placeholder="Email">
-				</div>
-				<div class="form-group">
-					<label for="quantity">Role</label>
-					<select name="role" id="" class="form-control">
-						<option value="admin">admin</option>
-						<option value="customer">customer</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="productImage">Profile image</label>
-					<div class="input-group">
-						<div class="custom-file">
-							<input type="file" class="custom-file-input" name="profile_image" id="profileImage">
-							<label class="custom-file-label" for="profileImage">select a profile picture</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="username">Username</label>
-					<input type="text" class="form-control" name="username" id="username" placeholder="Username">
-				</div>
-				<div class="form-group">
-					<label for="password">Password</label>
-					<input type="password" class="form-control" name="password" id="password" placeholder="Password">
-				</div>
-				
-			</div>
-			
-			<!-- /.card-body -->
-
-			<div class="card-footer">
-				<button type="submit" class="btn btn-primary">Submit</button>
-			</div>
-        </form>
+    <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Insert Side inormations</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form method="post" action="/Ecommerce/index.php/confirmAlterSide?side=<?php echo $side['side']; ?>">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="side">Side Name</label>
+                            <input type="text" class="form-control" name="side" id="side" placeholder="Side name" value="<?php echo $side['side']; ?>" />
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="price">Delivery price</label>
+                            <input type="text" class="form-control" name="price" id="price" placeholder="Side delivery price" value="<?php echo $side['price']; ?>" />
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+              </form>
     </div>
   </div>
   <!-- /.content-wrapper -->

@@ -241,7 +241,7 @@ function confirmAddCategorie(){
         header('Location: /Ecommerce/index.php/loginRegister');
     }
 }
-function deletCategorie(){
+function deleteCategorie(){
     if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
         require("./models/categorie.php");
         $categorie = new Categorie;
@@ -272,5 +272,78 @@ function confirmAlterCategorie(){
         header('Location: /Ecommerce/index.php/loginRegister');
     }
 }
+
 // part categorie end
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------
+// part delivery start
+function dashboardSide(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
+        require("./models/delivery.php");
+        $delivery = new Delivery;
+        $sides = $delivery->getAllSides();
+        require('./views/adminPages/delivery/dashboardSide.php');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function dashboardSearshSide(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
+        require("./models/delivery.php");
+        $delivery = new Delivery;
+        $sides = $delivery->fetSides($_POST['input_val']);
+        require('./views/adminPages/delivery/dashboardSide.php');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function addSide(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
+        require('./views/adminPages/delivery/addside.php');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function confirmAddSide(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
+        require("./models/delivery.php");
+        $delivery = new Delivery;
+        $delivery->setSideInfo($_POST['side'],$_POST['price']);
+        $delivery->addSide();
+        header('Location: /Ecommerce/index.php/dashboardSide');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function deleteSide(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
+        require("./models/delivery.php");
+        $delivery = new Delivery;
+        $delivery->deleteSide($_GET['side']);
+        header('Location: /Ecommerce/index.php/dashboardSide');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function alterSide(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
+        require("./models/delivery.php");
+        $delivery = new Delivery;
+        $side = $delivery->getSide($_GET['side'])[0];
+        require('./views/adminPages/delivery/alterSide.php');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function confirmAlterSide(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin'){
+            require("./models/delivery.php");
+            $delivery = new Delivery;
+            $delivery->setSideInfo($_POST['side'],$_POST['price']);
+            $delivery->alterSide();
+            header('Location: /Ecommerce/index.php/dashboardSide');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+// part delivery end
 ?>

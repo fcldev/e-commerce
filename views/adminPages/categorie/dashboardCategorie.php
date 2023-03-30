@@ -99,6 +99,12 @@
                   <p>Categories</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/Ecommerce/index.php/dashboardSide" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Delivery</p>
+                </a>
+              </li>
             </ul>
           </li>
           
@@ -133,7 +139,7 @@
                 </div>
               </div>
               <!-- /.card-header -->
-              <div class="card-body table-responsive p-0" style="height: 800px;">
+              <div class="card-body table-responsive p-0" style="height: 600px;">
                 <table class="table table-head-fixed text-nowrap">
                   <thead>
                     <tr>

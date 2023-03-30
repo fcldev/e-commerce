@@ -130,7 +130,9 @@
                                    <div class="cart_subtotal d-flex justify-content-between">
                                         <div class="shopping_coupon_calculate top">
                                             <select class="select_option border">
-                                                <option value="1">United Kingdom (UK)  </option>
+                                                <?php foreach($listSides as $side){ ?>
+                                                    <option value="<?php echo $side['side']; ?>"><?php echo $side['side']; ?>  </option>
+                                                <?php } ?>
                                             </select>
                                         </div>
                                    </div>

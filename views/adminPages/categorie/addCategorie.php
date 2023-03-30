@@ -95,6 +95,12 @@
                   <p>Categories</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/Ecommerce/index.php/dashboardSide" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Delivery</p>
+                </a>
+              </li>
             </ul>
           </li>
           
@@ -124,7 +130,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="post" action="/Ecommerce/index.php/confirmAddCategorie" enctype="multipart/form-data">
+              <form method="post" action="/Ecommerce/index.php/confirmAddCategorie">
                 <div class="card-body">
                     <div class="form-group">
                         <label for="name">Categorie Name</label>

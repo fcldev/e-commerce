@@ -1,23 +1,22 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Gallery</title>
+  <title>baraka store</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-  <!-- Ekko Lightbox -->
-  <link rel="stylesheet" href="../plugins/ekko-lightbox/ekko-lightbox.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
-  <!-- font awsome link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
+
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -32,9 +31,15 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+      <!-- add product button -->
+      <li class="nav-item">
+        <a class="nav-link" title="add side" data-widget="fullscreen" href="/Ecommerce/index.php/addSide" role="button">
+          <i class="fa-solid fa-plus"></i>
+        </a>
+      </li>
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+        <a class="nav-link" title="full screan" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
@@ -77,7 +82,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/Ecommerce/index.php/dashboardUser" class="nav-link active">
+                <a href="/Ecommerce/index.php/dashboardUser" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Users</p>
                 </a>
@@ -89,13 +94,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/Ecommerce/index.php/dashboardCategorie" class="nav-link ">
+                <a href="/Ecommerce/index.php/dashboardCategorie" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Categories</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/Ecommerce/index.php/dashboardSide" class="nav-link">
+                <a href="/Ecommerce/index.php/dashboardSide" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Delivery</p>
                 </a>
@@ -112,118 +117,97 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Add User</h1>
-          </div>
-          
+        <div class="d-flex">
+          <h1 class="mx-auto">Delivery management</h1>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
-    <div class="card card-primary mx-5">
-        <div class="card-header">
-        <h3 class="card-title">Insert user informations</h3>
-        </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form class="" method="post" action="/Ecommerce/index.php/confirmAddAdmin" enctype="multipart/form-data">
-        
-			<div class="card-body">
-				<div class="form-group">
-					<label for="fullName">Full name</label>
-					<input type="text" class="form-control" name="full_name" id="fullName" placeholder="Full name">
-				</div>
-				<div class="form-group">
-					<label for="birthDay">Birth day</label>
-					<input type="date" class="form-control" name="birth_day" id="birthDay" placeholder="Birth day">
-				</div>
-				<div class="form-group">
-					<label for="email">Email</label>
-					<input type="email" class="form-control" name="email" id="email" placeholder="Email">
-				</div>
-				<div class="form-group">
-					<label for="quantity">Role</label>
-					<select name="role" id="" class="form-control">
-						<option value="admin">admin</option>
-						<option value="customer">customer</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="productImage">Profile image</label>
-					<div class="input-group">
-						<div class="custom-file">
-							<input type="file" class="custom-file-input" name="profile_image" id="profileImage">
-							<label class="custom-file-label" for="profileImage">select a profile picture</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="username">Username</label>
-					<input type="text" class="form-control" name="username" id="username" placeholder="Username">
-				</div>
-				<div class="form-group">
-					<label for="password">Password</label>
-					<input type="password" class="form-control" name="password" id="password" placeholder="Password">
-				</div>
-				
-			</div>
-			
-			<!-- /.card-body -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Sides</h3>
 
-			<div class="card-footer">
-				<button type="submit" class="btn btn-primary">Submit</button>
-			</div>
-        </form>
-    </div>
+                <div class="card-tools">
+                  <form method="post" action="/Ecommerce/index.php/dashboardSearshSide" class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="input_val" class="form-control float-right" placeholder="Search by side or price">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0" style="height: 600px;">
+                <table class="table table-head-fixed text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>action</th>
+                      <th>Side name</th>
+                      <th>Side price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <?php foreach($sides as $side){ ?>
+                <tr>
+                    <td>
+                        <div class="dropdown">
+                            <a class="text-primary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa-sharp fa-solid fa-gear"></i>
+                            </a>    
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="/Ecommerce/index.php/deleteSide?side=<?php echo $side['side']; ?>">delete</a>
+                                <a class="dropdown-item" href="/Ecommerce/index.php/alterSide?side=<?php echo $side['side']; ?>">alter</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td><?php echo $side['side']; ?></td>
+                    <td><?php echo $side['price']; ?></td>
+                </tr>
+              <?php } ?>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+        <!-- /.row -->
+                <!-- content here--------------------------------------------------------------------------------------------  -->
   </div>
   <!-- /.content-wrapper -->
-
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
-    </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
+    <div class="p-3">
+      <h5>Title</h5>
+      <p>Sidebar content</p>
+    </div>
   </aside>
   <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="float-right d-none d-sm-inline">
+      Anything you want
+    </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2023 <a href="https://adminlte.io">baraka stor</a>.</strong> All rights reserved.
+  </footer>
 </div>
 <!-- ./wrapper -->
 
+<!-- REQUIRED SCRIPTS -->
+
 <!-- jQuery -->
 <script src="../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap -->
+<!-- Bootstrap 4 -->
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- Ekko Lightbox -->
-<script src="../plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
-<!-- Filterizr-->
-<script src="../plugins/filterizr/jquery.filterizr.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
-<!-- Page specific script -->
-<script>
-  $(function () {
-    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-      event.preventDefault();
-      $(this).ekkoLightbox({
-        alwaysShowClose: true
-      });
-    });
-
-    $('.filter-container').filterizr({gutterPixels: 3});
-    $('.btn[data-filter]').on('click', function() {
-      $('.btn[data-filter]').removeClass('active');
-      $(this).addClass('active');
-    });
-  })
-</script>
 </body>
 </html>

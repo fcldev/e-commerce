@@ -95,6 +95,12 @@
                   <p>Categories</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/Ecommerce/index.php/dashboardSide" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Delivery</p>
+                </a>
+              </li>
             </ul>
           </li>
           
