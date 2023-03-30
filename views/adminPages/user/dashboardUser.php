@@ -164,7 +164,7 @@
                                         <i class="fa-sharp fa-solid fa-gear"></i>
                                     </a>    
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="/Ecommerce/index.php/deleteUser?id_user=<?php  echo $u['id_user']; ?>">delete</a>
+                                        <?php echo '<a onClick=\' javascript:return confirm("are you sure you wanr to delete this user"); \' class="dropdown-item" href="/Ecommerce/index.php/deleteUser?id_user='.$u['id_user'].'">delete</a>'; ?>
                                         <a class="dropdown-item" href="/Ecommerce/index.php/alterUser?id_user=<?php  echo $u['id_user']; ?>">alter</a>
                                     </div>
                                 </div>

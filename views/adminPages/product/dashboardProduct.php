@@ -170,7 +170,7 @@
                                 </a>    
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item" href="/Ecommerce/index.php/checkProductImages?id_product=<?php echo $p[0]; ?>">Check product pictures</a>
-                                    <a class="dropdown-item" href="/Ecommerce/index.php/deleteProduct?id_product=<?php echo $p[0]; ?>">delete</a>
+                                    <?php echo '<a onClick=\' javascript:return confirm("are you sure you wanr to delete this user"); \' class="dropdown-item" href="/Ecommerce/index.php/deleteProduct?id_product='.$p[0].'">delete</a>'; ?>
                                     <a class="dropdown-item" href="/Ecommerce/index.php/alterProduct?id_product=<?php echo $p[0]; ?>">alter</a>
                                 </div>
                             </div>
