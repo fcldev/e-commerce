@@ -145,7 +145,7 @@
                                                 </div>
                                                 <p><strong><?php echo $c['full_name'] ?> </strong>- <?php echo $c['date'] ?></p>
                                                 <span><?php echo $c['comment'] ?></span>
-                                                <?php if($_SESSION['userInfo']['id_user'] == $c['id_user']){ ?>
+                                                <?php if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['id_user'] == $c['id_user']){ ?>
                                                     <a class="star_rating" href="/Ecommerce/index.php/deleteComment?id_comment=<?php echo $c['id_comment']; ?>&id_user=<?php echo $c['id_user']; ?>&id_product=<?php echo $product['id_product']; ?>">delete</a>
                                                 <?php } ?>
                                             </div>

@@ -179,6 +179,7 @@ function changeCartQuantity($idUser,$idProduct,$quantity){
     require('./models/cart.php');
     $cart = new Cart;
     $cart->changeCartQuantity($idUser,$idProduct,$quantity);
+    echo $quantity;
 }
 // change cart color part
 if(isset($_POST['function_name']) && isset($_SESSION['userInfo']) && $_POST['function_name'] === "changeCartColor"){
@@ -249,6 +250,12 @@ function productDetails(){
     require('./models/image.php');
     require('./models/comment.php');
     require('./models/review.php');
+    if(isset($_SESSION['userInfo'])){
+        require('./models/cart.php');
+        $cartCount = (new Cart)->getCartCount($_SESSION['userInfo']['id_user']);
+    }else{
+        $cartCount = count($_SESSION['listCart']);
+    }
     $idProduct = $_GET['idProduct'];
     $c = new Comment;
     $r = new Review;
@@ -341,7 +348,7 @@ function deleteComment(){
         $c->deleteComment($_GET['id_comment']);
         header('Location: /Ecommerce/index.php/productDetails?idProduct='.$_GET['id_product']);
     }else{
-        require('./Ecommerce/index.php/confirmLogin');
+        header('Location: /Ecommerce/index.php/loginRegister');
     }
 }
 // add a rating
@@ -376,5 +383,8 @@ function changeProductEvaluation($idProduct){
     $evaluation = $sum / count($listEvaluations);
     $p->changeProductEvaluation($idProduct,$evaluation);
 }
+function error404(){
+    require('./views/clientPages/404.php');
 
+}
 ?>

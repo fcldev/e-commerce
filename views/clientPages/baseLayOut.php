@@ -136,7 +136,7 @@
                                     <li class="shopping_cart"><a href="/Ecommerce/index.php/cart">
                                         <i class="icon-basket-loaded icons"></i></a>
                                         <span id="cart" class="item_count">
-                                            <?php echo $cartCount; ?>
+                                            <?php if(isset($cartCount)){ echo $cartCount;} ?>
                                         </span>
                                     </li>
                                 </ul>
@@ -238,11 +238,11 @@
                         <div class="footer_contact">
                             <div class="footer_contact_list">
                                 <span>Our Location</span>
-                                <p>869 General Village Apt. 645, Moorebury, USA</p>
+                                <p>*** ********* Village. ***, ********, MOROCCO</p>
                             </div>
                             <div class="footer_contact_list">
                                 <span>24/7 hotline:</span>
-                                <a href="tel:(+99)0521282399">(+99) 052 128 2399</a>
+                                <a href="tel:(+99)0521282399">(+99) *** *** ****</a>
                             </div>
                         </div>
                     </div>
@@ -276,9 +276,7 @@
                                             class="ion-social-youtube"></i></a></li>
                             </ul>
                         </div>
-                        <div class="copyright_right">
-                            <p>©2021 <span>Uthr</span>. made with <i class="ion-heart"></i>  by <a href="https://hasthemes.com" target="_blank">HasThemes</a></p>
-                        </div>
+                       
                     </div>
                 </div>
             </div>

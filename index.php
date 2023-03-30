@@ -39,6 +39,8 @@ if($url == "/Ecommerce/index.php/"){
     deleteComment();
 }elseif($url == "/Ecommerce/index.php/addEvaluation"){
     deleteComment();
+}else{
+    error404();
 }
 // client part end
 

@@ -75,7 +75,7 @@
                                             </td>
                                             <td>
                                                 <div class="cart_product_price">
-                                                    <span><?php echo $p['product']['price'] ?> MAD</span>
+                                                    <span id='price<?php echo $p['product']['id_product']; ?>' ><?php echo $p['product']['price'] ?></span><span> MAD</span>
                                                 </div>
                                             </td>
                                             <td class="product_quantity">
@@ -85,7 +85,7 @@
                                             </td>
                                             <td>
                                                 <div class="cart_product_price">
-                                                    <span id="t<?php echo $p['product']['id_product'] ?>"><?php echo ($p['quantity'] + 0)*($p['product']['price'] + 0) ?> MAD</span>
+                                                    <span id="<?php echo $p['product']['id_product'] ?>"><?php echo ($p['quantity'] + 0)*($p['product']['price'] + 0) ?> MAD</span>
                                                 </div>
                                             </td>
                                             <td>
@@ -118,13 +118,29 @@
                         <div class="col-lg-4 col-md-6 col-sm-8">
                             <div class="grand_totall_area">
                                <div class="grand_totall_inner border-bottom">
+                                    <!-- <div class="">
+                                        <select class="select_option border">
+                                            <option value="1">United Kingdom (UK)  </option>
+                                            <option value="2">Åland Islands  </option>
+                                            <option value="3">Afghanistan  </option>
+                                            <option value="4">Belgium </option>
+                                            <option value="5">Albania  </option>
+                                        </select>
+                                    </div> -->
+                                   <div class="cart_subtotal d-flex justify-content-between">
+                                        <div class="shopping_coupon_calculate top">
+                                            <select class="select_option border">
+                                                <option value="1">United Kingdom (UK)  </option>
+                                            </select>
+                                        </div>
+                                   </div>
                                    <div class="cart_subtotal d-flex justify-content-between">
                                        <p>sub total </p>
-                                       <span>$126.00</span>
+                                       <span id="subTotal">126.00</span><span>MAD</span>
                                    </div>
                                    <div class="cart_grandtotal d-flex justify-content-between">
                                        <p>grand total</p>
-                                       <span>$126.00</span>
+                                       <span id="grandTotal" >126.00</span><span>MAD</span>
                                    </div>
                                </div>
                                <div class="proceed_checkout_btn">
@@ -160,7 +176,9 @@
                 data: {id_product:id,quantity:e.value,function_name:"changeCartQuantity"},
                 type:"POST",
                 success:function(data, status){
-                    
+                    price = document.getElementById(`price${id}`).innerHTML;
+                    console.log(price);
+                    document.getElementById(id).innerHTML = data*price+' MAD';
                 }
             });
         }
