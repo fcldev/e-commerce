@@ -11,7 +11,6 @@ function home(){
     }else{
         $cartCount = count($_SESSION['listCart']);
     }
-    // var_dump($bestItems);
     $newArrivals = (new Product)->getProductsOrderedByDate();
     if(!isset($_GET['categorie']) || $_GET['categorie'] == 'all'){
         $products = (new Product)->getAllProducts();
@@ -21,6 +20,8 @@ function home(){
         require('./views/clientPages/index.php');
 
     }
+    var_dump($cartCount);
+
 }
 // shop page (all products)
 function shop(){
@@ -29,7 +30,11 @@ function shop(){
     require('./models/cart.php');
     $listCategories = (new Categorie)->getAllCategories();
     $listProducts = (new Product)->getAllProducts();
-    $cartCount = (new Cart)->getCartCount($_SESSION['userInfo']['id_user']);
+    if(isset($_SESSION['userInfo'])){
+        $cartCount = (new Cart)->getCartCount($_SESSION['userInfo']['id_user']);
+    }else{
+        $cartCount = count($_SESSION['listCart']);
+    }
     require('./views/clientPages/shop.php');
 }
 // shop page filtered by categorie 
@@ -39,7 +44,11 @@ function shopFiltered(){
     require('./models/cart.php');
     $listCategories = (new Categorie)->getAllCategories();
     $listProducts = (new Product)->getProductsByCategorie($_GET['categorie']);
-    $cartCount = (new Cart)->getCartCount($_SESSION['userInfo']['id_user']);
+    if(isset($_SESSION['userInfo'])){
+        $cartCount = (new Cart)->getCartCount($_SESSION['userInfo']['id_user']);
+    }else{
+        $cartCount = count($_SESSION['listCart']);
+    }
     require('./views/clientPages/shop.php');
 }
 // searsh for products (navBar searsh form)
@@ -50,13 +59,20 @@ function searshBar(){
     $listCategories = (new Categorie)->getAllCategories();
     $inpVal = $_POST['searshBar'];
     $listProducts = (new Product)->getProducts($inpVal);
-    $cartCount = (new Cart)->getCartCount($_SESSION['userInfo']['id_user']);
-    require('./views/clientPages/shop.php');
+    if(isset($_SESSION['userInfo'])){
+        $cartCount = (new Cart)->getCartCount($_SESSION['userInfo']['id_user']);
+    }else{
+        $cartCount = count($_SESSION['listCart']);
+    }    require('./views/clientPages/shop.php');
 }
 // about company page
 function aboutUs(){
-    require('./models/cart.php');
-    $cartCount = (new Cart)->getCartCount($_SESSION['userInfo']['id_user']);
+    if(isset($_SESSION['userInfo'])){
+        require('./models/cart.php');
+        $cartCount = (new Cart)->getCartCount($_SESSION['userInfo']['id_user']);
+    }else{
+        $cartCount = count($_SESSION['listCart']);
+    }
     require('./views/clientPages/aboutUs.php');
 }
 // cart page

@@ -3,47 +3,6 @@ session_start();
 
 $url = $_SERVER['PHP_SELF'];
 
-// client part start
-require("./controlleur/client/clientControlleur.php");
-if($url == "/Ecommerce/index.php/"){
-    home();
-}elseif($url == "/Ecommerce/index.php/shop"){
-    shop();
-}elseif($url == "/Ecommerce/index.php/shopFiltered"){
-    shopFiltered();
-}elseif($url == "/Ecommerce/index.php/aboutUs"){
-    aboutUs();
-}elseif($url == "/Ecommerce/index.php/cart"){
-    cart();
-}elseif($url == "/Ecommerce/index.php/deleteFromCart"){
-    deleteFromCart();
-}elseif($url == "/Ecommerce/index.php/clearCart"){
-    clearCart();
-}elseif($url == "/Ecommerce/index.php/checkout"){
-    checkout();
-}elseif($url == "/Ecommerce/index.php/searsh"){
-    searshBar();
-}elseif($url == "/Ecommerce/index.php/productDetails"){
-    productDetails();
-}elseif($url == "/Ecommerce/index.php/loginRegister"){
-    loginRegister();
-}elseif($url == "/Ecommerce/index.php/confirmLogin"){
-    confirmLogin();
-}elseif($url == "/Ecommerce/index.php/confirmCreateAcount"){
-    confirmCreateAcount();
-}elseif($url == "/Ecommerce/index.php/logout"){
-    logout();
-}elseif($url == "/Ecommerce/index.php/addComment"){
-    addComment();
-}elseif($url == "/Ecommerce/index.php/deleteComment"){
-    deleteComment();
-}elseif($url == "/Ecommerce/index.php/addEvaluation"){
-    deleteComment();
-}
-// client part end
-
-// ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 // admin part start
 require("./controlleur/admin/adminControlleur.php");
 // dashboard user part
@@ -119,7 +78,67 @@ elseif($url == "/Ecommerce/index.php/dashboardSide"){
     confirmAlterSide();
 }
 
+// ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// client part start
+elseif($url == "/Ecommerce/index.php/"){
+    require("./controlleur/client/clientControlleur.php");
+    home();
+}elseif($url == "/Ecommerce/index.php/shop"){
+    require("./controlleur/client/clientControlleur.php");
+    shop();
+}elseif($url == "/Ecommerce/index.php/shopFiltered"){
+    require("./controlleur/client/clientControlleur.php");
+    shopFiltered();
+}elseif($url == "/Ecommerce/index.php/aboutUs"){
+    require("./controlleur/client/clientControlleur.php");
+    aboutUs();
+}elseif($url == "/Ecommerce/index.php/cart"){
+    require("./controlleur/client/clientControlleur.php");
+    cart();
+}elseif($url == "/Ecommerce/index.php/deleteFromCart"){
+    require("./controlleur/client/clientControlleur.php");
+    deleteFromCart();
+}elseif($url == "/Ecommerce/index.php/clearCart"){
+    require("./controlleur/client/clientControlleur.php");
+    clearCart();
+}elseif($url == "/Ecommerce/index.php/checkout"){
+    require("./controlleur/client/clientControlleur.php");
+    checkout();
+}elseif($url == "/Ecommerce/index.php/searsh"){
+    require("./controlleur/client/clientControlleur.php");
+    searshBar();
+}elseif($url == "/Ecommerce/index.php/productDetails"){
+    require("./controlleur/client/clientControlleur.php");
+    productDetails();
+}elseif($url == "/Ecommerce/index.php/loginRegister"){
+    require("./controlleur/client/clientControlleur.php");
+    loginRegister();
+}elseif($url == "/Ecommerce/index.php/confirmLogin"){
+    require("./controlleur/client/clientControlleur.php");
+    confirmLogin();
+}elseif($url == "/Ecommerce/index.php/confirmCreateAcount"){
+    require("./controlleur/client/clientControlleur.php");
+    confirmCreateAcount();
+}elseif($url == "/Ecommerce/index.php/logout"){
+    require("./controlleur/client/clientControlleur.php");
+    logout();
+}elseif($url == "/Ecommerce/index.php/addComment"){
+    require("./controlleur/client/clientControlleur.php");
+    addComment();
+}elseif($url == "/Ecommerce/index.php/deleteComment"){
+    require("./controlleur/client/clientControlleur.php");
+    deleteComment();
+}elseif($url == "/Ecommerce/index.php/addEvaluation"){
+    require("./controlleur/client/clientControlleur.php");
+    deleteComment();
+}
+// client part end
+
+
+
 else{
+    require("./controlleur/client/clientControlleur.php");
     err404();
 }
 ?>

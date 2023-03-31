@@ -136,7 +136,7 @@
                                     <li class="shopping_cart"><a href="/Ecommerce/index.php/cart">
                                         <i class="icon-basket-loaded icons"></i></a>
                                         <span id="cart" class="item_count">
-                                            <?php if(isset($cartCount)){ echo $cartCount;} ?>
+                                            <?php echo $cartCount; ?>
                                         </span>
                                     </li>
                                 </ul>
