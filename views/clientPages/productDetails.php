@@ -132,7 +132,11 @@
                                     <?php foreach($comments as $c){ ?>
                                     <div class="reviews_comment_box">
                                         <div class="comment_thmb">
+                                        <?php if($c['profile_image'] != null){ ?>
                                             <img src="../assets/usersProfileImage/<?php echo $c['profile_image'] ?>" width="50px" height="50px" alt="">
+                                        <?php }else{ ?>
+                                            <img src="../assets/img/blog/comment2.jpg" width="50px" height="50px" alt="">
+                                        <?php } ?>
                                         </div>
                                         <div class="comment_text">
                                             <div class="reviews_meta">
@@ -160,15 +164,15 @@
                                     <div class="product_ratting mb-10">
                                        <h3>Your rating</h3>
                                         <ul class="d-flex">
-                                               <li><a href="/Ecommerce/index.php/addEvaluation?id_product=<?php echo $product['id_product'] ?>&evaluation=1"><i class="icon-star"></i></a></li>
-                                               <li><a href="/Ecommerce/index.php/addEvaluation?id_product=<?php echo $product['id_product'] ?>&evaluation=2"><i class="icon-star"></i></a></li>
-                                               <li><a href="/Ecommerce/index.php/addEvaluation?id_product=<?php echo $product['id_product'] ?>&evaluation=3"><i class="icon-star"></i></a></li>
-                                               <li><a href="/Ecommerce/index.php/addEvaluation?id_product=<?php echo $product['id_product'] ?>&evaluation=4"><i class="icon-star"></i></a></li>
-                                               <li><a href="/Ecommerce/index.php/addEvaluation?id_product=<?php echo $product['id_product'] ?>&evaluation=5"><i class="icon-star"></i></a></li>
+                                               <li><a href="/Ecommerce/index.php/addEvaluation?idProduct=<?php echo $product['id_product'] ?>&evaluation=1"><i class="icon-star"></i></a></li>
+                                               <li><a href="/Ecommerce/index.php/addEvaluation?idProduct=<?php echo $product['id_product'] ?>&evaluation=2"><i class="icon-star"></i></a></li>
+                                               <li><a href="/Ecommerce/index.php/addEvaluation?idProduct=<?php echo $product['id_product'] ?>&evaluation=3"><i class="icon-star"></i></a></li>
+                                               <li><a href="/Ecommerce/index.php/addEvaluation?idProduct=<?php echo $product['id_product'] ?>&evaluation=4"><i class="icon-star"></i></a></li>
+                                               <li><a href="/Ecommerce/index.php/addEvaluation?idProduct=<?php echo $product['id_product'] ?>&evaluation=5"><i class="icon-star"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="product_review_form">
-                                        <form method="post" action="/Ecommerce/index.php/addComment?id_product=<?php echo $product['id_product'] ?>">
+                                        <form method="post" action="/Ecommerce/index.php/addComment?idProduct=<?php echo $product['id_product'] ?>">
                                             <div class="row">
                                                 <div class="col-12">
                                                     <label for="review_comment">Your review </label>
@@ -210,7 +214,7 @@
                 data: {id_product:id,quantity:quantity,function_name:"addToCartWithQuantity"},
                 type:"POST",
                 success:function(data, status){
-                    alert(status);
+                    document.getElementById("cart").innerHTML = data
                 }
             });
         }

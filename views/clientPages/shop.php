@@ -134,7 +134,7 @@
                 data: {id_product:id,function_name:"addToCart"},
                 type:"POST",
                 success:function(data, status){
-                    alert(status);
+                    document.getElementById("cart").innerHTML = data;
                 }
             });
         }

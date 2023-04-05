@@ -173,7 +173,11 @@
                             <td><?php echo $u['full_name'] ; ?></td>
                             <td><?php echo $u['birth_day'] ; ?></td>
                             <td><?php echo $u['email'] ; ?></td>
-                            <td><img src="../assets/usersProfileImage/<?php echo $u['profile_image'] ; ?>" width="50px" height="50px" /></td>
+                            <?php if($u['profile_image'] != null){ ?>
+                                <td><img src="../assets/usersProfileImage/<?php echo $u['profile_image'] ; ?>" width="50px" height="50px" /></td>
+                            <?php }else{ ?>
+                                <td><img src="../assets/img/blog/comment2.jpg" width="50px" height="50px" alt=""></td>
+                            <?php } ?>
                             <td><?php echo $u['role'] ; ?></td>
                             <td><?php echo $u['username'] ; ?></td>
                             <td><?php echo $u['password'] ; ?></td>

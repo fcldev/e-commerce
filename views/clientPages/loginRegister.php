@@ -168,7 +168,7 @@ $_SESSION['loginErr'] = '0';
 					<input type="email" name="email" placeholder="Email" required="">
 					<div class="file">
 						<div><i class="fa-solid fa-image"></i></div>
-						<input type="file" name="profile_image" placeholder="profile picture" required="">
+						<input type="file" name="profile_image" placeholder="profile picture" >
 					</div>
 					<input type="text" name="username" placeholder="username" required="">
 					<input type="password" name="password" placeholder="Password" required="">

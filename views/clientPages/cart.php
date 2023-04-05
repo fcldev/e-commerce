@@ -113,40 +113,29 @@
                  </div>
                  <!--coupon code area start-->
                 <div class="cart_page_bottom">
-                <?php if(isset($_SESSION['userInfo'])){ ?>
+                <?php if(isset($_SESSION['userInfo']) && $total > 0){ ?>
                     <div class="row d-flex justify-content-end">
                         <div class="col-lg-4 col-md-6 col-sm-8">
                             <div class="grand_totall_area">
                                <div class="grand_totall_inner border-bottom">
-                                    <!-- <div class="">
-                                        <select class="select_option border">
-                                            <option value="1">United Kingdom (UK)  </option>
-                                            <option value="2">Åland Islands  </option>
-                                            <option value="3">Afghanistan  </option>
-                                            <option value="4">Belgium </option>
-                                            <option value="5">Albania  </option>
-                                        </select>
-                                    </div> -->
-                                   <div class="cart_subtotal d-flex justify-content-between">
-                                        <div class="shopping_coupon_calculate top">
-                                            <select class="select_option border">
-                                                <?php foreach($listSides as $side){ ?>
-                                                    <option value="<?php echo $side['side']; ?>"><?php echo $side['side']; ?>  </option>
-                                                <?php } ?>
-                                            </select>
-                                        </div>
-                                   </div>
                                    <div class="cart_subtotal d-flex justify-content-between">
                                        <p>sub total </p>
-                                       <span id="subTotal">126.00</span><span>MAD</span>
-                                   </div>
-                                   <div class="cart_grandtotal d-flex justify-content-between">
-                                       <p>grand total</p>
-                                       <span id="grandTotal" >126.00</span><span>MAD</span>
+                                       <p><span id="subTotal"><?php echo $total ?></span><span>MAD</span></p>
                                    </div>
                                </div>
                                <div class="proceed_checkout_btn">
-                                   <a class="btn btn-primary" href="#">Proceed to Checkout</a>
+                                   <a class="btn btn-primary" href="/Ecommerce/index.php/checkout">Proceed to Checkout</a>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php }elseif(isset($_SESSION['userInfo']) && $total <= 0){ ?>
+                    <div class="row d-flex justify-content-end">
+                        <div class="col-lg-4 col-md-6 col-sm-8">
+                            <div class="grand_totall_area">
+                                <p>add somthing to complet the porchase</p>
+                               <div class="proceed_checkout_btn">
+                                   <a class="btn btn-primary" href="/Ecommerce/index.php/shop">shop</a>
                                </div>
                             </div>
                         </div>
@@ -162,7 +151,6 @@
                             </div>
                         </div>
                     </div>
-
                 <?php } ?>
                 </div>
                 <!--coupon code area end-->
@@ -178,9 +166,11 @@
                 data: {id_product:id,quantity:e.value,function_name:"changeCartQuantity"},
                 type:"POST",
                 success:function(data, status){
+                    data1 = JSON.parse(data)
+                    console.log(JSON.parse(data))
                     price = document.getElementById(`price${id}`).innerHTML;
-                    console.log(price);
-                    document.getElementById(id).innerHTML = data*price+' MAD';
+                    document.getElementById(id).innerHTML = parseInt(data1.quantity)*price+' MAD';
+                    document.getElementById("subTotal").innerHTML = data1.total;
                 }
             });
         }

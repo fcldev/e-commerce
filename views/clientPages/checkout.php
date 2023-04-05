@@ -1,6 +1,8 @@
 <?php
     ob_start();
 ?>
+<!-- scripts paypal -->
+<script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
 
 
       <!--breadcrumbs area start-->
@@ -24,98 +26,52 @@
     <!--Checkout page section-->
     <div class="checkout_section" id="accordion">
        <div class="container">
-            <div class="returning_coupon_area">
-                <div class="row">
-                    <div class="col-lg-7 col-md-6">
-                        <div class="user-actions">
-                            <h3>
-                                <i class="fa fa-comment-o" aria-hidden="true"></i>
-                                Returning customer?
-                                <a class="Returning" href="#" data-toggle="collapse" data-target="#checkout_login" aria-expanded="true">Click here to login</a>
-
-                            </h3>
-                             <div id="checkout_login" class="collapse" data-parent="#accordion">
-                                <div class="checkout_info">
-                                    <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.</p>
-                                    <form action="#">
-                                        <div class="form_group">
-                                            <label>Username or email <span>*</span></label>
-                                            <input type="text">
-                                        </div>
-                                        <div class="form_group">
-                                            <label>Password  <span>*</span></label>
-                                            <input type="text">
-                                        </div>
-                                        <div class="form_group group_3 ">
-                                            <button class="btn btn-primary" type="submit">Login</button>
-                                            <label for="remember_box">
-                                                <input id="remember_box" type="checkbox">
-                                                <span> Remember me </span>
-                                            </label>
-                                        </div>
-                                        <a href="#">Lost your password?</a>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 col-md-6">
-                        <div class="user-actions">
-                            <h3>
-                                <i class="fa fa-comment-o" aria-hidden="true"></i>
-                                Have a Coupon ?
-                                <a class="Returning" href="#" data-toggle="collapse" data-target="#checkout_coupon2" aria-expanded="true">Click here to enter your code</a>
-
-                            </h3>
-                             <div id="checkout_coupon2" class="collapse" data-parent="#accordion">
-                                <div class="checkout_info coupon_info">
-                                    <form action="#">
-                                        <input placeholder="Coupon code" type="text">
-                                        <button class="btn btn-primary" type="submit">Apply coupon</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <div class="checkout_form">
                 <div class="row">
                     <div class="col-lg-7 col-md-6">
                         <form action="#">
                             <h3>Billing Details</h3>
+                            <div class="shopping_coupon_calculate top">
+                                    <select class="select_option border" onchange="changeside(this)" >
+                                            <option value="null">choose your side adress</option>
+                                        <?php foreach($listSides as $side){ ?>
+                                            <option value="<?php echo $side['side']; ?>"><?php echo $side['side']; ?>  </option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
                             <div class="checkout_form_input">
                                 <label>First Name <span>*</span></label>
-                                <input type="text">
+                                <input name="firstName" type="text">
                             </div>
                             <div class="checkout_form_input">
                                 <label>Last Name  <span>*</span></label>
-                                <input type="text">
+                                <input name="lastName" type="text">
                             </div>
                             
                             <div class="checkout_form_input">
                                <label>Address  <span>*</span></label>
-                                <input type="text">
+                                <input name="adress1" type="text">
                             </div>
                             <div class="checkout_form_input">
-                                <input type="text">
+                                <input name="adress2" type="text">
                             </div>
                             <div class="checkout_form_input">
                                 <label>Town / City <span>*</span></label>
-                                <input  type="text">
+                                <input name="city"  type="text">
                             </div>
                             <div class="checkout_form_input">
                                 <label> Email Address   <span>*</span></label>
-                                <input  type="text">
+                                <input name="email"  type="text">
                             </div>
                             <div class="checkout_form_input">
                                 <label> Phone <span>*</span></label>
-                                <input  type="text">
+                                <input name="phone" type="text">
                             </div>
                             
                             <div class="checkout_form_input">
                                 <label>Order Notes</label>
-                                <textarea></textarea>
+                                <textarea name="note"></textarea>
                             </div>
                         </form>
                     </div>
@@ -128,55 +84,31 @@
                                         <thead>
                                             <tr>
                                                 <th>Product</th>
+                                                <th>Quantity</th>
                                                 <th class="text-right">Total</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php foreach($listProducts as $p){ ?>
                                             <tr>
-                                                <td> Slim Collarless Blaze   </td>
-                                                <td class="text-right"> $75.20  </td>
+                                                <td> <?php echo $p['product']['name'] ?>   </td>
+                                                <td> <?php echo $p['quantity'] ?>   </td>
+                                                <td class="text-right"> <?php echo $p['product']['price']*$p['quantity'] ?>MAD  </td>
                                             </tr>
-                                            <tr>
-                                                <td> Denim Kimono Jacket     </td>
-                                                <td class="text-right"> $50.00</td>
-                                            </tr>
+                                            <?php } ?>
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <td>Cart Subtotal  </td>
-                                                <td class="text-right">$225.60</td>
+                                                <td class="text-right" id="subTotal"><?php echo $total ; ?></td>
                                             </tr>
                                             <tr class="order_total">
                                                 <th>Order Total</th>
-                                                <td class="text-right">$225.60</td>
+                                                <td class="text-right" id="orderTotal" >Select a side</td>
                                             </tr>
                                         </tfoot>
                                     </table>
-                                    <div class="panel-default">
-                                        <div class="panel_radio">
-                                            <input id="payment1" name="check_method" type="radio" data-target="createp_account" />
-                                            <span class="checkmark"></span>
-                                        </div>
-
-                                        <label for="payment1" data-toggle="collapse" data-target="#panel1" >direct bank transfer</label>
-                                        <div id="panel1" class="collapse show one" data-parent="#accordion">
-                                            <div class="card-body1">
-                                               <p>Donec sed odio dui. Nulla vitae elit libero, a phara etra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel-default">
-                                        <div class="panel_radio">
-                                            <input id="payment2" name="check_method" type="radio" data-target="createp_account" />
-                                            <span class="checkmark"></span>
-                                        </div>
-                                        <label for="payment2" data-toggle="collapse" data-target="#method2" >cheque payment</label>
-                                        <div id="method2" class="collapse two" data-parent="#accordion">
-                                            <div class="card-body1">
-                                               <p>Donec sed odio dui. Nulla vitae elit libero, a phara etra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. </p>
-                                            </div>
-                                        </div>
-                                    </div>
+    
                                     <div class="panel-default">
                                         <div class="panel_radio">
                                             <input id="payment3" name="check_method" type="radio" data-target="createp_account" />
@@ -197,13 +129,17 @@
                                         <label for="payment4" data-toggle="collapse" data-target="#method4" >Paypal</label>
                                         <div id="method4" class="collapse four" data-parent="#accordion">
                                             <div class="card-body1">
-                                               <p>Donec sed odio dui. Nulla vitae elit libero, a phara etra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. </p>
+                                                <div id="smart-button-container">
+                                                    <div style="text-align: center;">
+                                                        <div id="paypal-button-container"></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="place_order_btn">
-                                   <a class="btn btn-primary" href="#">place order</a>
+                                   <a class="btn btn-primary" href="/Ecommerce/index.php/confirmOrder">place order</a>
                                </div>
 
                             </form>
@@ -213,9 +149,65 @@
             </div>
         </div>
     </div>
+   
     <!--Checkout page section end-->
+    <script>
+        function changeside(e){
+            // alert(e.value)
+            $.ajax({
+                url: "./controlleur/client/clientControlleur.php",
+                data: {side:e.value,function_name:"changeSide"},
+                type:"POST",
+                success:function(data, status){
+                    total = document.getElementById('subTotal').innerHTML
+                    document.getElementById('orderTotal').innerHTML = parseFloat(data)+parseFloat(total);
+                }
+            });
+        }
+    </script>
+    <script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
+  <script>
+    function initPayPalButton() {
+      paypal.Buttons({
+        style: {
+          shape: 'rect',
+          color: 'white',
+          layout: 'vertical',
+          label: 'paypal',
+          
+        },
 
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{"amount":{"currency_code":"USD","value":<?php echo $total ?>}}]
+          });
+        },
+
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(orderData) {
+            
+            // Full available details
+            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+            // Show a success message within this page, e.g.
+            const element = document.getElementById('paypal-button-container');
+            element.innerHTML = '';
+            element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+            // Or go to another URL:  actions.redirect('thank_you.html');
+            
+          });
+        },
+
+        onError: function(err) {
+          console.log(err);
+        }
+      }).render('#paypal-button-container');
+    }
+    initPayPalButton();
+  </script>
 <?php
     $content = ob_get_clean();
     require('baseLayOut.php');
 ?>
+

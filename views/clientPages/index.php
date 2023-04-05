@@ -333,7 +333,7 @@
         <div class="container">
             <div class="product_header d-flex justify-content-between  mb-50">
                 <div class="section_title">
-                    <h2>best selling items</h2>
+                    <h2>NEW ARRIVALS</h2>
                 </div>
                 <div class="product_tab_btn d-flex">
                     <ul class="nav" role="tablist">
@@ -493,8 +493,8 @@
                 url: "./controlleur/client/clientControlleur.php",
                 data: {id_product:id,function_name:"addToCart"},
                 type:"POST",
-                success:function(data, status){
-                    alert(status);
+                success:function(data, status){      
+                    document.getElementById("cart").innerHTML = data;
                 }
             });
         }

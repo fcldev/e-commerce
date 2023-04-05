@@ -94,7 +94,7 @@
                                 <a href="javascript:void(0)"><i class="ion-navicon"></i></a>
                             </div>
                             <div class="header_logo">
-                                <a class="sticky_none" href="index.html"><img src="../assets/img/logo/logo.png" alt=""></a>
+                                <a class="sticky_none" href="/Ecommerce/index.php/"><img src="../assets/img/logo/logo.png" alt=""></a>
                             </div>
                             <!--main menu start-->
                             <div class="main_menu d-none d-lg-block">
