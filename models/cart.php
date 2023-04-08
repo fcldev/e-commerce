@@ -10,7 +10,7 @@ class Cart{
 
     public function getCartProducts($idUser){
         require("connexion.php");
-        $sql = "SELECT id_product,quantity FROM `cart` WHERE id_user = :id_user AND state = 0";
+        $sql = "SELECT * FROM `cart` WHERE id_user = :id_user AND state = 0";
         $stm = $connexion->prepare($sql);
         $stm->bindParam(':id_user',$idUser);
         $stm->execute();
@@ -110,7 +110,14 @@ class Cart{
         $stm->bindParam(':id_user',$id_user);
         $stm->execute();
     }
-
+    public function setIdOrder($idCart,$idOrder){
+        require("connexion.php");
+        $sql = "UPDATE `cart` SET `id_order`= :id_order ,`state`= 1 WHERE id_cart = :id_cart";
+        $stm = $connexion->prepare($sql);
+        $stm->bindParam(':id_cart',$idCart);
+        $stm->bindParam(':id_order',$idOrder);
+        $stm->execute();
+    }
 }
 
 ?>

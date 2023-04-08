@@ -86,7 +86,9 @@ function confirmAlterUser(){
     }
 }
 // part user end
+
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 // part product start
 function dashboardProduct(){
     if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
@@ -201,7 +203,9 @@ function confirmAddImages(){
 }
 
 // part product end
+
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 // part categorie start
 function dashboardCategorie(){
     if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
@@ -274,7 +278,9 @@ function confirmAlterCategorie(){
 }
 
 // part categorie end
+
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 // part delivery start
 function dashboardSide(){
     if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
@@ -346,4 +352,60 @@ function confirmAlterSide(){
     }
 }
 // part delivery end
+
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// part orders start
+function dashboardOrder(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
+        require("./models/order.php");
+        $order = new Order;
+        $orders = $order->getAllOrders();
+        require('./views/adminPages/order/dashboardOrder.php');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function dashboardSearshOrder(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
+        require("./models/order.php");
+        $order = new Order;
+        $orders = $order->getOrders($_POST['input_val']);
+        require('./views/adminPages/order/dashboardOrder.php');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function deleteOrder(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
+        require("./models/order.php");
+        $order = new Order;
+        $order->deleteOrder($_GET['order']);
+        header('Location: /Ecommerce/index.php/dashboardOrder');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function alterOrder(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin' ){
+        require("./models/order.php");
+        $order = new Order;
+        $side = $order->getOrder($_GET['order'])[0];
+        require('./views/adminPages/order/alterOrder.php');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+function confirmAlterOrder(){
+    if(isset($_SESSION['userInfo']) && $_SESSION['userInfo']['role'] == 'admin'){
+            require("./models/order.php");
+            $order = new Order;
+            $order->setOrderStatusInfo($_POST['state']);
+            $order->alterOrderStatus();
+            header('Location: /Ecommerce/index.php/dashboardOrder');
+    }else{
+        header('Location: /Ecommerce/index.php/loginRegister');
+    }
+}
+// part orders end
 ?>

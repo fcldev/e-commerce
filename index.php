@@ -77,6 +77,18 @@ elseif($url == "/Ecommerce/index.php/dashboardSide"){
 }elseif($url == "/Ecommerce/index.php/confirmAlterSide"){
     confirmAlterSide();
 }
+// dashboard order part
+elseif($url == "/Ecommerce/index.php/dashboardOrder"){
+    dashboardOrder();
+}elseif($url == "/Ecommerce/index.php/dashboardSearshOrder"){
+    dashboardSearshOrder();
+}elseif($url == "/Ecommerce/index.php/deleteOrder"){
+    deleteOrder();
+}elseif($url == "/Ecommerce/index.php/alterOrder"){
+    alterOrder();
+}elseif($url == "/Ecommerce/index.php/confirmAlterOrder"){
+    confirmAlterOrder();
+}
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -149,6 +161,10 @@ elseif($url == "/Ecommerce/index.php/"){
     
     require("./controlleur/client/clientControlleur.php");
     addEvaluation();
+}elseif($url == "/Ecommerce/index.php/confirmOrder"){
+    
+    require("./controlleur/client/clientControlleur.php");
+    confirmOrder();
 }
 // client part end
 

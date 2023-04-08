@@ -108,6 +108,12 @@
                   <p>Delivery</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/Ecommerce/index.php/dashboardOrder" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>order</p>
+                </a>
+              </li>
             </ul>
           </li>
           

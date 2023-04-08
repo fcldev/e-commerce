@@ -9,7 +9,12 @@ function home(){
         require('./models/cart.php');
         $cartCount = (new Cart)->getCartCount($_SESSION['userInfo']['id_user']);
     }else{
-        $cartCount = count($_SESSION['listCart']);
+        if(isset($_SESSION['listCart'])){
+            $cartCount = count($_SESSION['listCart']);
+        }else{
+            $_SESSION['listCart'] = array();
+            $cartCount = count($_SESSION['listCart']);
+        }
     }
     $newArrivals = (new Product)->getProductsOrderedByDate();
     if(!isset($_GET['categorie']) || $_GET['categorie'] == 'all'){
@@ -283,12 +288,14 @@ function checkout(){
         foreach($listProducts as $p){
             $total += $p['product']['price']*$p['quantity'];
         }
-        require("./views/clientPages/checkout.php");
+        if($total > 0){
+            require("./views/clientPages/checkout.php");
+        }else{
+            header("Location: /Ecommerce/index.php/");
+        }
     }else{
         require("./views/clientPages/loginRegister.php");
     }
-
-    
 }
 if(isset($_POST['function_name']) && isset($_SESSION['userInfo']) && $_POST['function_name'] === "changeSide"){
     $side = $_POST['side'];
@@ -475,6 +482,47 @@ function changeProductEvaluation($idProduct){
     }
     $evaluation = $sum / count($listEvaluations);
     $p->changeProductEvaluation($idProduct,$evaluation);
+}
+if(isset($_POST['function_name']) && isset($_SESSION['userInfo']) && $_POST['function_name'] === "confirmOrder"){
+    $side = $_POST['side'];
+    require('./models/delivery.php');
+    $cart = new Delivery;
+    $deliveryPrice = $cart->getSide($side)['price'];
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $adress1 = $_POST['adress1'];
+    $adress2 = $_POST['adress2'];
+    $city = $_POST['city'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+    $note = $_POST['note'];
+    $idUser = $_SESSION['userInfo']['id_user'];
+    $date = date('Y-m-d');
+    $paiment = "onDelivery";
+    $total = $_POST['total'] + $deliveryPrice;
+    confirmOrder($firstName,$lastName,$adress1,$adress2,$city,$phone,$email,$note,$idUser,$date,$paiment,$total);
+    exit(0);
+}
+function confirmOrder($fName,$lName,$adress1,$adress2,$city,$phone,$email,$note,$idUser,$date,$paiment,$total){
+   if($fName != "" && $lName != "" && $adress1 != "" && $adress2 != "" && $city != "" && $phone != "" && $email != "" && $idUser > 0 && $date != "" && $paiment != "" && $total > 0 ){
+        require('./models/cart.php');
+        require('./models/order.php');
+        $cart = new Cart;
+        $order = new Order;
+        $order->setOrderInfo($fName,$lName,$adress1,$adress2,$city,$phone,$email,$note,$idUser,$date,$paiment,$total);
+        $order->createOrder();
+        require('./models/connexion.php');
+        $idOrder = $connexion->lastInsertId();
+        $listCart = $cart->getCartProducts($idUser);
+        var_dump($listCart);
+        foreach($listCart as $c){
+            $cart->setIdOrder($c['id_cart'],$idOrder);
+        }
+        echo "success";
+        header("Location: /Ecommerce/index.php/");
+   }else{
+        echo "a feald doesn t fill";
+   }
 }
 function err404(){
     require('./views/clientPages/404.php');

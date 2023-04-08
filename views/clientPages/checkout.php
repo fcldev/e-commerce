@@ -30,10 +30,10 @@
             <div class="checkout_form">
                 <div class="row">
                     <div class="col-lg-7 col-md-6">
-                        <form action="#">
+                        <form method="post" action="/Ecommerce/index.php/confirmOrder">
                             <h3>Billing Details</h3>
                             <div class="shopping_coupon_calculate top">
-                                    <select class="select_option border" onchange="changeside(this)" >
+                                    <select class="select_option border" id="side" name="side" onchange="changeside(this)" >
                                             <option value="null">choose your side adress</option>
                                         <?php foreach($listSides as $side){ ?>
                                             <option value="<?php echo $side['side']; ?>"><?php echo $side['side']; ?>  </option>
@@ -42,36 +42,36 @@
                                 </div>
                             <div class="checkout_form_input">
                                 <label>First Name <span>*</span></label>
-                                <input name="firstName" type="text">
+                                <input id="firstName" name="firstName" type="text">
                             </div>
                             <div class="checkout_form_input">
                                 <label>Last Name  <span>*</span></label>
-                                <input name="lastName" type="text">
+                                <input id="lastName" name="lastName" type="text">
                             </div>
                             
                             <div class="checkout_form_input">
                                <label>Address  <span>*</span></label>
-                                <input name="adress1" type="text">
+                                <input id="adress1" name="adress1" type="text">
                             </div>
                             <div class="checkout_form_input">
-                                <input name="adress2" type="text">
+                                <input id="adress2" name="adress2" type="text">
                             </div>
                             <div class="checkout_form_input">
                                 <label>Town / City <span>*</span></label>
-                                <input name="city"  type="text">
+                                <input id="city" name="city"  type="text">
                             </div>
                             <div class="checkout_form_input">
                                 <label> Email Address   <span>*</span></label>
-                                <input name="email"  type="text">
+                                <input id="email" name="email"  type="text">
                             </div>
                             <div class="checkout_form_input">
                                 <label> Phone <span>*</span></label>
-                                <input name="phone" type="text">
+                                <input id="phone" name="phone" type="text">
                             </div>
                             
                             <div class="checkout_form_input">
                                 <label>Order Notes</label>
-                                <textarea name="note"></textarea>
+                                <textarea id="note" name="note"></textarea>
                             </div>
                         </form>
                     </div>
@@ -100,7 +100,7 @@
                                         <tfoot>
                                             <tr>
                                                 <td>Cart Subtotal  </td>
-                                                <td class="text-right" id="subTotal"><?php echo $total ; ?></td>
+                                                <td class="text-right" id="subTotal"><?php echo $total ; ?> MAD</td>
                                             </tr>
                                             <tr class="order_total">
                                                 <th>Order Total</th>
@@ -139,7 +139,7 @@
                                     </div>
                                 </div>
                                 <div class="place_order_btn">
-                                   <a class="btn btn-primary" href="/Ecommerce/index.php/confirmOrder">place order</a>
+                                   <button class="btn btn-primary" type="button" onclick="confirmOrder()">place order</button>
                                </div>
 
                             </form>
@@ -160,7 +160,41 @@
                 type:"POST",
                 success:function(data, status){
                     total = document.getElementById('subTotal').innerHTML
-                    document.getElementById('orderTotal').innerHTML = parseFloat(data)+parseFloat(total);
+                    document.getElementById('orderTotal').innerHTML = parseFloat(data)+parseFloat(total) + " MAD";
+                }
+            });
+        }
+        function confirmOrder(){
+            // alert(e.value)
+            var side = document.getElementById('side').value;
+            var firstName = document.getElementById('firstName').value;
+            var lastName = document.getElementById('lastName').value;
+            var adress1 = document.getElementById('adress1').value;
+            var adress2 = document.getElementById('adress2').value;
+            var city = document.getElementById('city').value;
+            var phone = document.getElementById('phone').value;
+            var email = document.getElementById('email').value;
+            var note = document.getElementById('note').value;
+            var total = "<?php echo $total ?>";
+            $.ajax({
+                url: "./controlleur/client/clientControlleur.php",
+                data: {
+                    side:side,
+                    firstName:firstName,
+                    lastName:lastName,
+                    adress1:adress1,
+                    adress2:adress2,
+                    city:city,
+                    phone:phone,
+                    email:email,
+                    note:note,
+                    total:total,
+                    function_name:"confirmOrder"
+                },
+                type:"POST",
+                success:function(data, status){
+                    alert('success')
+                    window.open("/Ecommerce/index.php/")
                 }
             });
         }
@@ -179,7 +213,7 @@
 
         createOrder: function(data, actions) {
           return actions.order.create({
-            purchase_units: [{"amount":{"currency_code":"USD","value":<?php echo $total ?>}}]
+            purchase_units: [{"amount":{"currency_code":"USD","value":<?php echo $total/10 ?>}}]
           });
         },
 

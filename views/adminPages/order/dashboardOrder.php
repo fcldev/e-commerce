@@ -31,9 +31,9 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- add user Dropdown Menu -->
+      <!-- add product button -->
       <li class="nav-item">
-        <a class="nav-link" title="add user" data-widget="fullscreen" href="/Ecommerce/index.php/addAdmin" role="button">
+        <a class="nav-link" title="add categorie" data-widget="fullscreen" href="/Ecommerce/index.php/addCategorie" role="button">
           <i class="fa-solid fa-plus"></i>
         </a>
       </li>
@@ -61,7 +61,7 @@
           <?php } ?>
         </div>
         <div class="info">
-          <a href="#" class="d-block"><?php echo $_SESSION['userInfo'][1]; ?></a>
+          <a href="#" class="d-block"><?php echo $_SESSION['userInfo']['full_name']; ?></a>
         </div>
       </div>
 
@@ -82,7 +82,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/Ecommerce/index.php/dashboardUser" class="nav-link active">
+                <a href="/Ecommerce/index.php/dashboardUser" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Users</p>
                 </a>
@@ -94,7 +94,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/Ecommerce/index.php/dashboardCategorie" class="nav-link ">
+                <a href="/Ecommerce/index.php/dashboardCategorie" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Categories</p>
                 </a>
@@ -106,7 +106,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/Ecommerce/index.php/dashboardOrder" class="nav-link">
+                <a href="/Ecommerce/index.php/dashboardOrder" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>order</p>
                 </a>
@@ -123,18 +123,17 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    
         <div class="d-flex">
-          <h1 class="mx-auto">Users management</h1>
+          <h1 class="mx-auto">Categorie management</h1>
         </div>
         <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Users</h3>
+                <h3 class="card-title">Categorie</h3>
 
                 <div class="card-tools">
-                  <form method="post" action="/Ecommerce/index.php/dashboardSearshUser" class="input-group input-group-sm" style="width: 150px;">
+                  <form method="post" action="/Ecommerce/index.php/dashboardSearshCategorie" class="input-group input-group-sm" style="width: 150px;">
                     <input type="text" name="input_val" class="form-control float-right" placeholder="Search by id">
 
                     <div class="input-group-append">
@@ -150,45 +149,28 @@
                 <table class="table table-head-fixed text-nowrap">
                   <thead>
                     <tr>
-                        <th>Actions</th>
-                        <th>Id</th>
-                        <th>Full name</th>
-                        <th>Birth day</th>
-                        <th>Email</th>
-                        <th>Profile picture</th>
-                        <th>Role</th>
-                        <th>Username</th>
-                        <th>Paddword</th>
+                      <th>action</th>
+                      <th>Categorie name</th>
+                      
                     </tr>
                   </thead>
                   <tbody>
-                  <?php foreach($users as $u){ ?>
-                        <tr>
-                            <td>
-                                <div class="dropdown">
-                                    <a class="text-primary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa-sharp fa-solid fa-gear"></i>
-                                    </a>    
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <?php echo '<a onClick=\' javascript:return confirm("are you sure you wanr to delete this user"); \' class="dropdown-item" href="/Ecommerce/index.php/deleteUser?id_user='.$u['id_user'].'">delete</a>'; ?>
-                                        <a class="dropdown-item" href="/Ecommerce/index.php/alterUser?id_user=<?php  echo $u['id_user']; ?>">alter</a>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="tflex"><?php echo $u['id_user'] ; ?></td>
-                            <td><?php echo $u['full_name'] ; ?></td>
-                            <td><?php echo $u['birth_day'] ; ?></td>
-                            <td><?php echo $u['email'] ; ?></td>
-                            <?php if($u['profile_image'] != null){ ?>
-                                <td><img src="../assets/usersProfileImage/<?php echo $u['profile_image'] ; ?>" width="50px" height="50px" /></td>
-                            <?php }else{ ?>
-                                <td><img src="../assets/img/blog/comment2.jpg" width="50px" height="50px" alt=""></td>
-                            <?php } ?>
-                            <td><?php echo $u['role'] ; ?></td>
-                            <td><?php echo $u['username'] ; ?></td>
-                            <td><?php echo $u['password'] ; ?></td>
-                        </tr>
-                      <?php } ?>
+                  <?php foreach($categories as $c){ ?>
+                <tr>
+                    <td>
+                        <div class="dropdown">
+                            <a class="text-primary" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa-sharp fa-solid fa-gear"></i>
+                            </a>    
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <?php echo '<a onClick=\' javascript:return confirm("are you sure you wanr to delete this user"); \' class="dropdown-item" href="/Ecommerce/index.php/deleteCategorie?categorie_name='.$c['categorie_name'].'">delete</a>'; ?>
+                                <a class="dropdown-item" href="/Ecommerce/index.php/alterCategorie?categorie_name=<?php echo $c['categorie_name']; ?>">alter</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td><?php echo $c['categorie_name']; ?></td>
+                </tr>
+              <?php } ?>
                   </tbody>
                 </table>
               </div>

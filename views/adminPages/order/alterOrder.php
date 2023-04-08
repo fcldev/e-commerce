@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,13 +83,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/Ecommerce/index.php/dashboardProduct" class="nav-link active">
+                <a href="/Ecommerce/index.php/dashboardProduct" class="nav-link ">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Products</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/Ecommerce/index.php/dashboardCategorie" class="nav-link ">
+                <a href="/Ecommerce/index.php/dashboardCategorie" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Categories</p>
                 </a>
@@ -102,7 +101,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/Ecommerce/index.php/dashboardOrder" class="nav-link">
+                <a href="/Ecommerce/index.php/dashboardOrder" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>order</p>
                 </a>
@@ -124,81 +123,30 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add Product</h1>
+            <h1>Add Categorie</h1>
           </div>
           
         </div>
       </div><!-- /.container-fluid -->
     </section>
-    <div class="card card-primary mx-5">
-        <div class="card-header">
-        <h3 class="card-title">Insert product informations</h3>
-        </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form class="row" method="post" action="/Ecommerce/index.php/confirmAddProduct" enctype="multipart/form-data">
-        <div class="card-body col-lg-6 col-sm-12">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" name="name" id="name" placeholder="Name">
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <input type="text" class="form-control" name="description" id="description" placeholder="Description">
-            </div>
-            <div class="form-group">
-                <label for="tags">Tags</label>
-                <input type="text" class="form-control" name="tags" id="tags" placeholder="Tags">
-            </div>
-            <div class="form-group">
-                <label for="visibility">Visibility</label>
-                <select class="form-control" name="visibility" id="visibility">
-                        <option value="1">visible</option>
-                        <option value="0">hidden</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="dateArrivale">Date arrival</label>
-                <input type="date" class="form-control" name="date_arrivale" id="dateArrivale" placeholder="Date arrival">
-            </div>
-            <div class="form-group">
-                <label for="sizes">Sizes available</label>
-                <input type="text" class="form-control" name="sizes_available" id="sizes" placeholder="Sizes available">
-            </div>
-        </div>
-        <div class="card-body col-lg-6 col-sm-12">
-            <div class="form-group">
-                <label for="colors">Colors</label>
-                <input type="text" class="form-control" name="colors" id="colors" placeholder="Colors">
-            </div>
-            <div class="form-group">
-                <label for="price">Price</label>
-                <input type="number" class="form-control" name="price" id="price" placeholder="Price">
-            </div>
-            <div class="form-group">
-                <label for="videoLink">Video link</label>
-                <input type="text" class="form-control" name="video" id="videoLink" placeholder="Video link">
-            </div>
-            <div class="form-group">
-                <label for="quantity">Quantity</label>
-                <input type="number" class="form-control" name="quantity" id="quantity" placeholder="Quantity">
-            </div>
-            <div class="form-group">
-                <label for="discount">Discount</label>
-                <input type="number" class="form-control" name="discount" id="discount" placeholder="Discount">
-            </div>
-            <div class="form-group">
-                <label for="CategorieName">Categorie Name</label>
-                <input type="text" class="form-control" name="categorie_name" id="CategorieName" placeholder="Categorie Name">
-            </div>            
-        </div>
-        
-        <!-- /.card-body -->
-
-        <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-        </form>
+    <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Insert categorie inormations</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form method="post" action="/Ecommerce/index.php/confirmAlterCategorie?categorie_name=<?php echo $categorie1['categorie_name']; ?>">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="name">Categorie Name</label>
+                            <input type="text" class="form-control" name="categorie_name" id="name" placeholder="Categorie name" value="<?php echo $categorie1['categorie_name']; ?>" />
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+              </form>
     </div>
   </div>
   <!-- /.content-wrapper -->
